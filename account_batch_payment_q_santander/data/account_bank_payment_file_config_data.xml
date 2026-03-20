@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="account_bank_payment_file_config_s_deb_auto" model="account.bank.payment.file.config">
+            <field name="name">SANTANDER DÉBITOS AUTOMÁTICOS</field>
+            <field name="code">santander_deb_auto</field>
+        </record>
+
+        <!-- Líneas de detalle -->
+        <record id="account_bank_payment_file_config_line_s_1" model="account.bank.payment.file.config.line">
+            <field name="config_id" ref="account_bank_payment_file_config_s_deb_auto"/>
+            <field name="sequence">1</field>
+            <field name="name">Constante</field>
+            <field name="description">Valor constante para tipo de registro: 1 (detalle)</field>
+            <field name="type">fixed</field>
+            <field name="value">1</field>
+        </record>
+
+        <record id="account_bank_payment_file_config_line_s_3" model="account.bank.payment.file.config.line">
+            <field name="config_id" ref="account_bank_payment_file_config_s_deb_auto"/>
+            <field name="sequence">3</field>
+            <field name="name">Código de Banco</field>
+            <field name="description">Código SANTANDER = 137</field>
+            <field name="type">fixed</field>
+            <field name="value">137</field>
+        </record>
+
+        <record id="account_bank_payment_file_config_line_s_4" model="account.bank.payment.file.config.line">
+            <field name="config_id" ref="account_bank_payment_file_config_s_deb_auto"/>
+            <field name="sequence">4</field>
+            <field name="name">Letras del convenio</field>
+            <field name="description">Mapeo por RUT de empresa. Formato esperado: "RUT_Empresa=Letra_Convenio", separado por coma. Ejemplo: 222121424234=CM,222121424233=PV. Se puede configurar como valor fijo.</field>
+            <field name="type">mapping</field>
+            <field name="value">213314840014=CM,210794670016=PV,210257820019=RM</field>
+        </record>
+
+        <record id="account_bank_payment_file_config_line_s_11" model="account.bank.payment.file.config.line">
+            <field name="config_id" ref="account_bank_payment_file_config_s_deb_auto"/>
+            <field name="sequence">11</field>
+            <field name="name">Ciclo</field>
+            <field name="type">fixed</field>
+            <field name="value">01</field>
+        </record>
+
+        <record id="account_bank_payment_file_config_line_s_13" model="account.bank.payment.file.config.line">
+            <field name="config_id" ref="account_bank_payment_file_config_s_deb_auto"/>
+            <field name="sequence">13</field>
+            <field name="name">Nombre del Banco</field>
+            <field name="type">fixed</field>
+            <field name="value">SANTANDER</field>
+        </record>
+
+        <record id="account_bank_payment_file_config_line_s_14" model="account.bank.payment.file.config.line">
+            <field name="config_id" ref="account_bank_payment_file_config_s_deb_auto"/>
+            <field name="sequence">14</field>
+            <field name="name">Código de Banco</field>
+            <field name="description">Código SANTANDER = 137</field>
+            <field name="type">fixed</field>
+            <field name="value">137</field>
+        </record>
+
+        <record id="account_bank_payment_file_config_line_s_15" model="account.bank.payment.file.config.line">
+            <field name="config_id" ref="account_bank_payment_file_config_s_deb_auto"/>
+            <field name="sequence">15</field>
+            <field name="name">Indicador devolución de IVA</field>
+            <field name="description">Configurar mapeo booleano: true=S (Sí), false=N (No). Ejemplo: true=S,false=N</field>
+            <field name="type">mapping</field>
+            <field name="value">true=S,false=N</field>
+        </record>
+
+        <!-- Línea de cierre -->
+        <record id="account_bank_payment_file_config_footer_s_1" model="account.bank.payment.file.config.line">
+            <field name="config_f_id" ref="account_bank_payment_file_config_s_deb_auto"/>
+            <field name="sequence">1</field>
+            <field name="name">Constante</field>
+            <field name="type">fixed</field>
+            <field name="value">2</field>
+        </record>
+
+        <record id="account_bank_payment_file_config_footer_s_3" model="account.bank.payment.file.config.line">
+            <field name="config_f_id" ref="account_bank_payment_file_config_s_deb_auto"/>
+            <field name="sequence">3</field>
+            <field name="name">Código de Banco</field>
+            <field name="description">Código SANTANDER = 137</field>
+            <field name="type">fixed</field>
+            <field name="value">137</field>
+        </record>
+
+        <record id="account_bank_payment_file_config_footer_s_4" model="account.bank.payment.file.config.line">
+            <field name="config_f_id" ref="account_bank_payment_file_config_s_deb_auto"/>
+            <field name="sequence">4</field>
+            <field name="name">Letras del convenio</field>
+            <field name="description">Mapeo por RUT de empresa. Formato: RUT=Letra. Ej: 213384840014=CM,210799670016=PV. Se puede configurar como valor fijo.</field>
+            <field name="type">mapping</field>
+            <field name="value">213314840014=CM,210794670016=PV,210257820019=RM</field>
+        </record>
+    </data>
+</odoo>

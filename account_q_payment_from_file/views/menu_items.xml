@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Menu item under Accounting > Customers -->
+    <menuitem id="menu_account_q_payment_from_file"
+              name="Pagos desde Archivo"
+              parent="account.menu_finance_receivables"
+              action="action_account_q_payment_from_file"
+              sequence="50"/>
+</odoo>
+

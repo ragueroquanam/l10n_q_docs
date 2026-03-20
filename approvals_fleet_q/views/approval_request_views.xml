@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_approval_request_form_inherit" model="ir.ui.view">
+            <field name="name">view.approval.request.form.inherit.vehicle_data</field>
+            <field name="model">approval.request</field>
+            <field name="inherit_id" ref="approvals.approval_request_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//widget[@name='attach_document']" position="after">
+                    <button name="action_generate_fleet_service"
+                            string="Generar servicio"
+                            type="object"
+                            class="btn-primary"
+                            invisible="request_status != 'approved' or not is_fuel_request or is_service_generated"
+                            readonly="1"/>
+                </xpath>
+                <xpath expr="//field[@name='reference']" position="after">
+                    <field name="is_fuel_request" invisible="1"/>
+                    <field name="is_service_generated" invisible="not is_service_generated" readonly="1"/>
+                    <field name="vehicle_id" invisible="not is_fuel_request" required="is_fuel_request"
+                           readonly="request_status not in ('new','pending')"/>
+                    <field name="license_plate" readonly="1" invisible="not is_fuel_request"/>
+                    <field name="driver_id" invisible="not is_fuel_request"
+                           readonly="request_status not in ('new','pending')"/>
+                    <field name="fuel_type" invisible="not is_fuel_request"
+                           readonly="request_status not in ('new','pending')"/>
+                    <field name="odometer_value" invisible="not is_fuel_request or request_status != 'approved'"
+                           required="is_fuel_request" readonly="is_service_generated"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

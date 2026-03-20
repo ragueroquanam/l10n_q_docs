@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <!-- Vista árbol (list) -->
+    <record id="view_pos_payment_provider_list" model="ir.ui.view">
+        <field name="name">pos.payment.provider.list</field>
+        <field name="model">pos.payment.provider</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="code"/>
+                <field name="name"/>
+                <field name="base_url"/>
+                <field name="endpoint"/>
+                <field name="system_id"/>
+                <field name="active"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Vista kanban -->
+    <record id="view_pos_payment_provider_kanban" model="ir.ui.view">
+        <field name="name">pos.payment.provider.kanban</field>
+        <field name="model">pos.payment.provider</field>
+        <field name="arch" type="xml">
+            <kanban class="o_kanban_small_column">
+                <field name="logo"/>
+                <templates>
+                    <t t-name="card" class="flex-row align-items-center">
+                        <aside>
+                            <field name="logo" widget="image_url" options="{'size': [50, 50]}" alt="Icon"/>
+                            <field t-if="record.logo" name="logo"/>
+                        </aside>
+                        <main class="me-4">
+                            <strong>
+                                <field name="name"/>
+                            </strong>
+                            <br/>
+                            <span>
+                                <field name="code"/>
+                            </span>
+                        </main>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- Vista formulario -->
+    <record id="view_pos_payment_provider_form" model="ir.ui.view">
+        <field name="name">pos.payment.provider.form</field>
+        <field name="model">pos.payment.provider</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="logo" widget="image" class="oe_avatar" nolabel="1"
+                               options="{'preview_image': 'logo'}"/>
+                        <field name="code"/>
+                        <field name="name"/>
+                        <field name="base_url"/>
+                        <field name="endpoint"/>
+                        <field name="system_id"/>
+                        <field name="active"/>
+                    </group>
+                    <notebook>
+                        <page string="Terminales de Pago">
+                            <field name="terminal_ids">
+                                <list editable="top">
+                                    <field name="pos_id"/>
+                                    <field name="branch"/>
+                                    <field name="client_app_id"/>
+                                    <field name="active"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Vista búsqueda -->
+    <record id="view_pos_payment_provider_search" model="ir.ui.view">
+        <field name="name">pos.payment.provider.search</field>
+        <field name="model">pos.payment.provider</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="code"/>
+                <filter name="active" string="Activos" domain="[('active', '=', True)]"/>
+                <filter name="inactive" string="Inactivos" domain="[('active', '=', False)]"/>
+            </search>
+        </field>
+    </record>
+
+    <!-- Acción -->
+    <record id="action_pos_payment_provider" model="ir.actions.act_window">
+        <field name="name">Proveedores de Pago</field>
+        <field name="res_model">pos.payment.provider</field>
+        <field name="view_mode">kanban,list,form</field>
+        <field name="search_view_id" ref="view_pos_payment_provider_search"/>
+    </record>
+
+</odoo>

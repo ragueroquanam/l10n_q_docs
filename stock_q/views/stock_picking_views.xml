@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="inherit_view_picking_form_location_dest_id" model="ir.ui.view">
+        <field name="name">stock.picking.form.inherit.location.dest.id</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+            <field name="location_dest_id" position="attributes">
+                <attribute name="domain">location_dest_id_domain</attribute>
+            </field>
+
+            <xpath expr="//field[@name='location_dest_id'][2]" position="attributes">
+               <attribute name="domain">location_dest_id_domain</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='location_id']" position="attributes">
+                <attribute name="domain">location_id_domain</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='location_id'][2]" position="attributes">
+                <attribute name="domain">location_id_domain</attribute>
+            </xpath>
+
+        </field>
+    </record>
+
+
+    <record id="stock.action_picking_tree_incoming" model="ir.actions.act_window">
+        <field name="context">{'loc_dest_id_responsible_domain': 1, 'contact_display': 'partner_address','restricted_picking_type_code': 'incoming', 'search_default_reception': 1}</field>
+    </record>
+
+    <record id="stock.action_picking_tree_outgoing" model="ir.actions.act_window">
+        <field name="context">{'ori_loc_id_responsible_domain': 1, 'contact_display': 'partner_address', 'restricted_picking_type_code': 'outgoing', 'search_default_delivery': 1}</field>
+    </record>
+
+    <record id="stock.action_picking_tree_internal" model="ir.actions.act_window">
+        <field name="context">{'ori_loc_id_responsible_domain': 1, 'contact_display': 'partner_address', 'restricted_picking_type_code': 'internal', 'search_default_internal': 1}</field>
+    </record>
+
+    <record id="stock.stock_picking_type_action" model="ir.actions.act_window">
+        <field name="context">{'from_main_inventory_view': 1}</field>
+    </record>
+
+
+
+</odoo>

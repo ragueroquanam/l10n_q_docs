@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_batch_reconciliation_master_user,batch.reconciliation.master.user,model_batch_reconciliation_master,account.group_account_user,1,0,0,0
+access_batch_reconciliation_master_invoice,batch.reconciliation.master.invoice,model_batch_reconciliation_master,account.group_account_invoice,1,1,1,0
+access_batch_reconciliation_master_manager,batch.reconciliation.master.manager,model_batch_reconciliation_master,account.group_account_manager,1,1,1,1
+access_batch_reconciliation_chunk_user,batch.reconciliation.chunk.user,model_batch_reconciliation_chunk,account.group_account_user,1,0,0,0
+access_batch_reconciliation_chunk_invoice,batch.reconciliation.chunk.invoice,model_batch_reconciliation_chunk,account.group_account_invoice,1,1,1,0
+access_batch_reconciliation_chunk_manager,batch.reconciliation.chunk.manager,model_batch_reconciliation_chunk,account.group_account_manager,1,1,1,1

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- Configuration parameters for batch reconciliation -->
+
+        <!-- Minimum payments to trigger queue processing (default 500) -->
+        <record id="config_queue_threshold" model="ir.config_parameter">
+            <field name="key">batch_reconciliation_queue.queue_threshold</field>
+            <field name="value">500</field>
+        </record>
+
+        <!-- Number of payments per chunk (default 500) -->
+        <!-- Each chunk should complete in < 10 minutes -->
+        <record id="config_chunk_size" model="ir.config_parameter">
+            <field name="key">batch_reconciliation_queue.chunk_size</field>
+            <field name="value">500</field>
+        </record>
+
+        <!-- Maximum concurrent chunk jobs (default 3) -->
+        <!-- Higher values = faster but more resource intensive -->
+        <record id="config_max_parallel_chunks" model="ir.config_parameter">
+            <field name="key">batch_reconciliation_queue.max_parallel_chunks</field>
+            <field name="value">3</field>
+        </record>
+
+        <!-- Number of pairs to reconcile per batch (default 100) -->
+        <!-- Each manual "Reconcile Batch" click processes this many pairs -->
+        <!-- Lower = more responsive UI, Higher = fewer clicks needed -->
+        <record id="config_reconciliation_batch_size" model="ir.config_parameter">
+            <field name="key">batch_reconciliation_queue.reconciliation_batch_size</field>
+            <field name="value">100</field>
+        </record>
+    </data>
+</odoo>

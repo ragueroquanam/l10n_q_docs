@@ -1,0 +1,12 @@
+<odoo>
+    <record id="view_cash_management_config_form_inherit_pos_fields" model="ir.ui.view">
+        <field name="name">cash.management.config.form.inherit.pos.fields</field>
+        <field name="model">cash.management.config</field>
+        <field name="inherit_id" ref="cash_management_q.view_cash_management_config_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='company_id']" position="after">
+                <field name="pos_payment_terminal_id" domain="[('provider_id.code', '=', 'poslink')]"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_config_settings_view_form_inherit_q_taxable_tax" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.q.taxable.tax</field>
+        <field name="model">res.config.settings</field>
+        <field name="priority" eval="26"/>
+        <field name="inherit_id" ref="account.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//block[@name='default_taxes_setting_container']" position="inside">
+                <setting id="account_q_taxable_tax_ids_setting"
+                         string="Impuestos Gravables"
+                         company_dependent="1"
+                         help="Seleccione los impuestos que deben considerarse como gravables para el cálculo del Monto gravable en facturas.">
+                    <field name="account_q_taxable_tax_ids"
+                           widget="many2many_tags"
+                           options="{'no_create': True}"/>
+                </setting>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

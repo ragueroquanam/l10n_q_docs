@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="account_bank_payment_file_config_amex" model="account.bank.payment.file.config">
+            <field name="name">AMEX</field>
+            <field name="code">amex</field>
+        </record>
+
+        <!-- Encabezado -->
+        <record id="account_bank_payment_file_config_header_amex_1" model="account.bank.payment.file.config.line">
+            <field name="config_h_id" ref="account_bank_payment_file_config_amex"/>
+            <field name="sequence">1</field>
+            <field name="name">Tipo de registro</field>
+            <field name="description">Valor fijo para tipo de registro de encabezado: H</field>
+            <field name="type">fixed</field>
+            <field name="value">H</field>
+        </record>
+
+        <record id="account_bank_payment_file_config_header_amex_2" model="account.bank.payment.file.config.line">
+            <field name="config_h_id" ref="account_bank_payment_file_config_amex"/>
+            <field name="sequence">2</field>
+            <field name="name">Código de archivo</field>
+            <field name="description">Código del archivo. Valor fijo: ECGDAA</field>
+            <field name="type">fixed</field>
+            <field name="value">ECGDAA</field>
+        </record>
+
+        <record id="account_bank_payment_file_config_header_amex_3" model="account.bank.payment.file.config.line">
+            <field name="config_h_id" ref="account_bank_payment_file_config_amex"/>
+            <field name="sequence">3</field>
+            <field name="name">Grupo de movimientos</field>
+            <field name="description">Grupo de movimientos. Valor fijo: DAU</field>
+            <field name="type">fixed</field>
+            <field name="value">DAU</field>
+        </record>
+
+        <record id="account_bank_payment_file_config_header_amex_5" model="account.bank.payment.file.config.line">
+            <field name="config_h_id" ref="account_bank_payment_file_config_amex"/>
+            <field name="sequence">5</field>
+            <field name="name">Banco informante</field>
+            <field name="description">Código del Banco informante. Valor fijo: 790</field>
+            <field name="type">fixed</field>
+            <field name="value">790</field>
+        </record>
+
+        <record id="account_bank_payment_file_config_header_amex_6" model="account.bank.payment.file.config.line">
+            <field name="config_h_id" ref="account_bank_payment_file_config_amex"/>
+            <field name="sequence">6</field>
+            <field name="name">Cuenta única informante</field>
+            <field name="description">Número de cuenta única del banco informante. Valor fijo: UY00001007</field>
+            <field name="type">fixed</field>
+            <field name="value">UY00001007</field>
+        </record>
+
+        <record id="account_bank_payment_file_config_header_amex_8" model="account.bank.payment.file.config.line">
+            <field name="config_h_id" ref="account_bank_payment_file_config_amex"/>
+            <field name="sequence">8</field>
+            <field name="name">Código Banco destino</field>
+            <field name="description">Código del banco destino. Valor fijo: 900</field>
+            <field name="type">fixed</field>
+            <field name="value">900</field>
+        </record>
+
+        <record id="account_bank_payment_file_config_header_amex_11" model="account.bank.payment.file.config.line">
+            <field name="config_h_id" ref="account_bank_payment_file_config_amex"/>
+            <field name="sequence">11</field>
+            <field name="name">Hora de generación</field>
+            <field name="description">Hora fija de generación del archivo.</field>
+            <field name="type">fixed</field>
+            <field name="value">120000</field>
+        </record>
+
+
+        <record id="account_bank_payment_file_config_header_amex_17" model="account.bank.payment.file.config.line">
+            <field name="config_h_id" ref="account_bank_payment_file_config_amex"/>
+            <field name="sequence">17</field>
+            <field name="name">Fin registro</field>
+            <field name="description">Carácter de cierre del registro de encabezado. Valor fijo: *</field>
+            <field name="type">fixed</field>
+            <field name="value">*</field>
+        </record>
+
+        <!-- Líneas -->
+        <record id="account_bank_payment_file_config_line_amex_1" model="account.bank.payment.file.config.line">
+            <field name="config_id" ref="account_bank_payment_file_config_amex"/>
+            <field name="sequence">1</field>
+            <field name="name">Tipo de registro</field>
+            <field name="description">Valor constante del tipo de registro de detalle: D</field>
+            <field name="type">fixed</field>
+            <field name="value">D</field>
+        </record>
+
+        <record id="account_bank_payment_file_config_line_amex_2" model="account.bank.payment.file.config.line">
+            <field name="config_id" ref="account_bank_payment_file_config_amex"/>
+            <field name="sequence">2</field>
+            <field name="name">Código de operación</field>
+            <field name="description">Código fijo de operación. Valor fijo: 100601</field>
+            <field name="type">fixed</field>
+            <field name="value">100601</field>
+        </record>
+
+        <record id="account_bank_payment_file_config_line_amex_11" model="account.bank.payment.file.config.line">
+            <field name="config_id" ref="account_bank_payment_file_config_amex"/>
+            <field name="sequence">11</field>
+            <field name="name">Moneda</field>
+            <field name="description">Mapeo de moneda: UYU=858 (Pesos Uruguayos), USD=859 (Dólares Americanos). Puede también indicarse como valor fijo.</field>
+            <field name="type">mapping</field>
+            <field name="value">UYU=858,USD=859</field>
+        </record>
+
+        <record id="account_bank_payment_file_config_line_amex_14" model="account.bank.payment.file.config.line">
+            <field name="config_id" ref="account_bank_payment_file_config_amex"/>
+            <field name="sequence">14</field>
+            <field name="name">Aplicación Ley 19210</field>
+            <field name="description">Mapeo booleano: true=S (aplica Ley 19210), false=N (no aplica)</field>
+            <field name="type">mapping</field>
+            <field name="value">true=S,false=N</field>
+        </record>
+
+        <record id="account_bank_payment_file_config_line_amex_16" model="account.bank.payment.file.config.line">
+            <field name="config_id" ref="account_bank_payment_file_config_amex"/>
+            <field name="sequence">16</field>
+            <field name="name">RUT</field>
+            <field name="description">RUT de la empresa</field>
+            <field name="type">fixed</field>
+            <field name="value">9960110856</field>
+        </record>
+
+        <record id="account_bank_payment_file_config_line_amex_29" model="account.bank.payment.file.config.line">
+            <field name="config_id" ref="account_bank_payment_file_config_amex"/>
+            <field name="sequence">29</field>
+            <field name="name">Fin registro</field>
+            <field name="description">Carácter de cierre del detalle. Valor fijo: *</field>
+            <field name="type">fixed</field>
+            <field name="value">*</field>
+        </record>
+
+        <!-- Cierre -->
+        <record id="account_bank_payment_file_config_footer_amex_1" model="account.bank.payment.file.config.line">
+            <field name="config_f_id" ref="account_bank_payment_file_config_amex"/>
+            <field name="sequence">1</field>
+            <field name="name">Tipo de Registro</field>
+            <field name="description">Tipo de registro de cierre. Valor fijo: T</field>
+            <field name="type">fixed</field>
+            <field name="value">T</field>
+        </record>
+
+        <record id="account_bank_payment_file_config_footer_amex_2" model="account.bank.payment.file.config.line">
+            <field name="config_f_id" ref="account_bank_payment_file_config_amex"/>
+            <field name="sequence">2</field>
+            <field name="name">Código de archivo</field>
+            <field name="description">Código del archivo. Valor fijo: ECGDAA</field>
+            <field name="type">fixed</field>
+            <field name="value">ECGDAA</field>
+        </record>
+
+        <record id="account_bank_payment_file_config_footer_amex_3" model="account.bank.payment.file.config.line">
+            <field name="config_f_id" ref="account_bank_payment_file_config_amex"/>
+            <field name="sequence">3</field>
+            <field name="name">Grupo de movimientos</field>
+            <field name="description">Grupo de movimientos. Valor fijo: DAU</field>
+            <field name="type">fixed</field>
+            <field name="value">DAU</field>
+        </record>
+
+        <record id="account_bank_payment_file_config_footer_amex_5" model="account.bank.payment.file.config.line">
+            <field name="config_f_id" ref="account_bank_payment_file_config_amex"/>
+            <field name="sequence">5</field>
+            <field name="name">Banco informante</field>
+            <field name="description">Código del Banco informante. Valor fijo: 790</field>
+            <field name="type">fixed</field>
+            <field name="value">790</field>
+        </record>
+
+        <record id="account_bank_payment_file_config_footer_amex_6" model="account.bank.payment.file.config.line">
+            <field name="config_f_id" ref="account_bank_payment_file_config_amex"/>
+            <field name="sequence">6</field>
+            <field name="name">Cuenta única informante</field>
+            <field name="description">Cuenta única del banco informante. Valor fijo: UY00001007</field>
+            <field name="type">fixed</field>
+            <field name="value">UY00001007</field>
+        </record>
+
+        <record id="account_bank_payment_file_config_footer_amex_8" model="account.bank.payment.file.config.line">
+            <field name="config_f_id" ref="account_bank_payment_file_config_amex"/>
+            <field name="sequence">8</field>
+            <field name="name">Código Banco destino</field>
+            <field name="description">Código del banco destino. Valor fijo: 900</field>
+            <field name="type">fixed</field>
+            <field name="value">900</field>
+        </record>
+
+        <record id="account_bank_payment_file_config_footer_amex_12" model="account.bank.payment.file.config.line">
+            <field name="config_f_id" ref="account_bank_payment_file_config_amex"/>
+            <field name="sequence">12</field>
+            <field name="name">Marca del Tipo de Proceso</field>
+            <field name="description">Marca del tipo de proceso.</field>
+            <field name="type">fixed</field>
+            <field name="value">0</field>
+        </record>
+
+        <record id="account_bank_payment_file_config_footer_amex_17" model="account.bank.payment.file.config.line">
+            <field name="config_f_id" ref="account_bank_payment_file_config_amex"/>
+            <field name="sequence">17</field>
+            <field name="name">Fin registro</field>
+            <field name="description">Carácter de cierre del registro de cierre. Valor fijo: *</field>
+            <field name="type">fixed</field>
+            <field name="value">*</field>
+        </record>
+    </data>
+</odoo>

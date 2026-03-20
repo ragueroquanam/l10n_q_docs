@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_approval_category_form_inherit" model="ir.ui.view">
+            <field name="name">view.approval.category.form.inherit.fuel_request</field>
+            <field name="model">approval.category</field>
+            <field name="inherit_id" ref="approvals.approval_category_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='company_id']" position="after">
+                    <field name="is_fuel_request"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_approval_request_document_inherit_fleet"
+              inherit_id="approvals.report_aprroval_request_document">
+        <xpath expr="//div[@t-if='o.partner_id']" position="replace">
+        </xpath>
+
+        <xpath expr="//div[@t-if='o.date']" position="replace">
+            <div class="row mt-1" t-if="o.date">
+                <h6 class="col-3 fw-bold">Date:</h6>
+                <h6 t-field="o.date">07/07/2023 10:00:00</h6>
+            </div>
+        </xpath>
+
+        <xpath expr="//div[@class='col-6'][1]" position="inside">
+            <div class="row mt-1" t-if="o.partner_id">
+                <h6 class="col-3 fw-bold text-wrap">Contact:</h6>
+                <h6 class="col-9 text-wrap text-break" t-field="o.partner_id">Mitchell Admin</h6>
+            </div>
+        </xpath>
+
+        <xpath expr="//div[@class='col-6'][2]" position="inside">
+            <div t-if="o.is_fuel_request" class="row mt-1">
+                <h6 class="col-3 fw-bold text-wrap">Vehicle:</h6>
+                <t t-if="o.vehicle_id">
+                    <h6 class="col-9 text-wrap text-break" t-field="o.vehicle_id">Volkswagen Voyage</h6>
+                </t>
+            </div>
+            <div t-if="o.is_fuel_request" class="row mt-1">
+                <h6 class="col-3 fw-bold">License plate:</h6>
+                <t t-if="o.license_plate">
+                    <h6 t-field="o.license_plate">SCZ5612</h6>
+                </t>
+            </div>
+            <div t-if="o.is_fuel_request" class="row mt-1">
+                <h6 class="col-3 fw-bold text-wrap">Driver:</h6>
+                <t t-if="o.driver_id">
+                    <h6 class="col-9 text-wrap text-break" t-field="o.driver_id">Pedro Pablo Rodriguez</h6>
+                </t>
+            </div>
+            <div t-if="o.is_fuel_request" class="row mt-1">
+                <h6 class="col-3 fw-bold">Odometer:</h6>
+                <t t-if="o.odometer_value">
+                    <h6 t-field="o.odometer_value">0</h6>
+                </t>
+            </div>
+        </xpath>
+
+        <xpath expr="//span[@t-field='product_line.quantity']" position="replace">
+            <t t-if="product_line.quantity &gt; 1">
+                <span t-field="product_line.quantity">2</span>
+            </t>
+        </xpath>
+    </template>
+
+</odoo>

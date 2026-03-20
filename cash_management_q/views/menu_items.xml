@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_cash_settings" model="ir.actions.act_window">
+        <field name="name">Ajustes de Caja</field>
+        <field name="res_model">res.config.settings</field>
+        <field name="view_mode">form</field>
+        <field name="target">inline</field>
+        <field name="context">{'module' : 'cash_management_q', 'bin_size': False}</field>
+    </record>
+
+    <record id="action_account_payments_cash_m_sesion" model="ir.actions.act_window">
+        <field name="name">Pagos de clientes</field>
+        <field name="res_model">account.payment</field>
+        <field name="view_mode">list,kanban,form,graph,activity</field>
+        <field name="context">{
+            'default_payment_type': 'inbound',
+            'default_partner_type': 'customer',
+            'search_default_inbound_filter': 1,
+            'default_move_journal_types': ('bank', 'cash'),
+            'display_account_trust': True,
+            }
+        </field>
+        <field name="view_id" ref="account.view_account_payment_tree"/>
+    </record>
+
+    <record id="action_account_payments_payable_cash_m_sesion" model="ir.actions.act_window">
+        <field name="name">Pagos de proveedor</field>
+        <field name="res_model">account.payment</field>
+        <field name="view_mode">list,kanban,form,graph,activity</field>
+        <field name="context">{
+            'default_payment_type': 'outbound',
+            'default_partner_type': 'supplier',
+            'search_default_outbound_filter': 1,
+            'default_move_journal_types': ('bank', 'cash'),
+            'display_account_trust': True,
+            }
+        </field>
+        <field name="view_id" ref="account.view_account_supplier_payment_tree"/>
+    </record>
+
+    <menuitem id="cash_management_menu_root" name="Caja" sequence="10"
+              web_icon="cash_management_q,static/description/icon.png"/>
+    <menuitem id="dashboard_menu_act" name="Cajas" parent="cash_management_menu_root" action="action_pos_config_kanban"
+              sequence="1"
+              groups="cash_management_q.group_cash_management_user,cash_management_q.group_cash_management_responsible"/>
+
+    <menuitem id="menu_cash_operations_root" name="Operaciones" sequence="10" parent="cash_management_menu_root"
+              groups="cash_management_q.group_cash_management_responsible,cash_management_q.group_cash_management_user"/>
+    <menuitem id="menu_cash_sessions" name="Sesiones" parent="menu_cash_operations_root"
+              action="action_cash_management_session" sequence="10"
+              groups="cash_management_q.group_cash_management_responsible,cash_management_q.group_cash_management_user"/>
+    <menuitem id="menu_cash_customer_payments" name="Pagos de cliente" parent="menu_cash_operations_root"
+              action="action_account_payments_cash_m_sesion" sequence="20"
+              groups="cash_management_q.group_cash_management_responsible,cash_management_q.group_cash_management_user"/>
+    <menuitem id="menu_cash_supplier_payments" name="Pagos de proveedor" parent="menu_cash_operations_root"
+              sequence="30" action="action_account_payments_payable_cash_m_sesion"
+              groups="cash_management_q.group_cash_management_responsible,cash_management_q.group_cash_management_user"/>
+    <menuitem id="menu_cash_customers" name="Clientes" parent="menu_cash_operations_root" sequence="40"
+              action="account.res_partner_action_customer"
+              groups="cash_management_q.group_cash_management_responsible,cash_management_q.group_cash_management_user"/>
+    <menuitem id="menu_cash_suppliers" name="Proveedores" parent="menu_cash_operations_root" sequence="50"
+              action="account.res_partner_action_supplier"
+              groups="cash_management_q.group_cash_management_responsible,cash_management_q.group_cash_management_user"/>
+
+
+    <menuitem id="cash_management_config_menu_categ" name="Configuración" parent="cash_management_menu_root"
+              sequence="100"/>
+    <menuitem id="cash_management_config_setting"
+              name="Ajustes"
+              parent="cash_management_config_menu_categ"
+              action="action_cash_settings"
+              groups="cash_management_q.group_cash_management_q_config"
+              sequence="0"/>
+    <menuitem id="cash_management_config_payment_method_menu_act"
+              name="Diarios de caja"
+              parent="cash_management_config_menu_categ"
+              action="action_cash_management_payment_method"
+              groups="cash_management_q.group_cash_management_q_config"
+              sequence="3"/>
+    <menuitem id="cash_management_bill_menu_act"
+              name="Monedas/Billetes"
+              parent="cash_management_config_menu_categ"
+              action="action_cash_management_bill"
+              groups="cash_management_q.group_cash_management_q_config"
+              sequence="5"/>
+    <menuitem id="cash_management_config_menu_act"
+              name="Cajas"
+              parent="cash_management_config_menu_categ"
+              action="action_cash_management_config"
+              groups="cash_management_q.group_cash_management_q_config"
+              sequence="7"/>
+</odoo>

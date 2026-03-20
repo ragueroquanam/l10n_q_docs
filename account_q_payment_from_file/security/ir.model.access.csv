@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_account_q_payment_from_file_user,account.q.payment.from.file user,model_account_q_payment_from_file,account.group_account_invoice,1,1,1,0
+access_account_q_payment_from_file_manager,account.q.payment.from.file manager,model_account_q_payment_from_file,account.group_account_manager,1,1,1,1
+access_account_q_payment_from_file_line_user,account.q.payment.from.file.line user,model_account_q_payment_from_file_line,account.group_account_invoice,1,1,1,0
+access_account_q_payment_from_file_line_manager,account.q.payment.from.file.line manager,model_account_q_payment_from_file_line,account.group_account_manager,1,1,1,1
+

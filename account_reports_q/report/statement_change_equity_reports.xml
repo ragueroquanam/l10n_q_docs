@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="report_statement_changes_equity_paper" model="report.paperformat">
+            <field name="name">Evolucion Patrimonio</field>
+            <field eval="True" name="default"/>
+            <field name="format">A4</field>
+            <field name="orientation">Landscape</field>
+            <field name="margin_top">5</field>
+            <field name="margin_bottom">5</field>
+            <field name="margin_left">5</field>
+            <field name="margin_right">5</field>
+            <field eval="False" name="header_line"/>
+            <field name="header_spacing">0</field>
+            <field name="dpi">90</field>
+        </record>
+
+        <record id="action_report_statement_changes_equity" model="ir.actions.report">
+            <field name="name">Evolución Patrimonio PDF</field>
+            <field name="model">statement.changes.equity.wizard</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">account_reports_q.report_statement_changes_equity</field>
+            <field name="report_file">account_reports_q.report_statement_changes_equity</field>
+            <field name="binding_model_id" ref="account_reports_q.model_statement_changes_equity_wizard"/>
+            <field name="binding_type">report</field>
+            <field name="paperformat_id" ref="account_reports_q.report_statement_changes_equity_paper"/>
+        </record>
+
+        <record id="action_report_statement_changes_equity_xlsx" model="ir.actions.report">
+            <field name="name">Evolución Patrimonio XLSX</field>
+            <field name="model">statement.changes.equity.wizard</field>
+            <field name="binding_model_id" ref="account_reports_q.model_statement_changes_equity_wizard"/>
+            <field name="report_type">xlsx</field>
+            <field name="report_name">account_reports_q.statement_changes_equity_xlsx</field>
+            <field name="report_file">account_reports_q.statement_changes_equity_xlsx</field>
+            <field name="binding_type">report</field>
+        </record>
+    </data>
+</odoo>

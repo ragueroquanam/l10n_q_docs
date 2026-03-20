@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- View account.bank.payment.file.config View List -->
+    <record id="view_account_bank_payment_file_config_list" model="ir.ui.view">
+        <field name="name">view.account.bank.payment.file.config.list</field>
+        <field name="model">account.bank.payment.file.config</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="code"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- View account.bank.payment.file.config form -->
+    <record id="view_account_bank_payment_file_config_form" model="ir.ui.view">
+        <field name="name">view.account.bank.payment.file.config.form</field>
+        <field name="model">account.bank.payment.file.config</field>
+        <field name="arch" type="xml">
+            <form string="Account Bank Payment File Config">
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1>
+                            <field name="name" placeholder="Nombre..."/>
+                        </h1>
+                        <label for="code"/>
+                        <h1>
+                            <field name="code" placeholder="sin espacios en blanco, tildes o caracteres especiales..."/>
+                        </h1>
+                        <label for="column_separator"/>
+                        <h3>
+                            <field name="column_separator"/>
+                        </h3>
+                        <label for="is_recheck_file"/>
+                        <h3>
+                            <field name="is_recheck_file"/>
+                        </h3>
+                    </div>
+                    <group name="main_group"/>
+                    <notebook>
+                        <page string="Líneas">
+                            <field name="line_ids" context="{'default_config_id': id}">
+                                <list editable="bottom">
+                                    <field name="sequence"/>
+                                    <field name="name"/>
+                                    <field name="description"/>
+                                    <field name="type"/>
+                                    <field name="value"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Encabezado">
+                            <field name="header_ids" context="{'default_config_h_id': id}">
+                                <list editable="bottom">
+                                    <field name="sequence"/>
+                                    <field name="name"/>
+                                    <field name="description"/>
+                                    <field name="type"/>
+                                    <field name="value"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Línea de cierre">
+                            <field name="footer_ids" context="{'default_config_h_id': id}">
+                                <list editable="bottom">
+                                    <field name="sequence"/>
+                                    <field name="name"/>
+                                    <field name="description"/>
+                                    <field name="type"/>
+                                    <field name="value"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action account.bank.payment.file.config -->
+    <record id="action_account_bank_payment_file_config" model="ir.actions.act_window">
+        <field name="name">Archivos de pago</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">account.bank.payment.file.config</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
+    </record>
+
+</odoo>

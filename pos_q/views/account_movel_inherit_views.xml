@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_move_line_search_pos_custom" model="ir.ui.view">
+        <field name="name">account.move.line.search.pos.fields</field>
+        <field name="model">account.move.line</field>
+        <field name="inherit_id" ref="account.view_account_move_line_filter"/>
+        <field name="arch" type="xml">
+            <xpath expr="//filter[@name='reconcilable_account']" position="before">
+                <filter name="pos_ticket" string="Ticket POS" domain="[('pos_ticket', '!=', False)]"/>
+                <filter name="pos_batch" string="Lote POS" domain="[('pos_batch_number', '!=', False)]"/>
+                <filter name="pos_auth" string="Autorización POS" domain="[('pos_authorization_code', '!=', False)]"/>
+                <separator/>
+            </xpath>
+
+            <xpath expr="//search" position="inside">
+                <field name="pos_ticket"/>
+                <field name="pos_batch_number"/>
+                <field name="pos_authorization_code"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_move_line_list_pos_custom" model="ir.ui.view">
+        <field name="name">account.move.line.list.pos.fields</field>
+        <field name="model">account.move.line</field>
+        <field name="inherit_id" ref="account.view_move_line_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='amount_residual_currency']" position="after">
+                <field name="pos_ticket" optional="hide"/>
+                <field name="pos_batch_number" optional="hide"/>
+                <field name="pos_authorization_code" optional="hide"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

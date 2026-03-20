@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- ======================= -->
+        <!-- CONFIGURACIÓN CABAL PMSA -->
+        <!-- ======================= -->
+        <record id="account_bank_payment_file_config_cabal_pmsa" model="account.bank.payment.file.config">
+            <field name="name">CABAL PMSA</field>
+            <field name="code">cabal_pmsa</field>
+        </record>
+
+        <!-- Línea 1: Constante CBCU -->
+        <record id="account_bank_payment_file_config_line_cabal_pmsa_1" model="account.bank.payment.file.config.line">
+            <field name="config_id" ref="account_bank_payment_file_config_cabal_pmsa"/>
+            <field name="sequence">1</field>
+            <field name="name">Constante CBCU</field>
+            <field name="description">Constante: CBCU</field>
+            <field name="type">fixed</field>
+            <field name="value">CBCU</field>
+        </record>
+
+        <!-- Línea 2: Número de comercio PMSA -->
+        <record id="account_bank_payment_file_config_line_cabal_pmsa_2" model="account.bank.payment.file.config.line">
+            <field name="config_id" ref="account_bank_payment_file_config_cabal_pmsa"/>
+            <field name="sequence">2</field>
+            <field name="name">Número de comercio</field>
+            <field name="description">Número de comercio PMSA: 28490120004</field>
+            <field name="type">fixed</field>
+            <field name="value">28490120004</field>
+        </record>
+
+        <!-- Línea 3: Código de moneda (mapeo) -->
+        <record id="account_bank_payment_file_config_line_cabal_pmsa_3" model="account.bank.payment.file.config.line">
+            <field name="config_id" ref="account_bank_payment_file_config_cabal_pmsa"/>
+            <field name="sequence">3</field>
+            <field name="name">Código de moneda</field>
+            <field name="description">Mapeo de moneda: UYU=N (Pesos), USD=U (Dólares)</field>
+            <field name="type">mapping</field>
+            <field name="value">UYU=N,USD=U</field>
+        </record>
+
+        <!-- Línea 10: Aplica devolución de IVA (mapeo) -->
+        <record id="account_bank_payment_file_config_line_cabal_pmsa_10" model="account.bank.payment.file.config.line">
+            <field name="config_id" ref="account_bank_payment_file_config_cabal_pmsa"/>
+            <field name="sequence">10</field>
+            <field name="name">Aplica devolución IVA</field>
+            <field name="description">Mapeo booleano: true=1 (Sí aplica), false=0 (No aplica)</field>
+            <field name="type">mapping</field>
+            <field name="value">true=1,false=0</field>
+        </record>
+
+        <!-- ======================= -->
+        <!-- CONFIGURACIÓN CABAL CMSA -->
+        <!-- ======================= -->
+        <record id="account_bank_payment_file_config_cabal_cmsa" model="account.bank.payment.file.config">
+            <field name="name">CABAL CMSA</field>
+            <field name="code">cabal_cmsa</field>
+        </record>
+
+        <!-- Línea 1: Constante CBCU -->
+        <record id="account_bank_payment_file_config_line_cabal_cmsa_1" model="account.bank.payment.file.config.line">
+            <field name="config_id" ref="account_bank_payment_file_config_cabal_cmsa"/>
+            <field name="sequence">1</field>
+            <field name="name">Constante CBCU</field>
+            <field name="description">Constante: CBCU</field>
+            <field name="type">fixed</field>
+            <field name="value">CBCU</field>
+        </record>
+
+        <!-- Línea 2: Número de comercio CMSA -->
+        <record id="account_bank_payment_file_config_line_cabal_cmsa_2" model="account.bank.payment.file.config.line">
+            <field name="config_id" ref="account_bank_payment_file_config_cabal_cmsa"/>
+            <field name="sequence">2</field>
+            <field name="name">Número de comercio</field>
+            <field name="description">Número de comercio CMSA: 28437937007</field>
+            <field name="type">fixed</field>
+            <field name="value">28437937007</field>
+        </record>
+
+        <!-- Línea 3: Código de moneda (mapeo) -->
+        <record id="account_bank_payment_file_config_line_cabal_cmsa_3" model="account.bank.payment.file.config.line">
+            <field name="config_id" ref="account_bank_payment_file_config_cabal_cmsa"/>
+            <field name="sequence">3</field>
+            <field name="name">Código de moneda</field>
+            <field name="description">Mapeo de moneda: UYU=N (Pesos), USD=U (Dólares)</field>
+            <field name="type">mapping</field>
+            <field name="value">UYU=N,USD=U</field>
+        </record>
+
+        <!-- Línea 10: Aplica devolución de IVA (mapeo) -->
+        <record id="account_bank_payment_file_config_line_cabal_cmsa_10" model="account.bank.payment.file.config.line">
+            <field name="config_id" ref="account_bank_payment_file_config_cabal_cmsa"/>
+            <field name="sequence">10</field>
+            <field name="name">Aplica devolución IVA</field>
+            <field name="description">Mapeo booleano: true=1 (Sí aplica), false=0 (No aplica)</field>
+            <field name="type">mapping</field>
+            <field name="value">true=1,false=0</field>
+        </record>
+    </data>
+</odoo>

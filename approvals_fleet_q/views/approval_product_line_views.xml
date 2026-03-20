@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- View approval.product.line list -->
+    <record id="view_approval_product_line_list" model="ir.ui.view">
+        <field name="name">view.approval.product.line.approvals.fleet.q.list</field>
+        <field name="model">approval.product.line</field>
+        <field name="inherit_id" ref="approvals.approval_product_line_view_tree"/>
+        <field name="arch" type="xml">
+            <field name="quantity" position="after">
+                <button name="button_update_quantity" invisible="not is_update_quantity_available" type="object" icon="fa-edit"/>
+            </field>
+        </field>
+    </record>
+
+</odoo>

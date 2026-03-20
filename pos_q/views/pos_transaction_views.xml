@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_pos_transaction_list" model="ir.ui.view">
+        <field name="name">pos.transaction.list</field>
+        <field name="model">pos.transaction</field>
+        <field name="arch" type="xml">
+            <list string="Transacciones POS">
+                <field name="transaction_number"/>
+                <field name="operation_type"/>
+                <field name="transaction_date"/>
+                <field name="got_response"/>
+                <field name="is_reversed"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_pos_transaction_form" model="ir.ui.view">
+        <field name="name">pos.transaction.form</field>
+        <field name="model">pos.transaction</field>
+        <field name="arch" type="xml">
+            <form string="Transacción POS">
+                <group>
+                    <field name="transaction_number"/>
+                    <field name="operation_type"/>
+                    <field name="transaction_date"/>
+                    <field name="got_response"/>
+                    <field name="is_reversed"/>
+                </group>
+                <group>
+                    <field name="request_data"/>
+                    <field name="response_text"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_pos_transaction" model="ir.actions.act_window">
+        <field name="name">Transacciones POS</field>
+        <field name="res_model">pos.transaction</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Crea la primera transacción POS</p>
+        </field>
+    </record>
+
+</odoo>

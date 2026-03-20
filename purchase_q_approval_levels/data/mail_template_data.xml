@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="mail_template_purchase_order_to_approve_notification" model="mail.template">
+            <field name="name">Purchase order to approve notification</field>
+            <field name="model_id" ref="purchase.model_purchase_order"/>
+            <field name="subject">Orden de compra pendiente de aprobación: {{ object.name }}</field>
+            <field name="email_to">{{ object.next_approval_level.get_approval_users_emails() }}</field>
+            <field name="body_html" type="html">
+                <div style="margin: 0px; padding: 0px; font-size: 13px;">
+                    <p style="margin: 0px; padding: 0px; font-size: 13px;">
+                        <br/>
+                        La orden de compra  <t t-out="object.name"/> requiere la aprobación de <t t-out="object.next_approval_level.name"/>
+                        <br/>
+                        Monto total:
+                        <t t-out="object.amount_total"/>
+                        <br/>
+                    </p>
+                </div>
+            </field>
+            <field name="auto_delete" eval="True"/>
+        </record>
+        <record id="mail_template_purchase_order_approval_notification" model="mail.template">
+            <field name="name">Purchase order approval notification</field>
+            <field name="model_id" ref="purchase.model_purchase_order"/>
+            <field name="subject">Aprobación orden de compra: {{ object.name }}</field>
+            <field name="email_to">{{ object.user_id.email_formatted }}</field>
+            <field name="body_html" type="html">
+                <div style="margin: 0px; padding: 0px; font-size: 13px;">
+                    <p style="margin: 0px; padding: 0px; font-size: 13px;">
+                        <br/>
+                        Se notifica que la orden de compra <t t-out="object.name"/> ha sido aprobada y ya está en la siguiente fase.
+                        <br/>
+                    </p>
+                </div>
+            </field>
+            <field name="auto_delete" eval="True"/>
+        </record>
+        <record id="mail_template_purchase_order_cancel_notification" model="mail.template">
+            <field name="name">Purchase order cancel notification</field>
+            <field name="model_id" ref="purchase.model_purchase_order"/>
+            <field name="subject">Cancelación orden de compra: {{ object.name }}</field>
+            <field name="email_to">{{ object.user_id.email_formatted }}</field>
+            <field name="body_html" type="html">
+                <div style="margin: 0px; padding: 0px; font-size: 13px;">
+                    <p style="margin: 0px; padding: 0px; font-size: 13px;">
+                        <br/>
+                        Se notifica que la orden de compra <t t-out="object.name"/> ha sido cancelada.
+                        <br/>
+                    </p>
+                </div>
+            </field>
+            <field name="auto_delete" eval="True"/>
+        </record>
+    </data>
+</odoo>

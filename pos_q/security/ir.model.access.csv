@@ -1,0 +1,7 @@
+id,name,model_id/id,group_id/id,perm_read,perm_write,perm_create,perm_unlink
+access_pos_transaction_log_user,access.pos.transaction.log.user,model_pos_transaction_log,base.group_user,1,0,0,0
+access_pos_payment_provider_user,access_pos_payment_provider_user,model_pos_payment_provider,base.group_user,1,1,1,0
+access_pos_payment_terminal_user,access_pos_payment_terminal_user,model_pos_payment_terminal,base.group_user,1,1,1,0
+access_pos_transaction,access_pos_transaction,model_pos_transaction,base.group_user,1,0,0,0
+
+

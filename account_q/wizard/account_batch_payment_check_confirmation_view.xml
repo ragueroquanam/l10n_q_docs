@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_account_batch_payment_check_confirmation_wizard" model="ir.ui.view">
+        <field name="name">account.batch.payment.check.confirmation.wizard.form</field>
+        <field name="model">account.batch.payment.check.confirmation.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Confirmar aprobación">
+                <group>
+                    <label for="batch_id" string="Aun no se han generado todos los pagos del lote."/>
+                    <field name="batch_id"/>
+                    <field name="expected_count"/>
+                    <field name="current_count"/>
+                </group>
+                <footer>
+                    <button name="action_confirm" type="object" string="Continuar" class="btn-primary"/>
+                    <button name="action_cancel" type="object" string="Cancelar" class="btn-secondary"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_batch_payment_check_confirmation_wizard" model="ir.actions.act_window">
+        <field name="name">Confirmar aprobación</field>
+        <field name="res_model">account.batch.payment.check.confirmation.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>

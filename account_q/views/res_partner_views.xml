@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    
+    <!-- View res.partner form -->
+    <record id="view_res_partner_form" model="ir.ui.view">
+        <field name="name">view.res.partner.form</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='purchase']" position="after">
+                <group name="card_info" string="Información de la tarjeta">
+                    <field name="card_number"/>
+                    <div class="o_form_label">Vencimiento (MM/AA)</div>
+                    <div>
+                        <field class="oe_inline o_input_3ch" name="card_exp_month"/>
+                        <span>/</span>
+                        <field class="oe_inline ps-1 o_input_3ch" name="card_exp_year"/>
+                    </div>
+                    <field name="card_holder_id"/>
+                </group>
+                <group name="card_info_extra"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_res_partner_tree_currency_totals" model="ir.ui.view">
+        <field name="name">res.partner.tree.currency.totals</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//list" position="inside">
+                <field name="total_due_currency" optional="hide"/>
+                <field name="total_overdue_currency" optional="hide"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_res_partner_filter_currency_totals" model="ir.ui.view">
+        <field name="name">res.partner.filter.currency.totals</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_res_partner_filter"/>
+        <field name="arch" type="xml">
+            <xpath expr="//filter[@name='inactive']" position="before">
+                <filter string="Adeudado-Atrasado UYU" name="filter_currency_company" domain="[]" context="{'due_currency_company': 1}"/>
+                <filter string="Adeudado-Atrasado extranjera" name="filter_currency_foreign" domain="[]" context="{'due_currency_foreign': 1}"/>
+                <separator/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

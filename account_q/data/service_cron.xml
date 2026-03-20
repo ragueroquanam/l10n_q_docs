@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="account.ir_cron_auto_post_draft_entry" model="ir.cron">
+        <field name="code"># Set the limit variable if you want a specific batch value. Default is 100.
+# Ex: model._autopost_draft_entries(limit=500)
+model._autopost_draft_entries()</field>
+    </record>
+</odoo>

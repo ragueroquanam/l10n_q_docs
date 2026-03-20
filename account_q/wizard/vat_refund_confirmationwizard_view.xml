@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_vat_refund_confirmation_wizard" model="ir.ui.view">
+        <field name="name">vat.refund.confirmation.wizard.form</field>
+        <field name="model">vat.refund.confirmation.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Advertencia de devolución de IVA">
+                <sheet>
+                    <p>
+                        Estás intentando pagar facturas con y sin devolución de IVA.
+                        Para mantener consistencia fiscal, esta operación omitirá la devolución para todas.
+                    </p>
+                    <p>
+                        ¿Deseas continuar de todos modos?
+                    </p>
+                </sheet>
+                <footer>
+                    <button string="Sí, continuar sin devolución" type="object" name="action_confirm_skip"
+                            class="btn-primary"/>
+                    <button string="Cancelar" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_vat_refund_confirmation_multi_wizard" model="ir.ui.view">
+        <field name="name">vat.refund.confirmation.multi.wizard.form</field>
+        <field name="model">vat.refund.confirmation.multi.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Advertencia de devolución de IVA">
+                <sheet>
+                    <p>
+                        Estás intentando pagar facturas con y sin devolución de IVA.
+                        Para mantener consistencia fiscal, esta operación omitirá la devolución para todas.
+                    </p>
+                    <p>
+                        ¿Deseas continuar de todos modos?
+                    </p>
+                </sheet>
+                <footer>
+                    <button string="Sí, continuar sin devolución" type="object" name="action_confirm_skip"
+                            class="btn-primary"/>
+                    <button string="Cancelar" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+</odoo>

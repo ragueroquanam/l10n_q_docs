@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <menuitem id="menu_config_pos_root" name="Integración POS" parent="account.menu_finance_configuration"
+              sequence="40" groups="account.group_account_manager"/>
+    <menuitem id="menu_pos_payment_provider" name="Proveedores de Pago" parent="menu_config_pos_root"
+              action="action_pos_payment_provider" sequence="10"/>
+    <menuitem id="menu_pos_payment_terminal" name="Terminales de Pago" parent="menu_config_pos_root"
+              action="action_pos_payment_terminal" sequence="12"/>
+    <menuitem id="menu_pos_transaction_log" name="Registro de Logs" parent="menu_config_pos_root"
+              action="action_pos_transaction_log" sequence="30"/>
+    <menuitem id="menu_pos_transaction_root" name="Transacciones POS" parent="menu_config_pos_root"
+              sequence="40" action="action_pos_transaction"/>
+
+</odoo>

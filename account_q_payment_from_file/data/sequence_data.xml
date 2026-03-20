@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- Sequence for Payment from File -->
+        <record id="seq_account_q_payment_from_file" model="ir.sequence">
+            <field name="name">Payment from File</field>
+            <field name="code">account.q.payment.from.file</field>
+            <field name="prefix">PFF/</field>
+            <field name="padding">5</field>
+            <field name="company_id" eval="False"/>
+        </record>
+    </data>
+</odoo>
+

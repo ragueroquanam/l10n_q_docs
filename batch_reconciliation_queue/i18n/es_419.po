@@ -1,0 +1,1195 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* batch_reconciliation_queue
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-01-22 15:13+0000\n"
+"PO-Revision-Date: 2026-01-22 15:13+0000\n"
+"Last-Translator: \n"
+"Language-Team: Spanish (Latin America)\n"
+"Language: es_419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: batch_reconciliation_queue
+#: model_terms:ir.ui.view,arch_db:batch_reconciliation_queue.batch_reconciliation_master_view_form
+msgid "<span class=\"o_stat_text\">Move</span>"
+msgstr "<span class=\"o_stat_text\">Asiento</span>"
+
+#. module: batch_reconciliation_queue
+#: model_terms:ir.ui.view,arch_db:batch_reconciliation_queue.batch_reconciliation_master_view_form
+msgid "<span class=\"o_stat_text\">Queue Jobs</span>"
+msgstr "<span class=\"o_stat_text\">Trabajos de Cola</span>"
+
+#. module: batch_reconciliation_queue
+#: model_terms:ir.ui.view,arch_db:batch_reconciliation_queue.batch_reconciliation_master_view_form
+msgid "<strong>Background Reconciliation in Progress</strong>"
+msgstr "<strong>Conciliación en Segundo Plano en Progreso</strong>"
+
+#. module: batch_reconciliation_queue
+#: model_terms:ir.actions.act_window,help:batch_reconciliation_queue.action_batch_reconciliation_master
+msgid "<strong>Workflow:</strong>"
+msgstr "<strong>Flujo de trabajo:</strong>"
+
+#. module: batch_reconciliation_queue
+#: model:ir.model.fields,help:batch_reconciliation_queue.field_batch_reconciliation_master__auto_balance_account_id
+msgid "Account from manual operations tab, used for auto-balance line"
+msgstr "Cuenta de la pestaña de operaciones manuales, usada para línea de auto-balance"
+
+#. module: batch_reconciliation_queue
+#: model:ir.model.fields,field_description:batch_reconciliation_queue.field_batch_reconciliation_master__message_needaction
+msgid "Action Needed"
+msgstr "Acción Requerida"
+
+#. module: batch_reconciliation_queue
+#: model:ir.model.fields,field_description:batch_reconciliation_queue.field_batch_reconciliation_master__activity_ids
+msgid "Activities"
+msgstr "Actividades"
+
+#. module: batch_reconciliation_queue
+#: model:ir.model.fields,field_description:batch_reconciliation_queue.field_batch_reconciliation_master__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr "Decoración de Excepción de Actividad"
+
+#. module: batch_reconciliation_queue
+#: model:ir.model.fields,field_description:batch_reconciliation_queue.field_batch_reconciliation_master__activity_state
+msgid "Activity State"
+msgstr "Estado de Actividad"
+
+#. module: batch_reconciliation_queue
+#: model:ir.model.fields,field_description:batch_reconciliation_queue.field_batch_reconciliation_master__activity_type_icon
+msgid "Activity Type Icon"
+msgstr "Icono de Tipo de Actividad"
+
+#. module: batch_reconciliation_queue
+#: model:ir.model.fields,field_description:batch_reconciliation_queue.field_batch_reconciliation_master__message_attachment_count
+msgid "Attachment Count"
+msgstr "Cantidad de Adjuntos"
+
+#. module: batch_reconciliation_queue
+#: model:ir.model.fields,field_description:batch_reconciliation_queue.field_batch_reconciliation_master__auto_reconcile_queued
+msgid "Auto-Reconcile Queued"
+msgstr "Auto-Conciliación Encolada"
+
+#. module: batch_reconciliation_queue
+#. odoo-python
+#: code:addons/batch_reconciliation_queue/models/batch_reconciliation_master.py:0
+msgid "Auto-balance (Batch Reconciliation)"
+msgstr "Auto-balance (Conciliación por Lotes)"
+
+#. module: batch_reconciliation_queue
+#: model:ir.model.fields,field_description:batch_reconciliation_queue.field_batch_reconciliation_master__auto_balance_account_id
+msgid "Auto-balance Account"
+msgstr "Cuenta de Auto-balance"
+
+#. module: batch_reconciliation_queue
+#: model_terms:ir.ui.view,arch_db:batch_reconciliation_queue.batch_reconciliation_master_view_search
+msgid "Background Reconciliation"
+msgstr "Conciliación en Segundo Plano"
+
+#. module: batch_reconciliation_queue
+#. odoo-python
+#: code:addons/batch_reconciliation_queue/models/batch_reconciliation_master.py:0
+msgid "Background reconciliation: %s"
+msgstr "Conciliación en segundo plano: %s"
+
+#. module: batch_reconciliation_queue
+#. odoo-python
+#: code:addons/batch_reconciliation_queue/models/batch_reconciliation_master.py:0
+#: model:ir.model.fields,field_description:batch_reconciliation_queue.field_batch_reconciliation_chunk__st_line_id
+#: model:ir.model.fields,field_description:batch_reconciliation_queue.field_batch_reconciliation_master__st_line_id
+msgid "Bank Statement Line"
+msgstr "Línea de Extracto Bancario"
+
+#. module: batch_reconciliation_queue
+#: model:ir.model,name:batch_reconciliation_queue.model_bank_rec_widget
+msgid "Bank reconciliation widget for a single statement line"
+msgstr "Widget de conciliación bancaria para una sola línea del estado de cuenta"
+
+#. module: batch_reconciliation_queue
+#: model:ir.model.fields,field_description:batch_reconciliation_queue.field_batch_reconciliation_master__batch_payment_ids_json
+msgid "Batch Payment IDs"
+msgstr "IDs de Pagos por Lote"
+
+#. module: batch_reconciliation_queue
+#: model:ir.model.fields,field_description:batch_reconciliation_queue.field_batch_reconciliation_master__batch_payment_names
+msgid "Batch Payments"
+msgstr "Pagos por Lote"
+
+#. module: batch_reconciliation_queue
+#: model:ir.model,name:batch_reconciliation_queue.model_batch_reconciliation_chunk
+msgid "Batch Reconciliation Chunk"
+msgstr "Chunk de Conciliación por Lotes"
+
+#. module: batch_reconciliation_queue
+#: model:ir.actions.act_window,name:batch_reconciliation_queue.action_batch_reconciliation_master
+msgid "Batch Reconciliation Jobs"
+msgstr "Trabajos de Conciliación por Lotes"
+
+#. module: batch_reconciliation_queue
+#: model:ir.model,name:batch_reconciliation_queue.model_batch_reconciliation_master
+msgid "Batch Reconciliation Master"
+msgstr "Conciliación por Lotes - Master"
+
+#. module: batch_reconciliation_queue
+#. odoo-python
+#: code:addons/batch_reconciliation_queue/models/batch_reconciliation_master.py:0
+msgid ""
+"Batch reconciliation FAILED.\n"
+"\n"
+"Error: %(error)s\n"
+"\n"
+"Completed Chunks: %(completed)s/%(total)s\n"
+"Failed Chunks: %(failed)s\n"
+"\n"
+"Please review and retry or cancel."
+msgstr ""
+"La conciliación por lotes FALLÓ.\n"
+"\n"
+"Error: %(error)s\n"
+"\n"
+"Chunks Completados: %(completed)s/%(total)s\n"
+"Chunks Fallidos: %(failed)s\n"
+"\n"
+"Por favor revise y reintente o cancele."
+
+#. module: batch_reconciliation_queue
+#. odoo-python
+#: code:addons/batch_reconciliation_queue/models/batch_reconciliation_master.py:0
+msgid ""
+"Batch reconciliation completed successfully.\n"
+"\n"
+"Batches: %(batches)s\n"
+"Total Payments: %(total)s\n"
+"Chunks Processed: %(chunks)s\n"
+"Total Duration: %(duration).2f seconds\n"
+"Reconciliation Duration: %(recon_duration).2f seconds\n"
+"Created Lines: %(lines)s\n"
+"Reconciled Pairs: %(recons)s"
+msgstr ""
+"Conciliación por lotes completada exitosamente.\n"
+"\n"
+"Lotes: %(batches)s\n"
+"Total de Pagos: %(total)s\n"
+"Chunks Procesados: %(chunks)s\n"
+"Duración Total: %(duration).2f segundos\n"
+"Duración de Conciliación: %(recon_duration).2f segundos\n"
+"Líneas Creadas: %(lines)s\n"
+"Pares Conciliados: %(recons)s"
+
+#. module: batch_reconciliation_queue
+#. odoo-python
+#: code:addons/batch_reconciliation_queue/models/batch_reconciliation_master.py:0
+msgid "Can only queue reconciliation when lines are created."
+msgstr "Solo se puede encolar la conciliación cuando las líneas están creadas."
+
+#. module: batch_reconciliation_queue
+#. odoo-python
+#: code:addons/batch_reconciliation_queue/models/batch_reconciliation_master.py:0
+msgid "Can only reconcile when lines are created."
+msgstr "Solo se puede conciliar cuando las líneas están creadas."
+
+#. module: batch_reconciliation_queue
+#. odoo-python
+#: code:addons/batch_reconciliation_queue/models/batch_reconciliation_master.py:0
+msgid "Can only resume failed jobs."
+msgstr "Solo se pueden reanudar trabajos fallidos."
+
+#. module: batch_reconciliation_queue
+#. odoo-python
+#: code:addons/batch_reconciliation_queue/models/batch_reconciliation_master.py:0
+msgid "Can only retry failed or processing jobs."
+msgstr "Solo se pueden reintentar trabajos fallidos o en proceso."
+
+#. module: batch_reconciliation_queue
+#: model_terms:ir.ui.view,arch_db:batch_reconciliation_queue.batch_reconciliation_chunk_view_form
+#: model_terms:ir.ui.view,arch_db:batch_reconciliation_queue.batch_reconciliation_master_view_form
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: batch_reconciliation_queue
+#: model:ir.model.fields.selection,name:batch_reconciliation_queue.selection__batch_reconciliation_chunk__state__cancelled
+#: model:ir.model.fields.selection,name:batch_reconciliation_queue.selection__batch_reconciliation_master__state__cancelled
+msgid "Cancelled"
+msgstr "Cancelado"
+
+#. module: batch_reconciliation_queue
+#. odoo-python
+#: code:addons/batch_reconciliation_queue/models/batch_reconciliation_master.py:0
+msgid "Cannot cancel a completed or already cancelled job."
+msgstr "No se puede cancelar un trabajo completado o ya cancelado."
+
+#. module: batch_reconciliation_queue
+#. odoo-python
+#: code:addons/batch_reconciliation_queue/models/batch_reconciliation_master.py:0
+msgid ""
+"Cannot create auto-balance line: no suspense account configured for journal "
+"%s"
+msgstr ""
+"No se puede crear línea de auto-balance: no hay cuenta de suspensión configurada para el diario "
+"%s"
+
+#. module: batch_reconciliation_queue
+#. odoo-python
+#: code:addons/batch_reconciliation_queue/models/batch_reconciliation_master.py:0
+msgid "Cannot finalize: %s chunks failed. Please retry or cancel."
+msgstr "No se puede finalizar: %s chunks fallaron. Por favor reintente o cancele."
+
+#. module: batch_reconciliation_queue
+#. odoo-python
+#: code:addons/batch_reconciliation_queue/models/batch_reconciliation_master.py:0
+msgid "Chunk %s/%s"
+msgstr "Chunk %s/%s"
+
+#. module: batch_reconciliation_queue
+#: model_terms:ir.ui.view,arch_db:batch_reconciliation_queue.batch_reconciliation_chunk_view_form
+msgid "Chunk Information"
+msgstr "Información del Chunk"
+
+#. module: batch_reconciliation_queue
+#: model_terms:ir.ui.view,arch_db:batch_reconciliation_queue.batch_reconciliation_master_view_form
+msgid "Chunk Processing Progress"
+msgstr "Progreso de Procesamiento de Chunks"
+
+#. module: batch_reconciliation_queue
+#: model_terms:ir.ui.view,arch_db:batch_reconciliation_queue.batch_reconciliation_master_view_list
+msgid "Chunk Progress"
+msgstr "Progreso de Chunks"
+
+#. module: batch_reconciliation_queue
+#: model:ir.model.fields,field_description:batch_reconciliation_queue.field_batch_reconciliation_master__chunk_size
+msgid "Chunk Size"
+msgstr "Tamaño de Chunk"
+
+#. module: batch_reconciliation_queue
+#: model_terms:ir.ui.view,arch_db:batch_reconciliation_queue.batch_reconciliation_master_view_form
+msgid "Chunk Status"
+msgstr "Estado de Chunks"
+
+#. module: batch_reconciliation_queue
+#: model_terms:ir.ui.view,arch_db:batch_reconciliation_queue.batch_reconciliation_master_view_form
+msgid "Chunks"
+msgstr "Chunks"
+
+#. module: batch_reconciliation_queue
+#: model:ir.model.fields,field_description:batch_reconciliation_queue.field_batch_reconciliation_chunk__company_id
+#: model:ir.model.fields,field_description:batch_reconciliation_queue.field_batch_reconciliation_master__company_id
+#: model_terms:ir.ui.view,arch_db:batch_reconciliation_queue.batch_reconciliation_master_view_search
+msgid "Company"
+msgstr "Compañía"
+
+#. module: batch_reconciliation_queue
+#: model:ir.model.fields.selection,name:batch_reconciliation_queue.selection__batch_reconciliation_chunk__state__done
+#: model:ir.model.fields.selection,name:batch_reconciliation_queue.selection__batch_reconciliation_master__state__done
+#: model_terms:ir.ui.view,arch_db:batch_reconciliation_queue.batch_reconciliation_chunk_view_search
+#: model_terms:ir.ui.view,arch_db:batch_reconciliation_queue.batch_reconciliation_master_view_search
+msgid "Completed"
+msgstr "Completado"
+
+#. module: batch_reconciliation_queue
+#: model:ir.model.fields,field_description:batch_reconciliation_queue.field_batch_reconciliation_master__completed_chunks
+msgid "Completed Chunks"
+msgstr "Chunks Completados"
+
+#. module: batch_reconciliation_queue
+#: model_terms:ir.ui.view,arch_db:batch_reconciliation_queue.batch_reconciliation_master_view_form
+msgid "Configuration"
+msgstr "Configuración"
+
+#. module: batch_reconciliation_queue
+#. odoo-python
+#: code:addons/batch_reconciliation_queue/models/batch_reconciliation_master.py:0
+msgid "Could not find liquidity line in statement move."
+msgstr "No se encontró la línea de liquidez en el asiento del extracto."
+
+#. module: batch_reconciliation_queue
+#: model:ir.model.fields,field_description:batch_reconciliation_queue.field_batch_reconciliation_chunk__created_line_count
+msgid "Created Lines"
+msgstr "Líneas Creadas"
+
+#. module: batch_reconciliation_queue
+#: model:ir.model.fields,field_description:batch_reconciliation_queue.field_batch_reconciliation_master__created_move_line_count
+msgid "Created Move Lines"
+msgstr "Líneas de Asiento Creadas"
+
+#. module: batch_reconciliation_queue
+#: model:ir.model.fields,field_description:batch_reconciliation_queue.field_batch_reconciliation_chunk__create_uid
+#: model:ir.model.fields,field_description:batch_reconciliation_queue.field_batch_reconciliation_master__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: batch_reconciliation_queue
+#: model:ir.model.fields,field_description:batch_reconciliation_queue.field_batch_reconciliation_chunk__create_date
+#: model:ir.model.fields,field_description:batch_reconciliation_queue.field_batch_reconciliation_master__create_date
+msgid "Created on"
+msgstr "Creado el"
+
+#. module: batch_reconciliation_queue
+#: model:ir.model.fields,field_description:batch_reconciliation_queue.field_batch_reconciliation_master__currency_id
+msgid "Currency"
+msgstr "Moneda"
+
+#. module: batch_reconciliation_queue
+#: model_terms:ir.ui.view,arch_db:batch_reconciliation_queue.batch_reconciliation_master_view_search
+msgid "Date"
+msgstr "Fecha"
+
+#. module: batch_reconciliation_queue
+#: model:ir.model.fields,field_description:batch_reconciliation_queue.field_batch_reconciliation_chunk__display_name
+#: model:ir.model.fields,field_description:batch_reconciliation_queue.field_batch_reconciliation_master__display_name
+msgid "Display Name"
+msgstr "Nombre a Mostrar"
+
+#. module: batch_reconciliation_queue
+#: model:ir.model.fields.selection,name:batch_reconciliation_queue.selection__batch_reconciliation_master__state__draft
+#: model_terms:ir.ui.view,arch_db:batch_reconciliation_queue.batch_reconciliation_master_view_search
+msgid "Draft"
+msgstr "Borrador"
+
+#. module: batch_reconciliation_queue
+#: model:ir.model.fields,field_description:batch_reconciliation_queue.field_batch_reconciliation_chunk__duration
+#: model:ir.model.fields,field_description:batch_reconciliation_queue.field_batch_reconciliation_master__duration
+msgid "Duration (seconds)"
+msgstr "Duración (segundos)"
+
+#. module: batch_reconciliation_queue
+#: model:ir.model.fields,field_description:batch_reconciliation_queue.field_batch_reconciliation_chunk__end_time
+#: model:ir.model.fields,field_description:batch_reconciliation_queue.field_batch_reconciliation_master__end_time
+msgid "End Time"
+msgstr "Hora de Fin"
+
+#. module: batch_reconciliation_queue
+#: model_terms:ir.ui.view,arch_db:batch_reconciliation_queue.batch_reconciliation_chunk_view_form
+#: model_terms:ir.ui.view,arch_db:batch_reconciliation_queue.batch_reconciliation_master_view_form
+msgid "Error Details"
+msgstr "Detalles del Error"
+
+#. module: batch_reconciliation_queue
+#: model:ir.model.fields,field_description:batch_reconciliation_queue.field_batch_reconciliation_chunk__error_message
+#: model:ir.model.fields,field_description:batch_reconciliation_queue.field_batch_reconciliation_master__error_message
+msgid "Error Message"
+msgstr "Mensaje de Error"
+
+#. module: batch_reconciliation_queue
+#: model:ir.model.fields.selection,name:batch_reconciliation_queue.selection__batch_reconciliation_chunk__state__failed
+#: model:ir.model.fields.selection,name:batch_reconciliation_queue.selection__batch_reconciliation_master__state__failed
+#: model_terms:ir.ui.view,arch_db:batch_reconciliation_queue.batch_reconciliation_chunk_view_search
+#: model_terms:ir.ui.view,arch_db:batch_reconciliation_queue.batch_reconciliation_master_view_search
+msgid "Failed"
+msgstr "Fallido"
+
+#. module: batch_reconciliation_queue
+#: model:ir.model.fields,field_description:batch_reconciliation_queue.field_batch_reconciliation_master__failed_chunks
+msgid "Failed Chunks"
+msgstr "Chunks Fallidos"
+
+#. module: batch_reconciliation_queue
+#. odoo-python
+#: code:addons/batch_reconciliation_queue/models/bank_rec_widget.py:0
+msgid "Failed to create background reconciliation job: %s"
+msgstr "Error al crear trabajo de conciliación en segundo plano: %s"
+
+#. module: batch_reconciliation_queue
+#. odoo-python
+#: code:addons/batch_reconciliation_queue/models/batch_reconciliation_master.py:0
+msgid "Finalize reconciliation: %s"
+msgstr "Finalizar conciliación: %s"
+
+#. module: batch_reconciliation_queue
+#: model:ir.model.fields,field_description:batch_reconciliation_queue.field_batch_reconciliation_master__message_follower_ids
+msgid "Followers"
+msgstr "Seguidores"
+
+#. module: batch_reconciliation_queue
+#: model:ir.model.fields,field_description:batch_reconciliation_queue.field_batch_reconciliation_master__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "Seguidores (Contactos)"
+
+#. module: batch_reconciliation_queue
+#: model:ir.model.fields,help:batch_reconciliation_queue.field_batch_reconciliation_master__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr "Icono Font Awesome, ej. fa-tasks"
+
+#. module: batch_reconciliation_queue
+#: model_terms:ir.ui.view,arch_db:batch_reconciliation_queue.batch_reconciliation_chunk_view_search
+#: model_terms:ir.ui.view,arch_db:batch_reconciliation_queue.batch_reconciliation_master_view_search
+msgid "Group By"
+msgstr "Agrupar Por"
+
+#. module: batch_reconciliation_queue
+#: model:ir.model.fields,field_description:batch_reconciliation_queue.field_batch_reconciliation_master__has_message
+msgid "Has Message"
+msgstr "Tiene Mensaje"
+
+#. module: batch_reconciliation_queue
+#: model:ir.model.fields,field_description:batch_reconciliation_queue.field_batch_reconciliation_chunk__id
+#: model:ir.model.fields,field_description:batch_reconciliation_queue.field_batch_reconciliation_master__id
+msgid "ID"
+msgstr "ID"
+
+#. module: batch_reconciliation_queue
+#: model:ir.model.fields,field_description:batch_reconciliation_queue.field_batch_reconciliation_master__activity_exception_icon
+msgid "Icon"
+msgstr "Icono"
+
+#. module: batch_reconciliation_queue
+#: model:ir.model.fields,help:batch_reconciliation_queue.field_batch_reconciliation_master__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr "Icono para indicar una actividad de excepción."
+
+#. module: batch_reconciliation_queue
+#: model:ir.model.fields,help:batch_reconciliation_queue.field_batch_reconciliation_master__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr "Si está marcado, hay mensajes nuevos que requieren su atención."
+
+#. module: batch_reconciliation_queue
+#: model:ir.model.fields,help:batch_reconciliation_queue.field_batch_reconciliation_master__message_has_error
+#: model:ir.model.fields,help:batch_reconciliation_queue.field_batch_reconciliation_master__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr "Si está marcado, algunos mensajes tienen error de entrega."
+
+#. module: batch_reconciliation_queue
+#: model:ir.model.fields,help:batch_reconciliation_queue.field_batch_reconciliation_master__last_reconciled_index
+msgid "Index of the last reconciled pair, for resuming"
+msgstr "Índice del último par conciliado, para reanudar"
+
+#. module: batch_reconciliation_queue
+#: model:ir.model.fields,field_description:batch_reconciliation_queue.field_batch_reconciliation_master__message_is_follower
+msgid "Is Follower"
+msgstr "Es Seguidor"
+
+#. module: batch_reconciliation_queue
+#: model:ir.model.fields,help:batch_reconciliation_queue.field_batch_reconciliation_master__batch_payment_ids_json
+msgid "JSON array of batch payment IDs to process"
+msgstr "Array JSON con IDs de pagos por lote a procesar"
+
+#. module: batch_reconciliation_queue
+#: model:ir.model.fields,help:batch_reconciliation_queue.field_batch_reconciliation_chunk__payment_ids_json
+msgid "JSON array of payment IDs to process in this chunk"
+msgstr "Array JSON con IDs de pagos a procesar en este chunk"
+
+#. module: batch_reconciliation_queue
+#: model:ir.model.fields,help:batch_reconciliation_queue.field_batch_reconciliation_chunk__prepared_lines_json
+msgid "JSON data of lines to be created by master finalization"
+msgstr "Datos JSON de líneas a crear en la finalización del master"
+
+#. module: batch_reconciliation_queue
+#: model:ir.model.fields,help:batch_reconciliation_queue.field_batch_reconciliation_master__reconciliation_plan_json
+msgid ""
+"JSON with line sequences and counterpart IDs for deferred reconciliation"
+msgstr ""
+"JSON con secuencias de líneas e IDs de contrapartidas para conciliación diferida"
+
+#. module: batch_reconciliation_queue
+#: model_terms:ir.ui.view,arch_db:batch_reconciliation_queue.batch_reconciliation_master_view_form
+msgid "Job Information"
+msgstr "Información del Trabajo"
+
+#. module: batch_reconciliation_queue
+#: model:ir.model.fields,field_description:batch_reconciliation_queue.field_batch_reconciliation_master__journal_id
+#: model_terms:ir.ui.view,arch_db:batch_reconciliation_queue.batch_reconciliation_master_view_search
+msgid "Journal"
+msgstr "Diario"
+
+#. module: batch_reconciliation_queue
+#: model_terms:ir.actions.act_window,help:batch_reconciliation_queue.action_batch_reconciliation_master
+msgid ""
+"Large batch payment reconciliations (500+ payments) are automatically\n"
+"                processed in the background. Jobs will appear here when processing."
+msgstr ""
+"Las conciliaciones de pagos por lote grandes (500+ pagos) se procesan\n"
+"                automáticamente en segundo plano. Los trabajos aparecerán aquí durante el procesamiento."
+
+#. module: batch_reconciliation_queue
+#: model:ir.model.fields,field_description:batch_reconciliation_queue.field_batch_reconciliation_master__last_reconciled_index
+msgid "Last Reconciled Index"
+msgstr "Último Índice Conciliado"
+
+#. module: batch_reconciliation_queue
+#: model:ir.model.fields,field_description:batch_reconciliation_queue.field_batch_reconciliation_chunk__write_uid
+#: model:ir.model.fields,field_description:batch_reconciliation_queue.field_batch_reconciliation_master__write_uid
+msgid "Last Updated by"
+msgstr "Última Actualización por"
+
+#. module: batch_reconciliation_queue
+#: model:ir.model.fields,field_description:batch_reconciliation_queue.field_batch_reconciliation_chunk__write_date
+#: model:ir.model.fields,field_description:batch_reconciliation_queue.field_batch_reconciliation_master__write_date
+msgid "Last Updated on"
+msgstr "Última Actualización el"
+
+#. module: batch_reconciliation_queue
+#: model:ir.model.fields.selection,name:batch_reconciliation_queue.selection__batch_reconciliation_master__state__lines_created
+msgid "Lines Created"
+msgstr "Líneas Creadas"
+
+#. module: batch_reconciliation_queue
+#: model_terms:ir.ui.view,arch_db:batch_reconciliation_queue.batch_reconciliation_master_view_search
+msgid "Lines Created (Pending Reconciliation)"
+msgstr "Líneas Creadas (Pendiente Conciliación)"
+
+#. module: batch_reconciliation_queue
+#. odoo-python
+#: code:addons/batch_reconciliation_queue/models/batch_reconciliation_master.py:0
+msgid "Lines Created - Ready for Reconciliation"
+msgstr "Líneas Creadas - Listas para Conciliar"
+
+#. module: batch_reconciliation_queue
+#: model_terms:ir.actions.act_window,help:batch_reconciliation_queue.action_batch_reconciliation_master
+msgid "Lines Created: Move lines are ready, waiting for reconciliation"
+msgstr "Líneas Creadas: Las líneas del asiento están listas, esperando conciliación"
+
+#. module: batch_reconciliation_queue
+#: model_terms:ir.ui.view,arch_db:batch_reconciliation_queue.batch_reconciliation_master_view_form
+msgid "Manually reconcile the next batch of pairs"
+msgstr "Conciliar manualmente el siguiente lote de pares"
+
+#. module: batch_reconciliation_queue
+#. odoo-python
+#: code:addons/batch_reconciliation_queue/models/batch_reconciliation_chunk.py:0
+#: model:ir.model.fields,field_description:batch_reconciliation_queue.field_batch_reconciliation_chunk__master_id
+#: model_terms:ir.ui.view,arch_db:batch_reconciliation_queue.batch_reconciliation_chunk_view_search
+msgid "Master Job"
+msgstr "Trabajo Principal"
+
+#. module: batch_reconciliation_queue
+#: model:ir.model.fields,field_description:batch_reconciliation_queue.field_batch_reconciliation_master__max_parallel_chunks
+msgid "Max Parallel Chunks"
+msgstr "Máx. Chunks Paralelos"
+
+#. module: batch_reconciliation_queue
+#: model:ir.model.fields,help:batch_reconciliation_queue.field_batch_reconciliation_master__max_parallel_chunks
+msgid "Maximum number of chunks to process in parallel"
+msgstr "Máximo número de chunks a procesar en paralelo"
+
+#. module: batch_reconciliation_queue
+#: model:ir.model.fields,field_description:batch_reconciliation_queue.field_batch_reconciliation_master__message_has_error
+msgid "Message Delivery error"
+msgstr "Error de Entrega de Mensaje"
+
+#. module: batch_reconciliation_queue
+#: model:ir.model.fields,field_description:batch_reconciliation_queue.field_batch_reconciliation_master__message_ids
+msgid "Messages"
+msgstr "Mensajes"
+
+#. module: batch_reconciliation_queue
+#. odoo-python
+#: code:addons/batch_reconciliation_queue/models/batch_reconciliation_master.py:0
+msgid ""
+"Move lines created successfully. Ready for reconciliation.\n"
+"\n"
+"Batches: %(batches)s\n"
+"Total Payments: %(total)s\n"
+"Chunks Processed: %(chunks)s\n"
+"Created Lines: %(lines)s\n"
+"Pairs to Reconcile: %(pairs)s\n"
+"\n"
+"Click \"Reconcile Batch\" to process manually or \"Queue Reconciliation\" for background processing."
+msgstr ""
+"Líneas del asiento creadas exitosamente. Listas para conciliar.\n"
+"\n"
+"Lotes: %(batches)s\n"
+"Total de Pagos: %(total)s\n"
+"Chunks Procesados: %(chunks)s\n"
+"Líneas Creadas: %(lines)s\n"
+"Pares a Conciliar: %(pairs)s\n"
+"\n"
+"Haga clic en \"Conciliar Lote\" para procesar manualmente o \"Encolar Conciliación\" para procesamiento en segundo plano."
+
+#. module: batch_reconciliation_queue
+#: model:ir.model.fields,field_description:batch_reconciliation_queue.field_batch_reconciliation_master__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr "Fecha Límite de Mi Actividad"
+
+#. module: batch_reconciliation_queue
+#: model:ir.model.fields,field_description:batch_reconciliation_queue.field_batch_reconciliation_chunk__name
+#: model:ir.model.fields,field_description:batch_reconciliation_queue.field_batch_reconciliation_master__name
+msgid "Name"
+msgstr "Nombre"
+
+#. module: batch_reconciliation_queue
+#. odoo-python
+#: code:addons/batch_reconciliation_queue/models/batch_reconciliation_master.py:0
+msgid "New"
+msgstr "Nuevo"
+
+#. module: batch_reconciliation_queue
+#: model:ir.model.fields,field_description:batch_reconciliation_queue.field_batch_reconciliation_master__activity_calendar_event_id
+msgid "Next Activity Calendar Event"
+msgstr "Próximo Evento de Calendario de Actividad"
+
+#. module: batch_reconciliation_queue
+#: model:ir.model.fields,field_description:batch_reconciliation_queue.field_batch_reconciliation_master__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr "Fecha Límite de Próxima Actividad"
+
+#. module: batch_reconciliation_queue
+#: model:ir.model.fields,field_description:batch_reconciliation_queue.field_batch_reconciliation_master__activity_summary
+msgid "Next Activity Summary"
+msgstr "Resumen de Próxima Actividad"
+
+#. module: batch_reconciliation_queue
+#: model:ir.model.fields,field_description:batch_reconciliation_queue.field_batch_reconciliation_master__activity_type_id
+msgid "Next Activity Type"
+msgstr "Tipo de Próxima Actividad"
+
+#. module: batch_reconciliation_queue
+#. odoo-python
+#: code:addons/batch_reconciliation_queue/models/batch_reconciliation_master.py:0
+msgid "No batch payments found in the selection."
+msgstr "No se encontraron pagos por lote en la selección."
+
+#. module: batch_reconciliation_queue
+#. odoo-python
+#: code:addons/batch_reconciliation_queue/models/batch_reconciliation_master.py:0
+msgid "No failed chunks to retry."
+msgstr "No hay chunks fallidos para reintentar."
+
+#. module: batch_reconciliation_queue
+#. odoo-python
+#: code:addons/batch_reconciliation_queue/models/batch_reconciliation_master.py:0
+msgid "No reconciliation in progress. Use \"Retry Failed Chunks\" instead."
+msgstr "No hay conciliación en progreso. Use \"Reintentar Chunks Fallidos\" en su lugar."
+
+#. module: batch_reconciliation_queue
+#: model_terms:ir.actions.act_window,help:batch_reconciliation_queue.action_batch_reconciliation_master
+msgid "No reconciliation jobs yet"
+msgstr "Aún no hay trabajos de conciliación"
+
+#. module: batch_reconciliation_queue
+#. odoo-python
+#: code:addons/batch_reconciliation_queue/models/batch_reconciliation_master.py:0
+msgid "No reconciliation move created yet."
+msgstr "Aún no se ha creado el asiento de conciliación."
+
+#. module: batch_reconciliation_queue
+#. odoo-python
+#: code:addons/batch_reconciliation_queue/models/batch_reconciliation_master.py:0
+msgid "No valid payments found in the batch payments."
+msgstr "No se encontraron pagos válidos en los pagos por lote."
+
+#. module: batch_reconciliation_queue
+#: model:ir.model.fields,field_description:batch_reconciliation_queue.field_batch_reconciliation_master__message_needaction_counter
+msgid "Number of Actions"
+msgstr "Número de Acciones"
+
+#. module: batch_reconciliation_queue
+#: model:ir.model.fields,field_description:batch_reconciliation_queue.field_batch_reconciliation_master__message_has_error_counter
+msgid "Number of errors"
+msgstr "Número de errores"
+
+#. module: batch_reconciliation_queue
+#: model:ir.model.fields,help:batch_reconciliation_queue.field_batch_reconciliation_master__message_needaction_counter
+msgid "Number of messages requiring action"
+msgstr "Número de mensajes que requieren acción"
+
+#. module: batch_reconciliation_queue
+#: model:ir.model.fields,help:batch_reconciliation_queue.field_batch_reconciliation_master__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "Número de mensajes con error de entrega"
+
+#. module: batch_reconciliation_queue
+#: model:ir.model.fields,help:batch_reconciliation_queue.field_batch_reconciliation_master__reconciliation_batch_size
+msgid "Number of pairs to reconcile per batch operation"
+msgstr "Número de pares a conciliar por operación de lote"
+
+#. module: batch_reconciliation_queue
+#: model:ir.model.fields,help:batch_reconciliation_queue.field_batch_reconciliation_master__chunk_size
+msgid "Number of payments to process per chunk"
+msgstr "Número de pagos a procesar por chunk"
+
+#. module: batch_reconciliation_queue
+#. odoo-python
+#: code:addons/batch_reconciliation_queue/models/batch_reconciliation_master.py:0
+msgid "Only draft masters can be started."
+msgstr "Solo se pueden iniciar trabajos en estado borrador."
+
+#. module: batch_reconciliation_queue
+#. odoo-python
+#: code:addons/batch_reconciliation_queue/models/batch_reconciliation_chunk.py:0
+msgid "Only failed chunks can be retried."
+msgstr "Solo se pueden reintentar chunks fallidos."
+
+#. module: batch_reconciliation_queue
+#. odoo-python
+#: code:addons/batch_reconciliation_queue/models/batch_reconciliation_chunk.py:0
+msgid "Only pending or failed chunks can be cancelled."
+msgstr "Solo se pueden cancelar chunks pendientes o fallidos."
+
+#. module: batch_reconciliation_queue
+#: model:ir.model.fields,field_description:batch_reconciliation_queue.field_batch_reconciliation_chunk__payment_count
+msgid "Payment Count"
+msgstr "Cantidad de Pagos"
+
+#. module: batch_reconciliation_queue
+#: model_terms:ir.ui.view,arch_db:batch_reconciliation_queue.batch_reconciliation_chunk_view_form
+msgid "Payment Data"
+msgstr "Datos de Pago"
+
+#. module: batch_reconciliation_queue
+#: model:ir.model.fields,field_description:batch_reconciliation_queue.field_batch_reconciliation_chunk__payment_ids_json
+msgid "Payment IDs"
+msgstr "IDs de Pagos"
+
+#. module: batch_reconciliation_queue
+#: model:ir.model.fields.selection,name:batch_reconciliation_queue.selection__batch_reconciliation_chunk__state__pending
+#: model_terms:ir.ui.view,arch_db:batch_reconciliation_queue.batch_reconciliation_chunk_view_search
+msgid "Pending"
+msgstr "Pendiente"
+
+#. module: batch_reconciliation_queue
+#: model:ir.model.fields,field_description:batch_reconciliation_queue.field_batch_reconciliation_chunk__prepared_lines_json
+msgid "Prepared Lines Data"
+msgstr "Datos de Líneas Preparadas"
+
+#. module: batch_reconciliation_queue
+#: model:ir.model.fields.selection,name:batch_reconciliation_queue.selection__batch_reconciliation_master__state__preparing
+msgid "Preparing Chunks"
+msgstr "Preparando Chunks"
+
+#. module: batch_reconciliation_queue
+#. odoo-python
+#: code:addons/batch_reconciliation_queue/models/batch_reconciliation_master.py:0
+msgid "Process reconciliation chunk: %s"
+msgstr "Procesar chunk de conciliación: %s"
+
+#. module: batch_reconciliation_queue
+#: model:ir.model.fields,field_description:batch_reconciliation_queue.field_batch_reconciliation_chunk__processed_payments
+#: model:ir.model.fields,field_description:batch_reconciliation_queue.field_batch_reconciliation_master__processed_payments
+msgid "Processed Payments"
+msgstr "Pagos Procesados"
+
+#. module: batch_reconciliation_queue
+#: model:ir.model.fields.selection,name:batch_reconciliation_queue.selection__batch_reconciliation_chunk__state__processing
+#: model_terms:ir.ui.view,arch_db:batch_reconciliation_queue.batch_reconciliation_chunk_view_search
+#: model_terms:ir.ui.view,arch_db:batch_reconciliation_queue.batch_reconciliation_master_view_search
+msgid "Processing"
+msgstr "Procesando"
+
+#. module: batch_reconciliation_queue
+#. odoo-python
+#: code:addons/batch_reconciliation_queue/models/batch_reconciliation_master.py:0
+msgid ""
+"Processing %s payments in %s chunks. You will be notified when complete."
+msgstr ""
+"Procesando %s pagos en %s chunks. Se le notificará cuando termine."
+
+#. module: batch_reconciliation_queue
+#. odoo-python
+#: code:addons/batch_reconciliation_queue/models/batch_reconciliation_master.py:0
+#: model:ir.model.fields,field_description:batch_reconciliation_queue.field_batch_reconciliation_master__chunk_ids
+#: model:ir.model.fields.selection,name:batch_reconciliation_queue.selection__batch_reconciliation_master__state__processing
+#: model_terms:ir.ui.view,arch_db:batch_reconciliation_queue.batch_reconciliation_master_view_form
+msgid "Processing Chunks"
+msgstr "Chunks de Procesamiento"
+
+#. module: batch_reconciliation_queue
+#: model_terms:ir.actions.act_window,help:batch_reconciliation_queue.action_batch_reconciliation_master
+msgid "Processing: Chunks are processed in parallel"
+msgstr "Procesando: Los chunks se procesan en paralelo"
+
+#. module: batch_reconciliation_queue
+#: model:ir.model.fields,field_description:batch_reconciliation_queue.field_batch_reconciliation_master__progress
+msgid "Progress %"
+msgstr "Progreso %"
+
+#. module: batch_reconciliation_queue
+#. odoo-python
+#: code:addons/batch_reconciliation_queue/models/batch_reconciliation_master.py:0
+#: model:ir.model.fields,field_description:batch_reconciliation_queue.field_batch_reconciliation_master__queue_job_ids
+msgid "Queue Jobs"
+msgstr "Trabajos de Cola"
+
+#. module: batch_reconciliation_queue
+#: model_terms:ir.ui.view,arch_db:batch_reconciliation_queue.batch_reconciliation_master_view_form
+msgid "Queue Reconciliation"
+msgstr "Encolar Conciliación"
+
+#. module: batch_reconciliation_queue
+#: model:ir.model.fields,field_description:batch_reconciliation_queue.field_batch_reconciliation_master__rating_ids
+msgid "Ratings"
+msgstr "Valoraciones"
+
+#. module: batch_reconciliation_queue
+#: model_terms:ir.ui.view,arch_db:batch_reconciliation_queue.batch_reconciliation_master_view_list
+msgid "Recon Progress"
+msgstr "Progreso Conc."
+
+#. module: batch_reconciliation_queue
+#: model_terms:ir.ui.view,arch_db:batch_reconciliation_queue.batch_reconciliation_master_view_form
+msgid "Reconcile Batch"
+msgstr "Conciliar Lote"
+
+#. module: batch_reconciliation_queue
+#: model:ir.model.fields.selection,name:batch_reconciliation_queue.selection__batch_reconciliation_master__state__reconciled
+msgid "Reconciled"
+msgstr "Conciliado"
+
+#. module: batch_reconciliation_queue
+#. odoo-python
+#: code:addons/batch_reconciliation_queue/models/batch_reconciliation_master.py:0
+msgid "Reconciled %(done)s/%(total)s pairs (%(percent).1f%%)"
+msgstr "Conciliados %(done)s/%(total)s pares (%(percent).1f%%)"
+
+#. module: batch_reconciliation_queue
+#: model:ir.model.fields,field_description:batch_reconciliation_queue.field_batch_reconciliation_master__reconciled_aml_count
+msgid "Reconciled AMLs"
+msgstr "Apuntes Conciliados"
+
+#. module: batch_reconciliation_queue
+#: model:ir.model.fields,field_description:batch_reconciliation_queue.field_batch_reconciliation_master__reconciled_pairs_count
+msgid "Reconciled Pairs"
+msgstr "Pares Conciliados"
+
+#. module: batch_reconciliation_queue
+#: model_terms:ir.actions.act_window,help:batch_reconciliation_queue.action_batch_reconciliation_master
+msgid "Reconciled: Process complete"
+msgstr "Conciliado: Proceso completado"
+
+#. module: batch_reconciliation_queue
+#. odoo-python
+#: code:addons/batch_reconciliation_queue/models/batch_reconciliation_master.py:0
+msgid "Reconciliation - %s - %s payments"
+msgstr "Conciliación - %s - %s pagos"
+
+#. module: batch_reconciliation_queue
+#: model:ir.model.fields,field_description:batch_reconciliation_queue.field_batch_reconciliation_master__reconciliation_batch_size
+msgid "Reconciliation Batch Size"
+msgstr "Tamaño de Lote de Conciliación"
+
+#. module: batch_reconciliation_queue
+#: model_terms:ir.ui.view,arch_db:batch_reconciliation_queue.batch_reconciliation_chunk_view_form
+msgid "Reconciliation Chunk"
+msgstr "Chunk de Conciliación"
+
+#. module: batch_reconciliation_queue
+#: model:ir.actions.act_window,name:batch_reconciliation_queue.action_batch_reconciliation_chunk
+#: model_terms:ir.ui.view,arch_db:batch_reconciliation_queue.batch_reconciliation_chunk_view_list
+msgid "Reconciliation Chunks"
+msgstr "Chunks de Conciliación"
+
+#. module: batch_reconciliation_queue
+#. odoo-python
+#: code:addons/batch_reconciliation_queue/models/batch_reconciliation_master.py:0
+msgid "Reconciliation Complete"
+msgstr "Conciliación Completada"
+
+#. module: batch_reconciliation_queue
+#. odoo-python
+#: code:addons/batch_reconciliation_queue/models/batch_reconciliation_master.py:0
+msgid "Reconciliation Completed"
+msgstr "Conciliación Completada"
+
+#. module: batch_reconciliation_queue
+#: model:ir.model.fields,field_description:batch_reconciliation_queue.field_batch_reconciliation_chunk__reconciliation_data_json
+msgid "Reconciliation Data"
+msgstr "Datos de Conciliación"
+
+#. module: batch_reconciliation_queue
+#: model:ir.model.fields,field_description:batch_reconciliation_queue.field_batch_reconciliation_master__reconciliation_end_time
+msgid "Reconciliation End Time"
+msgstr "Fin de Conciliación"
+
+#. module: batch_reconciliation_queue
+#. odoo-python
+#: code:addons/batch_reconciliation_queue/models/batch_reconciliation_master.py:0
+msgid "Reconciliation Failed"
+msgstr "Conciliación Fallida"
+
+#. module: batch_reconciliation_queue
+#. odoo-python
+#: code:addons/batch_reconciliation_queue/models/bank_rec_widget.py:0
+#: model_terms:ir.ui.view,arch_db:batch_reconciliation_queue.batch_reconciliation_master_view_form
+msgid "Reconciliation Job"
+msgstr "Trabajo de Conciliación"
+
+#. module: batch_reconciliation_queue
+#: model:ir.ui.menu,name:batch_reconciliation_queue.menu_batch_reconciliation_master
+#: model_terms:ir.ui.view,arch_db:batch_reconciliation_queue.batch_reconciliation_master_view_list
+msgid "Reconciliation Jobs"
+msgstr "Trabajos de Conciliación"
+
+#. module: batch_reconciliation_queue
+#. odoo-python
+#: code:addons/batch_reconciliation_queue/models/batch_reconciliation_master.py:0
+#: model:ir.model.fields,field_description:batch_reconciliation_queue.field_batch_reconciliation_master__reconciliation_move_id
+msgid "Reconciliation Move"
+msgstr "Asiento de Conciliación"
+
+#. module: batch_reconciliation_queue
+#: model:ir.model.fields,field_description:batch_reconciliation_queue.field_batch_reconciliation_chunk__reconciled_count
+msgid "Reconciliation Pairs"
+msgstr "Pares de Conciliación"
+
+#. module: batch_reconciliation_queue
+#: model:ir.model.fields,field_description:batch_reconciliation_queue.field_batch_reconciliation_master__reconciliation_plan_json
+msgid "Reconciliation Plan"
+msgstr "Plan de Conciliación"
+
+#. module: batch_reconciliation_queue
+#. odoo-python
+#: code:addons/batch_reconciliation_queue/models/batch_reconciliation_master.py:0
+#: model_terms:ir.ui.view,arch_db:batch_reconciliation_queue.batch_reconciliation_master_view_form
+msgid "Reconciliation Progress"
+msgstr "Progreso de Conciliación"
+
+#. module: batch_reconciliation_queue
+#: model:ir.model.fields,field_description:batch_reconciliation_queue.field_batch_reconciliation_master__reconciliation_progress
+msgid "Reconciliation Progress %"
+msgstr "Progreso de Conciliación %"
+
+#. module: batch_reconciliation_queue
+#. odoo-python
+#: code:addons/batch_reconciliation_queue/models/batch_reconciliation_master.py:0
+msgid "Reconciliation Queued"
+msgstr "Conciliación Encolada"
+
+#. module: batch_reconciliation_queue
+#. odoo-python
+#: code:addons/batch_reconciliation_queue/models/batch_reconciliation_master.py:0
+msgid "Reconciliation Resumed"
+msgstr "Conciliación Reanudada"
+
+#. module: batch_reconciliation_queue
+#: model:ir.model.fields,field_description:batch_reconciliation_queue.field_batch_reconciliation_master__reconciliation_start_time
+msgid "Reconciliation Start Time"
+msgstr "Inicio de Conciliación"
+
+#. module: batch_reconciliation_queue
+#. odoo-python
+#: code:addons/batch_reconciliation_queue/models/batch_reconciliation_master.py:0
+msgid "Reconciliation Started"
+msgstr "Conciliación Iniciada"
+
+#. module: batch_reconciliation_queue
+#. odoo-python
+#: code:addons/batch_reconciliation_queue/models/batch_reconciliation_master.py:0
+msgid "Reconciliation is already queued."
+msgstr "La conciliación ya está encolada."
+
+#. module: batch_reconciliation_queue
+#: model_terms:ir.ui.view,arch_db:batch_reconciliation_queue.batch_reconciliation_master_view_form
+msgid ""
+"Reconciliation is running in the background. Progress will update "
+"automatically."
+msgstr ""
+"La conciliación está ejecutándose en segundo plano. El progreso se actualizará "
+"automáticamente."
+
+#. module: batch_reconciliation_queue
+#. odoo-python
+#: code:addons/batch_reconciliation_queue/models/batch_reconciliation_master.py:0
+msgid "Reconciliation move not found."
+msgstr "No se encontró el asiento de conciliación."
+
+#. module: batch_reconciliation_queue
+#. odoo-python
+#: code:addons/batch_reconciliation_queue/models/batch_reconciliation_master.py:0
+msgid ""
+"Reconciliation of %(total)s pairs has been queued. You will be notified when"
+" complete."
+msgstr ""
+"La conciliación de %(total)s pares ha sido encolada. Se le notificará cuando"
+" termine."
+
+#. module: batch_reconciliation_queue
+#: model:ir.model.fields.selection,name:batch_reconciliation_queue.selection__batch_reconciliation_master__state__reconciling
+#: model_terms:ir.ui.view,arch_db:batch_reconciliation_queue.batch_reconciliation_master_view_search
+msgid "Reconciling"
+msgstr "Conciliando"
+
+#. module: batch_reconciliation_queue
+#: model_terms:ir.actions.act_window,help:batch_reconciliation_queue.action_batch_reconciliation_master
+msgid "Reconciling: Pairs are being reconciled (manual or queued)"
+msgstr "Conciliando: Los pares se están conciliando (manual o encolado)"
+
+#. module: batch_reconciliation_queue
+#: model:ir.model.fields,field_description:batch_reconciliation_queue.field_batch_reconciliation_master__activity_user_id
+msgid "Responsible User"
+msgstr "Usuario Responsable"
+
+#. module: batch_reconciliation_queue
+#: model_terms:ir.ui.view,arch_db:batch_reconciliation_queue.batch_reconciliation_chunk_view_form
+#: model_terms:ir.ui.view,arch_db:batch_reconciliation_queue.batch_reconciliation_master_view_form
+msgid "Results"
+msgstr "Resultados"
+
+#. module: batch_reconciliation_queue
+#: model_terms:ir.ui.view,arch_db:batch_reconciliation_queue.batch_reconciliation_master_view_form
+msgid "Resume Reconciliation"
+msgstr "Reanudar Conciliación"
+
+#. module: batch_reconciliation_queue
+#: model_terms:ir.ui.view,arch_db:batch_reconciliation_queue.batch_reconciliation_chunk_view_form
+#: model_terms:ir.ui.view,arch_db:batch_reconciliation_queue.batch_reconciliation_master_view_form
+msgid "Retry"
+msgstr "Reintentar"
+
+#. module: batch_reconciliation_queue
+#: model:ir.model.fields,field_description:batch_reconciliation_queue.field_batch_reconciliation_chunk__retry_count
+msgid "Retry Count"
+msgstr "Contador de Reintentos"
+
+#. module: batch_reconciliation_queue
+#: model_terms:ir.ui.view,arch_db:batch_reconciliation_queue.batch_reconciliation_master_view_form
+msgid "Retry Failed Chunks"
+msgstr "Reintentar Chunks Fallidos"
+
+#. module: batch_reconciliation_queue
+#. odoo-python
+#: code:addons/batch_reconciliation_queue/models/batch_reconciliation_master.py:0
+msgid "Retry Started"
+msgstr "Reintento Iniciado"
+
+#. module: batch_reconciliation_queue
+#. odoo-python
+#: code:addons/batch_reconciliation_queue/models/batch_reconciliation_chunk.py:0
+msgid "Retry chunk: %s"
+msgstr "Reintentar chunk: %s"
+
+#. module: batch_reconciliation_queue
+#. odoo-python
+#: code:addons/batch_reconciliation_queue/models/batch_reconciliation_master.py:0
+msgid "Retrying %s failed chunks."
+msgstr "Reintentando %s chunks fallidos."
+
+#. module: batch_reconciliation_queue
+#: model_terms:ir.ui.view,arch_db:batch_reconciliation_queue.batch_reconciliation_master_view_form
+msgid "Run reconciliation in background"
+msgstr "Ejecutar conciliación en segundo plano"
+
+#. module: batch_reconciliation_queue
+#: model:ir.model.fields,field_description:batch_reconciliation_queue.field_batch_reconciliation_master__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr "Error de Entrega SMS"
+
+#. module: batch_reconciliation_queue
+#: model_terms:ir.ui.view,arch_db:batch_reconciliation_queue.batch_reconciliation_chunk_view_search
+msgid "Search Chunks"
+msgstr "Buscar Chunks"
+
+#. module: batch_reconciliation_queue
+#: model_terms:ir.ui.view,arch_db:batch_reconciliation_queue.batch_reconciliation_master_view_search
+msgid "Search Reconciliation Jobs"
+msgstr "Buscar Trabajos de Conciliación"
+
+#. module: batch_reconciliation_queue
+#: model:ir.model.fields,field_description:batch_reconciliation_queue.field_batch_reconciliation_chunk__sequence
+msgid "Sequence"
+msgstr "Secuencia"
+
+#. module: batch_reconciliation_queue
+#: model_terms:ir.ui.view,arch_db:batch_reconciliation_queue.batch_reconciliation_master_view_form
+msgid "Start Processing"
+msgstr "Iniciar Procesamiento"
+
+#. module: batch_reconciliation_queue
+#: model:ir.model.fields,field_description:batch_reconciliation_queue.field_batch_reconciliation_chunk__start_time
+#: model:ir.model.fields,field_description:batch_reconciliation_queue.field_batch_reconciliation_master__start_time
+msgid "Start Time"
+msgstr "Hora de Inicio"
+
+#. module: batch_reconciliation_queue
+#. odoo-python
+#: code:addons/batch_reconciliation_queue/models/batch_reconciliation_chunk.py:0
+#: code:addons/batch_reconciliation_queue/models/batch_reconciliation_master.py:0
+msgid "Statement line has no associated move."
+msgstr "La línea de extracto no tiene asiento asociado."
+
+#. module: batch_reconciliation_queue
+#: model:ir.model.fields,field_description:batch_reconciliation_queue.field_batch_reconciliation_chunk__state
+#: model:ir.model.fields,field_description:batch_reconciliation_queue.field_batch_reconciliation_master__state
+#: model_terms:ir.ui.view,arch_db:batch_reconciliation_queue.batch_reconciliation_chunk_view_search
+#: model_terms:ir.ui.view,arch_db:batch_reconciliation_queue.batch_reconciliation_master_view_search
+msgid "Status"
+msgstr "Estado"
+
+#. module: batch_reconciliation_queue
+#: model:ir.model.fields,help:batch_reconciliation_queue.field_batch_reconciliation_master__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+"Estado basado en actividades\n"
+"Vencido: La fecha límite ya pasó\n"
+"Hoy: La fecha de actividad es hoy\n"
+"Planificado: Actividades futuras."
+
+#. module: batch_reconciliation_queue
+#. odoo-python
+#: code:addons/batch_reconciliation_queue/models/batch_reconciliation_master.py:0
+msgid "Successfully reconciled %(count)s pairs."
+msgstr "Se conciliaron exitosamente %(count)s pares."
+
+#. module: batch_reconciliation_queue
+#: model_terms:ir.ui.view,arch_db:batch_reconciliation_queue.batch_reconciliation_master_view_form
+msgid "Technical"
+msgstr "Técnico"
+
+#. module: batch_reconciliation_queue
+#: model:ir.model.fields,help:batch_reconciliation_queue.field_batch_reconciliation_master__reconciliation_move_id
+msgid "The account move where reconciliation lines are created"
+msgstr "El asiento contable donde se crean las líneas de conciliación"
+
+#. module: batch_reconciliation_queue
+#: model_terms:ir.ui.view,arch_db:batch_reconciliation_queue.batch_reconciliation_chunk_view_form
+#: model_terms:ir.ui.view,arch_db:batch_reconciliation_queue.batch_reconciliation_master_view_form
+msgid "Timing"
+msgstr "Tiempos"
+
+#. module: batch_reconciliation_queue
+#: model:ir.model.fields,field_description:batch_reconciliation_queue.field_batch_reconciliation_master__total_chunks
+msgid "Total Chunks"
+msgstr "Total de Chunks"
+
+#. module: batch_reconciliation_queue
+#: model:ir.model.fields,field_description:batch_reconciliation_queue.field_batch_reconciliation_master__total_pairs_to_reconcile
+msgid "Total Pairs to Reconcile"
+msgstr "Total de Pares a Conciliar"
+
+#. module: batch_reconciliation_queue
+#: model:ir.model.fields,field_description:batch_reconciliation_queue.field_batch_reconciliation_master__total_payments
+msgid "Total Payments"
+msgstr "Total de Pagos"
+
+#. module: batch_reconciliation_queue
+#: model:ir.model.fields,help:batch_reconciliation_queue.field_batch_reconciliation_master__auto_reconcile_queued
+msgid "True if reconciliation is running via queue_job"
+msgstr "Verdadero si la conciliación está ejecutándose vía queue_job"
+
+#. module: batch_reconciliation_queue
+#: model:ir.model.fields,help:batch_reconciliation_queue.field_batch_reconciliation_master__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr "Tipo de actividad de excepción en el registro."
+
+#. module: batch_reconciliation_queue
+#: model_terms:ir.ui.view,arch_db:batch_reconciliation_queue.batch_reconciliation_chunk_view_form
+msgid "View Master Job"
+msgstr "Ver Trabajo Principal"
+
+#. module: batch_reconciliation_queue
+#: model_terms:ir.ui.view,arch_db:batch_reconciliation_queue.batch_reconciliation_master_view_form
+msgid "View Statement Line"
+msgstr "Ver Línea de Extracto"
+
+#. module: batch_reconciliation_queue
+#: model:ir.model.fields,field_description:batch_reconciliation_queue.field_batch_reconciliation_master__website_message_ids
+msgid "Website Messages"
+msgstr "Mensajes del Sitio Web"
+
+#. module: batch_reconciliation_queue
+#: model:ir.model.fields,help:batch_reconciliation_queue.field_batch_reconciliation_master__website_message_ids
+msgid "Website communication history"
+msgstr "Historial de comunicación del sitio web"
+
+#. module: batch_reconciliation_queue
+#. odoo-python
+#: code:addons/batch_reconciliation_queue/models/batch_reconciliation_master.py:0
+msgid "You can continue reconciliation from pair %(current)s/%(total)s."
+msgstr "Puede continuar la conciliación desde el par %(current)s/%(total)s."

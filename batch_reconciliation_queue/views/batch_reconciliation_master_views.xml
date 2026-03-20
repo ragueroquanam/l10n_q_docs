@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Master: List View -->
+    <record id="batch_reconciliation_master_view_list" model="ir.ui.view">
+        <field name="name">batch.reconciliation.master.list</field>
+        <field name="model">batch.reconciliation.master</field>
+        <field name="arch" type="xml">
+            <list string="Reconciliation Jobs"
+                  decoration-success="state in ('done', 'reconciled')"
+                  decoration-danger="state == 'failed'"
+                  decoration-muted="state == 'cancelled'"
+                  decoration-info="state in ('processing', 'reconciling')"
+                  decoration-warning="state == 'lines_created'">
+                <field name="name"/>
+                <field name="st_line_id"/>
+                <field name="batch_payment_names"/>
+                <field name="total_payments"/>
+                <field name="progress" widget="progressbar" string="Chunk Progress"/>
+                <field name="reconciliation_progress" widget="progressbar" string="Recon Progress"/>
+                <field name="total_chunks"/>
+                <field name="completed_chunks"/>
+                <field name="failed_chunks" decoration-danger="failed_chunks > 0"/>
+                <field name="state" widget="badge"
+                       decoration-success="state in ('done', 'reconciled')"
+                       decoration-danger="state == 'failed'"
+                       decoration-info="state in ('processing', 'reconciling')"
+                       decoration-warning="state in ('preparing', 'lines_created')"/>
+                <field name="duration" widget="float_time"/>
+                <field name="create_date"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Master: Form View -->
+    <record id="batch_reconciliation_master_view_form" model="ir.ui.view">
+        <field name="name">batch.reconciliation.master.form</field>
+        <field name="model">batch.reconciliation.master</field>
+        <field name="arch" type="xml">
+            <form string="Reconciliation Job">
+                <header>
+                    <!-- Draft state actions -->
+                    <button name="action_start"
+                            string="Start Processing"
+                            type="object"
+                            class="btn-primary"
+                            invisible="state != 'draft'"/>
+
+                    <!-- Lines created state actions -->
+                    <button name="action_reconcile_batch"
+                            string="Reconcile Batch"
+                            type="object"
+                            class="btn-primary"
+                            invisible="state not in ('lines_created', 'reconciling') or auto_reconcile_queued"
+                            help="Manually reconcile the next batch of pairs"/>
+                    <button name="action_queue_reconciliation"
+                            string="Queue Reconciliation"
+                            type="object"
+                            class="btn-secondary"
+                            invisible="state not in ('lines_created', 'reconciling') or auto_reconcile_queued"
+                            help="Run reconciliation in background"/>
+
+                    <!-- Failed state actions -->
+                    <button name="action_retry_failed"
+                            string="Retry Failed Chunks"
+                            type="object"
+                            class="btn-warning"
+                            invisible="state not in ('failed', 'processing') or failed_chunks == 0"/>
+                    <button name="action_resume_reconciliation"
+                            string="Resume Reconciliation"
+                            type="object"
+                            class="btn-warning"
+                            invisible="state != 'failed' or not reconciliation_move_id"/>
+
+                    <!-- Cancel (available in most states) -->
+                    <button name="action_cancel"
+                            string="Cancel"
+                            type="object"
+                            class="btn-secondary"
+                            invisible="state in ('done', 'reconciled', 'cancelled')"/>
+
+                    <!-- Navigation -->
+                    <button name="action_view_statement_line"
+                            string="View Statement Line"
+                            type="object"
+                            class="btn-link"/>
+
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="draft,preparing,processing,lines_created,reconciling,reconciled"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_view_chunks"
+                                type="object"
+                                class="oe_stat_button"
+                                icon="fa-cubes">
+                            <field name="total_chunks" widget="statinfo" string="Chunks"/>
+                        </button>
+                        <button name="action_view_reconciliation_move"
+                                type="object"
+                                class="oe_stat_button"
+                                icon="fa-file-text-o"
+                                invisible="not reconciliation_move_id">
+                            <span class="o_stat_text">Move</span>
+                        </button>
+                        <button name="action_view_queue_jobs"
+                                type="object"
+                                class="oe_stat_button"
+                                icon="fa-tasks">
+                            <span class="o_stat_text">Queue Jobs</span>
+                        </button>
+                    </div>
+
+                    <!-- Alert for queued reconciliation -->
+                    <div class="alert alert-info" role="alert"
+                         invisible="not auto_reconcile_queued">
+                        <strong>Background Reconciliation in Progress</strong>
+                        <p>Reconciliation is running in the background. Progress will update automatically.</p>
+                    </div>
+
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" readonly="1"/>
+                        </h1>
+                    </div>
+
+                    <group>
+                        <group string="Job Information">
+                            <field name="st_line_id"/>
+                            <field name="batch_payment_names"/>
+                            <field name="company_id"/>
+                            <field name="journal_id"/>
+                            <field name="currency_id"/>
+                            <field name="reconciliation_move_id" invisible="not reconciliation_move_id"/>
+                        </group>
+                        <group string="Configuration">
+                            <field name="chunk_size" readonly="state != 'draft'"/>
+                            <field name="max_parallel_chunks" readonly="state != 'draft'"/>
+                            <field name="reconciliation_batch_size"
+                                   readonly="state in ('reconciled', 'done', 'cancelled')"/>
+                        </group>
+                    </group>
+
+                    <group>
+                        <group string="Chunk Processing Progress">
+                            <field name="total_payments"/>
+                            <field name="processed_payments"/>
+                            <field name="progress" widget="progressbar"/>
+                        </group>
+                        <group string="Chunk Status">
+                            <field name="total_chunks"/>
+                            <field name="completed_chunks"/>
+                            <field name="failed_chunks" decoration-danger="failed_chunks > 0"/>
+                        </group>
+                    </group>
+
+                    <!-- Reconciliation Progress Section -->
+                    <group string="Reconciliation Progress"
+                           invisible="state in ('draft', 'preparing', 'processing')">
+                        <group>
+                            <field name="total_pairs_to_reconcile"/>
+                            <field name="reconciled_pairs_count"/>
+                            <field name="last_reconciled_index" groups="base.group_no_one"/>
+                            <field name="reconciliation_progress" widget="progressbar"/>
+                        </group>
+                        <group>
+                            <field name="auto_reconcile_queued" readonly="1"/>
+                            <field name="reconciliation_start_time"/>
+                            <field name="reconciliation_end_time"/>
+                        </group>
+                    </group>
+
+                    <group>
+                        <group string="Timing">
+                            <field name="start_time"/>
+                            <field name="end_time"/>
+                            <field name="duration" widget="float_time"/>
+                        </group>
+                        <group string="Results">
+                            <field name="created_move_line_count"/>
+                            <field name="reconciled_aml_count"/>
+                        </group>
+                    </group>
+
+                    <group string="Error Details" invisible="state != 'failed'">
+                        <field name="error_message" colspan="2" nolabel="1"/>
+                    </group>
+
+                    <notebook>
+                        <page string="Chunks" name="chunks">
+                            <field name="chunk_ids" mode="list">
+                                <list string="Processing Chunks"
+                                      decoration-success="state == 'done'"
+                                      decoration-danger="state == 'failed'"
+                                      decoration-info="state == 'processing'"
+                                      create="0" delete="0">
+                                    <field name="sequence" widget="handle"/>
+                                    <field name="name"/>
+                                    <field name="payment_count"/>
+                                    <field name="processed_payments"/>
+                                    <field name="state" widget="badge"/>
+                                    <field name="created_line_count"/>
+                                    <field name="reconciled_count"/>
+                                    <field name="duration" widget="float_time"/>
+                                    <field name="retry_count"/>
+                                    <button name="action_retry"
+                                            string="Retry"
+                                            type="object"
+                                            icon="fa-refresh"
+                                            invisible="state != 'failed'"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Technical" name="technical" groups="base.group_no_one">
+                            <group>
+                                <field name="batch_payment_ids_json"/>
+                                <field name="reconciliation_plan_json"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <!-- Master: Search View -->
+    <record id="batch_reconciliation_master_view_search" model="ir.ui.view">
+        <field name="name">batch.reconciliation.master.search</field>
+        <field name="model">batch.reconciliation.master</field>
+        <field name="arch" type="xml">
+            <search string="Search Reconciliation Jobs">
+                <field name="name"/>
+                <field name="st_line_id"/>
+                <field name="batch_payment_names"/>
+                <separator/>
+                <filter name="filter_draft" string="Draft" domain="[('state', '=', 'draft')]"/>
+                <filter name="filter_processing" string="Processing"
+                        domain="[('state', 'in', ['preparing', 'processing'])]"/>
+                <filter name="filter_lines_created" string="Lines Created (Pending Reconciliation)"
+                        domain="[('state', '=', 'lines_created')]"/>
+                <filter name="filter_reconciling" string="Reconciling"
+                        domain="[('state', '=', 'reconciling')]"/>
+                <filter name="filter_done" string="Completed"
+                        domain="[('state', 'in', ('done', 'reconciled'))]"/>
+                <filter name="filter_failed" string="Failed" domain="[('state', '=', 'failed')]"/>
+                <separator/>
+                <filter name="filter_queued_reconciliation" string="Background Reconciliation"
+                        domain="[('auto_reconcile_queued', '=', True)]"/>
+                <separator/>
+                <group expand="0" string="Group By">
+                    <filter name="group_state" string="Status" context="{'group_by': 'state'}"/>
+                    <filter name="group_company" string="Company" context="{'group_by': 'company_id'}"/>
+                    <filter name="group_journal" string="Journal" context="{'group_by': 'journal_id'}"/>
+                    <filter name="group_date" string="Date" context="{'group_by': 'create_date:day'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Master: Action -->
+    <record id="action_batch_reconciliation_master" model="ir.actions.act_window">
+        <field name="name">Batch Reconciliation Jobs</field>
+        <field name="res_model">batch.reconciliation.master</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="batch_reconciliation_master_view_search"/>
+        <field name="context">{'search_default_filter_processing': 1, 'search_default_filter_lines_created': 1, 'search_default_filter_reconciling': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No reconciliation jobs yet
+            </p>
+            <p>
+                Large batch payment reconciliations (500+ payments) are automatically
+                processed in the background. Jobs will appear here when processing.
+            </p>
+            <p>
+                <strong>Workflow:</strong>
+                <ol>
+                    <li>Processing: Chunks are processed in parallel</li>
+                    <li>Lines Created: Move lines are ready, waiting for reconciliation</li>
+                    <li>Reconciling: Pairs are being reconciled (manual or queued)</li>
+                    <li>Reconciled: Process complete</li>
+                </ol>
+            </p>
+        </field>
+    </record>
+
+    <!-- Menu Item -->
+    <menuitem id="menu_batch_reconciliation_master"
+        name="Reconciliation Jobs"
+        parent="queue_job.menu_queue"
+        action="action_batch_reconciliation_master"
+        sequence="99"/>
+
+</odoo>

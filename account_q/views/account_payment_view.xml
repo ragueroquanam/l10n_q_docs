@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_account_q_payment_tree" model="ir.ui.view">
+            <field name="name">account.payment.list</field>
+            <field name="model">account.payment</field>
+            <field name="inherit_id" ref="account.view_account_payment_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='amount_signed']" position="attributes">
+                    <attribute name="sum">Total</attribute>
+                </xpath>
+                <xpath expr="//field[@name='amount_signed'][last()]" position="attributes">
+                    <attribute name="sum">Total</attribute>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_account_payment_form_inherit" model="ir.ui.view">
+            <field name="name">account.payment.form.inherit.account_payable_receivable</field>
+            <field name="model">account.payment</field>
+            <field name="inherit_id" ref="account.view_account_payment_form"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group[@name='group2']" position="inside">
+                    <field name="account_receivable_id" invisible="hide_account_receivable_id" readonly="state !='draft'"/>
+                    <field name="account_payable_id" invisible="hide_account_payable_id" readonly="state !='draft'"/>
+                    <field name="vat_refund_applicable" invisible="payment_type != 'inbound'"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_account_payment_search_inherit_number" model="ir.ui.view">
+            <field name="name">account.payment.search.inherit.number</field>
+            <field name="model">account.payment</field>
+            <field name="inherit_id" ref="account.view_account_payment_search"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='name']" position="after">
+                    <field name="name" string="Número" filter_domain="[('name', 'ilike', self)]"/>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

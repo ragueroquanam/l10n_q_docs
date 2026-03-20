@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- Payment methods -->
+        <record id="payment_method_pos" model="account.payment.method">
+            <field name="name">POS</field>
+            <field name="code">pos</field>
+            <field name="payment_type">inbound</field>
+        </record>
+        <record id="payment_method_pos_manual" model="account.payment.method">
+            <field name="name">POS manual</field>
+            <field name="code">pos_manual</field>
+            <field name="payment_type">inbound</field>
+        </record>
+    </data>
+</odoo>

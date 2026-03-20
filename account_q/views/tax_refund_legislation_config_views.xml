@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_tax_refund_legislation_config_form" model="ir.ui.view">
+        <field name="name">tax.refund.legislation.config.form</field>
+        <field name="model">tax.refund.legislation.config</field>
+        <field name="arch" type="xml">
+            <form string="Legislación devolución de impuestos">
+                <sheet>
+                    <group>
+                        <field name="description"/>
+                        <field name="law_reference"/>
+                        <field name="document_type_id"/>
+                        <field name="max_amount"/>
+                        <field name="currency_id"/>
+                        <field name="tax_ids" widget="many2many_tags"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_tax_refund_legislation_config_tree" model="ir.ui.view">
+        <field name="name">tax.refund.legislation.config.tree</field>
+        <field name="model">tax.refund.legislation.config</field>
+        <field name="arch" type="xml">
+            <list string="Legislaciones" editable="top">
+                <field name="description"/>
+                <field name="law_reference"/>
+                <field name="document_type_id"/>
+                <field name="max_amount" optional="hide"/>
+                <field name="currency_id"/>
+                <field name="tax_ids" widget="many2many_tags"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_tax_refund_legislation_config_search" model="ir.ui.view">
+        <field name="name">tax.refund.legislation.config.search</field>
+        <field name="model">tax.refund.legislation.config</field>
+        <field name="arch" type="xml">
+            <search string="Buscar Legislación de Devolución">
+                <field name="description"/>
+                <field name="law_reference"/>
+                <field name="document_type_id"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_tax_refund_legislation_config" model="ir.actions.act_window">
+        <field name="name">Devolución de impuesto</field>
+        <field name="res_model">tax.refund.legislation.config</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="view_tax_refund_legislation_config_search"/>
+    </record>
+
+    <menuitem id="menu_tax_refund_legislation" name="Devolución de impuesto" parent="account.account_account_menu"
+              action="action_tax_refund_legislation_config" sequence="600"/>
+
+</odoo>

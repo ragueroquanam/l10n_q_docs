@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <menuitem id="menu_account_withholding_title"
+              name="Retenciones"
+              parent="account.menu_finance_payables"
+              sequence="250"/>
+    <menuitem id="menu_account_move_line_withholding"
+              name="Líneas de Retención"
+              parent="menu_account_withholding_title"
+              action="action_account_move_line_withholding"
+              sequence="10"/>
+    <menuitem id="menu_account_resguardo"
+              name="Resguardos"
+              parent="menu_account_withholding_title"
+              action="action_resguardos"
+              sequence="20"/>
+
+</odoo>

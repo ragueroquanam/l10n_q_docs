@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_account_journal_form_inherit_apply_vat_refund" model="ir.ui.view">
+            <field name="name">account.journal.form.inherit.apply.vat.refund</field>
+            <field name="model">account.journal</field>
+            <field name="inherit_id" ref="account.view_account_journal_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//page[@id='inbound_payment_settings']//field[@name='payment_account_id']"
+                       position="after">
+                    <field name="apply_vat_refund" string="Aplica devolución de IVA"/>
+                    <field name="type"/>
+                </xpath>
+                <xpath expr="//page[@id='outbound_payment_settings']//field[@name='payment_account_id']"
+                       position="after">
+                    <field name="type"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

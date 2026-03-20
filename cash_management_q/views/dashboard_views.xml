@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_cash_session_filtered" model="ir.actions.act_window">
+        <field name="name">Sesión</field>
+        <field name="res_model">cash.management.session</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="view_cash_management_session_search"/>
+        <field name="context">{
+            'search_default_config_id': [active_id],
+            'default_config_id': active_id}
+        </field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_empty_folder">
+                No se encontraron sesiones
+            </p>
+        </field>
+    </record>
+
+    <record id="view_cash_management_config_kanban" model="ir.ui.view">
+        <field name="name">cash.management.config.kanban.view</field>
+        <field name="model">cash.management.config</field>
+        <field name="arch" type="xml">
+            <kanban create="false" can_open="0" class="o_pos_kanban">
+                <field name="kanban_dashboard"/>
+                <templates>
+                    <t t-name="menu">
+                        <div class="container dropdown-pos-config">
+                            <div class="row" style="min-width:200px">
+                                <div class="col-6 o_kanban_manage_view">
+                                    <h5 role="menuitem" class="o_kanban_card_manage_title">
+                                        <span>View</span>
+                                    </h5>
+                                    <div role="menuitem">
+                                        <a name="%(action_cash_session_filtered)d" type="action">Sesiones</a>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <h5 role="menuitem" class="o_kanban_card_manage_title">
+                                        <span>Reporting</span>
+                                    </h5>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+
+                    <t t-name="card">
+                        <t t-value="JSON.parse(record.kanban_dashboard.raw_value)" t-set="dashboard"/>
+                        <div name="card_title" class="mb-4 ms-2">
+                            <field name="name" class="fw-bold fs-4 d-inline-block"/>
+                            <span class="me-2"/>
+                        </div>
+
+                            <!-- Empresa: solo visible si hay múltiples empresas activas -->
+                        <t t-if="dashboard.show_company" groups="base.group_multi_company">
+                            <div class="ms-2 mb-2 text-muted small">
+                                <strong class="me-1">Empresa:</strong>
+                                <field name="company_id" class="d-inline"/>
+                            </div>
+                        </t>
+
+                        <div class="ms-2 mb-2 text-muted small">
+                            <strong class="me-1">Último cierre:</strong>
+                            <field name="last_closing_date" widget="datetime" class="d-inline"/>
+                        </div>
+
+                        <div class="ms-2 mb-2 text-muted small">
+                            <strong class="me-1">Saldo anterior efectivo:</strong>
+                            <field name="previous_balance" widget="monetary" class="d-inline"/>
+                        </div>
+
+                        <div class="ms-2 mb-2 text-muted small">
+                            <strong class="me-1">Saldo anterior doc pagar:</strong>
+                            <field name="previous_balance_doc_to_pay" widget="monetary" class="d-inline"/>
+                        </div>
+
+                        <div class="row g-0 pb-2 mt-auto">
+                            <div name="card_left" class="col-12">
+                                <button type="object"
+                                        name="action_view_pending_transfers"
+                                        class="btn btn-link w-100 text-start"
+                                        invisible="not pending_income_transfer_count">
+                                    Transferencias Entrantes (<t t-esc="record.pending_income_transfer_count.value"/>)
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="row g-0 pb-4 ms-2 mt-auto">
+                            <div name="card_left" class="col-6">
+                                <button class="btn btn-primary" string="Abrir caja"
+                                        name="action_open_new_session" type="object" invisible="has_open_session"/>
+                            </div>
+                            <div class="col-6">
+                                <button class="btn btn-primary" string="Ir a la sesión activa"
+                                        name="action_open_last_session" type="object" invisible="not has_open_session"/>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="action_pos_config_kanban" model="ir.actions.act_window">
+        <field name="name">Cajas</field>
+        <field name="path">cash-management-q</field>
+        <field name="res_model">cash.management.config</field>
+        <field name="view_mode">kanban,list,form</field>
+    </record>
+
+</odoo>

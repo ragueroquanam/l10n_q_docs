@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Payment from File Line list View (for use in form) -->
+    <record id="view_account_q_payment_from_file_line_list_embedded" model="ir.ui.view">
+        <field name="name">account.q.payment.from.file.line.list.embedded</field>
+        <field name="model">account.q.payment.from.file.line</field>
+        <field name="arch" type="xml">
+            <list decoration-success="state == 'processed'"
+                  decoration-danger="state == 'error'"
+                  decoration-muted="state == 'pending'"
+                  create="0" delete="0">
+                <field name="state" widget="badge"
+                       decoration-success="state == 'processed'"
+                       decoration-danger="state == 'error'"
+                       decoration-warning="state == 'pending'"/>
+                <field name="barcode"/>
+                <field name="payment_date"/>
+                <field name="amount" widget="monetary"/>
+                <!-- <field name="mora" widget="monetary"/> -->
+                <field name="currency_id" column_invisible="1"/>
+                <!-- <field name="currency_code"/> -->
+                <!-- <field name="invoice_id"/> -->
+                <!-- <field name="payment_id"/> -->
+                <field name="reference"/>
+                <field name="error_message"/>
+                <button name="action_reprocess" string="Reprocesar" type="object"
+                        icon="fa-repeat" invisible="state != 'error'"/>
+                <button name="action_view_invoice" string="Ver Factura" type="object"
+                        icon="fa-file-text-o" invisible="not invoice_id"/>
+                <button name="action_view_payment" string="Ver Pago" type="object"
+                        icon="fa-money" invisible="not payment_id"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Payment from File Form View -->
+    <record id="view_account_q_payment_from_file_form" model="ir.ui.view">
+        <field name="name">account.q.payment.from.file.form</field>
+        <field name="model">account.q.payment.from.file</field>
+        <field name="arch" type="xml">
+            <form string="Pago desde Archivo">
+                <header>
+                    <button name="action_process_file" string="Procesar Archivo" type="object"
+                            class="oe_highlight"
+                            invisible="state != 'draft'"/>
+                    <button name="action_process_payments" string="Procesar Pagos" type="object"
+                            class="oe_highlight"
+                            invisible="state != 'file_processed'"/>
+                    <button name="action_reset_to_draft" string="Resetear a Borrador" type="object"
+                            confirm="Esto eliminará todas las líneas. ¿Está seguro?"
+                            invisible="state != 'file_processed'"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,file_processed,processed"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" readonly="1"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="company_id" options="{'no_create': True,'no_open': True}" groups="base.group_multi_company" readonly="state != 'draft'"/>
+                            <field name="journal_id" options="{'no_create': True,'no_open': True}" readonly="state != 'draft'"/>
+                            <field name="payment_method_line_id" options="{'no_create': True,'no_open': True}" readonly="state != 'draft'"/>
+                            <field name="payment_date" readonly="state != 'draft'" string="Fecha"/>
+                            <field name="currency_id" invisible="1" readonly="state != 'draft'"/>
+                        </group>
+                        <group>
+                            <field name="file_name" invisible="0" force_save="1"/>
+                            <field name="file_data" filename="file_name" readonly="state != 'draft'"/>
+                            <field name="file_type" readonly="1" force_save="1"/>
+                            <field name="total_amount" widget="monetary" readonly="state != 'draft'"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group string="Estadísticas">
+                            <field name="line_count"/>
+                            <field name="line_processed_count"/>
+                            <field name="line_error_count"/>
+                            <field name="line_pending_count"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Líneas" name="lines">
+                            <field name="line_ids" readonly="1" 
+                                   context="{'list_view_ref': 'account_q_payment_from_file.view_account_q_payment_from_file_line_list_embedded'}"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter reload_on_attachment="True"/>
+            </form>
+        </field>
+    </record>
+
+    <!-- Payment from File list View -->
+    <record id="view_account_q_payment_from_file_list" model="ir.ui.view">
+        <field name="name">account.q.payment.from.file.list</field>
+        <field name="model">account.q.payment.from.file</field>
+        <field name="arch" type="xml">
+            <list string="Pagos desde Archivo"
+                  decoration-info="state == 'draft'"
+                  decoration-warning="state == 'file_processed'"
+                  decoration-success="state == 'processed'">
+                <field name="name"/>
+                <field name="payment_date"/>
+                <field name="journal_id"/>
+                <field name="payment_method_line_id"/>
+                <field name="file_type"/>
+                <field name="line_count"/>
+                <field name="line_processed_count"/>
+                <field name="line_error_count"/>
+                <field name="total_amount" widget="monetary"/>
+                <field name="currency_id" column_invisible="1"/>
+                <field name="state" widget="badge"
+                       decoration-info="state == 'draft'"
+                       decoration-warning="state == 'file_processed'"
+                       decoration-success="state == 'processed'"/>
+                <field name="company_id" groups="base.group_multi_company"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Payment from File Search View -->
+    <record id="view_account_q_payment_from_file_search" model="ir.ui.view">
+        <field name="name">account.q.payment.from.file.search</field>
+        <field name="model">account.q.payment.from.file</field>
+        <field name="arch" type="xml">
+            <search string="Pagos desde Archivo">
+                <field name="name"/>
+                <field name="journal_id"/>
+                <field name="payment_method_line_id"/>
+                <filter string="Borrador" name="draft" domain="[('state', '=', 'draft')]"/>
+                <filter string="Archivo Procesado" name="file_processed" domain="[('state', '=', 'file_processed')]"/>
+                <filter string="Procesado" name="processed" domain="[('state', '=', 'processed')]"/>
+                <separator/>
+                <filter string="Excel (Red Pagos)" name="excel" domain="[('file_type', '=', 'excel')]"/>
+                <filter string="TXT (Abitab)" name="txt" domain="[('file_type', '=', 'txt')]"/>
+                <separator/>
+                <filter string="Con Errores" name="with_errors" domain="[('line_error_count', '>', 0)]"/>
+                <group expand="0" string="Agrupar Por">
+                    <filter string="Estado" name="group_state" context="{'group_by': 'state'}"/>
+                    <filter string="Diario" name="group_journal" context="{'group_by': 'journal_id'}"/>
+                    <filter string="Método de Pago" name="group_payment_method" context="{'group_by': 'payment_method_line_id'}"/>
+                    <filter string="Tipo de Archivo" name="group_file_type" context="{'group_by': 'file_type'}"/>
+                    <filter string="Fecha de Pago" name="group_payment_date" context="{'group_by': 'payment_date'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Payment from File Line Form View -->
+    <record id="view_account_q_payment_from_file_line_form" model="ir.ui.view">
+        <field name="name">account.q.payment.from.file.line.form</field>
+        <field name="model">account.q.payment.from.file.line</field>
+        <field name="arch" type="xml">
+            <form string="Línea de Pago" create="0" delete="0">
+                <header>
+                    <button name="action_reprocess" string="Reprocesar" type="object"
+                            class="oe_highlight"
+                            invisible="state != 'error'"/>
+                    <button name="action_view_invoice" string="Ver Factura" type="object"
+                            invisible="not invoice_id"/>
+                    <button name="action_view_payment" string="Ver Pago" type="object"
+                            invisible="not payment_id"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="payment_file_id" invisible="1"/>
+                            <field name="sequence"/>
+                            <field name="barcode"/>
+                            <field name="amount" widget="monetary"/>
+                            <field name="currency_id" options="{'no_create': True}"/>
+                            <field name="currency_code"/>
+                        </group>
+                        <group>
+                            <field name="payment_date"/>
+                            <field name="reference"/>
+                            <field name="agency"/>
+                            <field name="sub_agency"/>
+                            <field name="cashier"/>
+                            <field name="company_id" options="{'no_create': True}" groups="base.group_multi_company"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="invoice_id" invisible="1"/> 
+                            <field name="payment_id" invisible="1"/>
+                        </group>
+                        <group>
+                            
+                        </group>
+                    </group>
+                    <group invisible="state != 'error'">
+                        <field name="error_message" readonly="1" nolabel="1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action for Payment from File -->
+    <record id="action_account_q_payment_from_file" model="ir.actions.act_window">
+        <field name="name">Pagos desde Archivo</field>
+        <field name="res_model">account.q.payment.from.file</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="view_account_q_payment_from_file_search"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Crear un nuevo pago desde archivo
+            </p>
+            <p>
+                Cargue archivos Excel de Red Pagos o archivos TXT de Abitab para procesar
+                automáticamente los pagos de clientes.
+            </p>
+        </field>
+    </record>
+</odoo>
+

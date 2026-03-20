@@ -1,0 +1,21 @@
+{
+    "name": "Quanam Account Withholding",
+    "version": "18.0.1.3.2",
+    "author": "Quanam",
+    "website": "www.quanam.com",
+    "category": "Account",
+    'sequence': 45,
+    'summary': "Calculo de retenciones sobre impuestos",
+    "depends": ['account', 'account_q'],
+    "data": [
+        'views/account_tax_views.xml',
+        'views/account_resguardo_views.xml',
+        'views/account_resguardo_menus.xml',
+        'views/account_position_views.xml',
+        'views/account_move_views.xml',
+        'security/account_resguardo_security.xml',
+        "security/ir.model.access.csv",
+    ],
+    "installable": True,
+    "license": "AGPL-3",
+}

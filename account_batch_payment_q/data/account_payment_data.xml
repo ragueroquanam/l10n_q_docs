@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- Payment methods -->
+        <record id="account_payment_method_batch_deposit" model="account.payment.method">
+            <field name="name">Pago por archivo</field>
+            <field name="code">batch_payment</field>
+            <field name="payment_type">outbound</field>
+        </record>
+    </data>
+</odoo>

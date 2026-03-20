@@ -1,0 +1,27 @@
+<odoo>
+    <data>
+        <record id="view_account_payment_tree" model="ir.ui.view">
+            <field name="name">account.payment.list.xf.approval.route</field>
+            <field name="model">account.payment</field>
+            <field name="inherit_id" ref="account.view_account_payment_tree" />
+            <field name="arch" type="xml">
+                <header position="inside">
+                    <button name="button_mass_approve" type="object" string="Aprobar"/>
+                </header>
+            </field>
+        </record>
+
+        <record id="view_account_payment_register_approval_form" model="ir.ui.view">
+            <field name="inherit_id" ref="xf_approval_route_payment.view_account_payment_register_approval_form"/>
+            <field name="name">view_account_payment_register_approval_form_company_domain</field>
+            <field name="model">account.payment.register</field>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='approval_route_id']" position="attributes">
+                    <attribute name="domain">
+                        [('company_id', '=', company_id)]
+                    </attribute>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

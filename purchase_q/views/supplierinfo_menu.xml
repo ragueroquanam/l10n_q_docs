@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+         <menuitem id="menu_supplierinfo_user"
+              name="Listas de precios del proveedor"
+              parent="purchase.menu_purchase_products"
+              action="product.product_supplierinfo_type_action"
+              sequence="30"
+              groups="purchase.group_purchase_user"/>
+    </data>
+</odoo>

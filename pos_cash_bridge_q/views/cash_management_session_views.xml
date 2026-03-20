@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Herencia de la vista de Sesión de Caja -->
+    <record id="view_cash_management_session_form_inherit_pos_columns" model="ir.ui.view">
+        <field name="name">cash.management.session.form.inherit.pos.columns</field>
+        <field name="model">cash.management.session</field>
+        <field name="inherit_id" ref="cash_management_q.view_cash_management_session_form"/>
+        <field name="arch" type="xml">
+
+            <!-- Insertamos columnas POS en la pestaña Cobros tarjeta -->
+            <xpath expr="//page[@name='tarjeta']//field[@name='card_payment_ids']/list" position="inside">
+                <field name="ticket" optional="hide"/>
+                <field name="batch_number" optional="hide"/>
+                <field name="authorization_code" optional="hide"/>
+                <field name="transaction_number" optional="hide"/>
+            </xpath>
+
+            <!-- Documentos cobrados-->
+            <xpath expr="//page[@name='doc_cobrados']//field[@name='incoming_payment_ids']/list"
+                   position="inside">
+                <field name="ticket" optional="hide"/>
+                <field name="batch_number" optional="hide"/>
+                <field name="authorization_code" optional="hide"/>
+                <field name="transaction_number" optional="hide"/>
+            </xpath>
+
+            <!-- Documentos pagados-->
+            <xpath expr="//page[@name='doc_pagados']//field[@name='outgoing_payment_ids']/list"
+                   position="inside">
+                <field name="ticket" optional="hide"/>
+                <field name="batch_number" optional="hide"/>
+                <field name="authorization_code" optional="hide"/>
+                <field name="transaction_number" optional="hide"/>
+            </xpath>
+
+
+        </field>
+    </record>
+</odoo>

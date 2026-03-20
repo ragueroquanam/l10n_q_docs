@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.cash.management.q</field>
+        <field name="model">res.config.settings</field>
+        <field name="priority" eval="95"/>
+        <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form" position="inside">
+                <app data-string="Cajas" string="Cajas" name="cash_management_q">
+                    <div>
+                        <block title="Cuentas predeterminadas" id="cash_management_account_section">
+                            <setting id="default_management_account_setting_left">
+                                <div class="content-group">
+                                    <div>
+                                        <label for="cash_management_q_surplus_account_id" string="Sobrante de caja"
+                                               class="fw-normal me-1"/>
+                                        <field name="cash_management_q_surplus_account_id"/>
+                                    </div>
+                                    <div>
+                                        <label for="cash_management_q_shortage_account_id" string="Faltante de caja"
+                                               class="fw-normal me-1"/>
+                                        <field name="cash_management_q_shortage_account_id"/>
+                                    </div>
+                                </div>
+                            </setting>
+                            <setting id="default_management_account_setting_right">
+                                <div class="content-group">
+                                    <div>
+                                        <label for="cash_management_q_cash_transfer_account_id" string="Transferencia entre cajas"
+                                               class="fw-normal me-1"/>
+                                        <field name="cash_management_q_cash_transfer_account_id"/>
+                                    </div>
+                                </div>
+                            </setting>
+                        </block>
+
+                        <block title="Otros ajustes" id="cash_management_general_setting_section">
+                            <setting id="cash_management_general_setting_left">
+                                <div class="content-group">
+                                    <div>
+                                        <label for="cash_management_q_max_missing_amount"
+                                               string="Monto tope para faltante" class="fw-normal me-1"/>
+                                        <field name="cash_management_q_max_missing_amount"/>
+                                    </div>
+                                    <div>
+                                        <label for="cash_management_q_max_over_amount" string="Monto tope para sobrante"
+                                               class="fw-normal me-1"/>
+                                        <field name="cash_management_q_max_over_amount"/>
+                                    </div>
+                                    <div>
+                                        <label for="cash_management_q_payment_method_ids" string="Métodos de pago"
+                                               class="fw-normal me-1"/>
+                                        <field name="cash_management_q_payment_method_ids" widget="many2many_tags"/>
+                                    </div>
+                                </div>
+                            </setting>
+                            <setting id="cash_management_general_setting_right">
+                                <div class="content-group">
+                                    <div>
+                                        <field name="cash_management_q_move_autovalidation"/>
+                                        <label for="cash_management_q_move_autovalidation"
+                                               string="Validar asientos automáticamente" class="fw-normal me-1"/>
+
+                                    </div>
+                                    <div>
+                                        <field name="cash_management_q_diff_move_atclose"/>
+                                        <label for="cash_management_q_diff_move_atclose"
+                                               string="Generar asientos al cierre" class="fw-normal me-1"/>
+                                    </div>
+                                </div>
+                            </setting>
+                        </block>
+                    </div>
+                </app>
+            </xpath>
+        </field>
+    </record>
+</odoo>

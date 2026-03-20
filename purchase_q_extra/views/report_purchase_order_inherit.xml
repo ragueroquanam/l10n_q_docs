@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template
+            id="report_purchaseorder_document_inherit_specifications"
+            inherit_id="purchase.report_purchaseorder_document"
+    >
+        <th name="th_quantity" position="before">
+            <th name="specifications" class="text-start">
+                <strong>Especificaciones</strong>
+            </th>
+        </th>
+        <xpath expr="//t[@t-if='not line.display_type']/td[2]" position="before">
+            <td name="specifications" class="text-start">
+                <span t-field="line.specifications"/>
+            </td>
+        </xpath>
+    </template>
+</odoo>

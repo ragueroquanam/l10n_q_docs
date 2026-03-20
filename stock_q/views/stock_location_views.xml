@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_location_form_responsable" model="ir.ui.view">
+        <field name="name">stock.location.form.responsable</field>
+        <field name="model">stock.location</field>
+        <field name="inherit_id" ref="stock.view_location_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='replenish_location']" position="after">
+                <field name="responsible_ids" widget="many2many_tags"/>
+            </xpath>
+        </field>
+    </record>
+
+
+    <record id="stock.action_location_form" model="ir.actions.act_window">
+        <field name="context">{'from_action_location_form': 1, 'search_default_in_location':1}</field>
+    </record>
+</odoo>

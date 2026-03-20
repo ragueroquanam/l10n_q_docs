@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_account_payment_register_form_inherit_pos" model="ir.ui.view">
+        <field name="name">account.payment.register.form.pos</field>
+        <field name="model">account.payment.register</field>
+        <field name="inherit_id" ref="account.view_account_payment_register_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='group1']" position="inside">
+                <field name="pos_payment_terminal_id" 
+                    force_save="1"
+                    readonly="1" 
+                    invisible="not is_pos_method or is_pos_manual" 
+                    required="is_pos_method and not is_pos_manual"/>
+                <field name="is_credit" invisible="not is_pos_method"/>
+                <field name="installment_qty" invisible="not is_pos_method or is_credit!=True"
+                       required="is_credit==True"/>
+                <field name="is_partial_payment" invisible="is_partial_payment!=True"/>
+                <field name="partial_amount" invisible="is_partial_payment!=True" required="is_partial_payment==True"/>
+                <field name="pos_invoice_number" invisible="not is_pos_method"/>
+                <field name="transaction_number" invisible="1" force_save="1"/>
+                <field name="ticket" invisible="not is_pos_manual" readonly="not is_pos_manual" required="is_pos_manual"/>
+                <field name="batch_number" invisible="not is_pos_manual" readonly="not is_pos_manual" required="is_pos_manual"/>
+                <field name="authorization_code" invisible="not is_pos_manual" readonly="not is_pos_manual" required="is_pos_manual"/>
+                <field name="acquirer" invisible="1" force_save="1"/>
+                <field name="card_number" invisible="1" force_save="1"/>
+                <field name="payment_datetime" invisible="1" force_save="1"/>
+                <field name="tax_refund" invisible="1" force_save="1"/>
+                <field name="taxable_amount" invisible="1" force_save="1"/>
+                <field name="invoice_amount" invisible="1" force_save="1"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

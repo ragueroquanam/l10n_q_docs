@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_account_payment_register_form_inherit" model="ir.ui.view">
+            <field name="name">view.account.payment.register.form.inherit.check</field>
+            <field name="model">account.payment.register</field>
+            <field name="inherit_id" ref="account.view_account_payment_register_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group[@name='group1']//field[@name='payment_method_line_id']" position="after">
+                    <field name="payment_method_is_check" invisible="1"/>
+                    <field name="check_number" invisible="not payment_method_is_check"
+                           required="payment_method_is_check"/>
+                    <field name="check_due_date" invisible="not payment_method_is_check"
+                           required="payment_method_is_check"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

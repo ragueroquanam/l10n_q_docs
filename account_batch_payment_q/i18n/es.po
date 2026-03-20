@@ -1,0 +1,289 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* account_batch_payment_q
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-05-27 13:02+0000\n"
+"PO-Revision-Date: 2025-05-27 13:02+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: account_batch_payment_q
+#: model_terms:ir.ui.view,arch_db:account_batch_payment_q.view_account_bank_payment_file_config_form
+msgid "Account Bank Payment File Config"
+msgstr ""
+
+#. module: account_batch_payment_q
+#. odoo-python
+#: code:addons/account_batch_payment_q/models/account_batch_payment.py:0
+msgid "All payments must be posted to validate the batch."
+msgstr "Se deben publicar todos los pagos para validar el lote."
+
+#. module: account_batch_payment_q
+#: model:ir.ui.menu,name:account_batch_payment_q.account_bank_payment_file_config_menu_act
+msgid "Archivo de Pagos"
+msgstr ""
+
+#. module: account_batch_payment_q
+#: model:ir.model.fields,field_description:account_batch_payment_q.field_account_journal__file_config_id
+msgid "Archivo de pagos"
+msgstr ""
+
+#. module: account_batch_payment_q
+#: model:ir.actions.act_window,name:account_batch_payment_q.action_account_bank_payment_file_config
+msgid "Archivos de pago"
+msgstr ""
+
+#. module: account_batch_payment_q
+#: model:ir.model,name:account_batch_payment_q.model_res_partner_bank
+msgid "Bank Accounts"
+msgstr "Cuentas bancarias"
+
+#. module: account_batch_payment_q
+#: model:ir.model,name:account_batch_payment_q.model_account_batch_payment
+msgid "Batch Payment"
+msgstr "Pago por lotes"
+
+#. module: account_batch_payment_q
+#: model:ir.model.fields.selection,name:account_batch_payment_q.selection__res_partner_bank__account_type__ca
+msgid "Caja de ahorro"
+msgstr ""
+
+#. module: account_batch_payment_q
+#: model:ir.model.fields,field_description:account_batch_payment_q.field_account_bank_payment_file_config_line__field_id
+msgid "Campo"
+msgstr ""
+
+#. module: account_batch_payment_q
+#. odoo-python
+#: code:addons/account_batch_payment_q/models/account_batch_payment.py:0
+msgid "Cannot validate an empty batch. Please add some payments to it first."
+msgstr "No se puede validar un lote vacío. Primero agregue unos pagos."
+
+#. module: account_batch_payment_q
+#: model:ir.model.fields,field_description:account_batch_payment_q.field_account_bank_payment_file_config__is_recheck_file
+msgid "Chequear nuevamente el archivo al Regenerar el archivo de exportación"
+msgstr ""
+
+#. module: account_batch_payment_q
+#: model:ir.model.fields,field_description:account_batch_payment_q.field_account_batch_payment__is_checked
+msgid "Comprobado"
+msgstr ""
+
+#. module: account_batch_payment_q
+#: model:ir.model.fields,field_description:account_batch_payment_q.field_account_bank_payment_file_config_line__config_id
+msgid "Configuración"
+msgstr ""
+
+#. module: account_batch_payment_q
+#: model:ir.model,name:account_batch_payment_q.model_account_bank_payment_file_config
+msgid "Configuración de archivo de pago bancario"
+msgstr ""
+
+#. module: account_batch_payment_q
+#: model:ir.model,name:account_batch_payment_q.model_account_bank_payment_file_config_line
+msgid "Configuración de archivo de pago bancario - Linea"
+msgstr ""
+
+#. module: account_batch_payment_q
+#: model:ir.model.fields,field_description:account_batch_payment_q.field_account_bank_payment_file_config__create_uid
+#: model:ir.model.fields,field_description:account_batch_payment_q.field_account_bank_payment_file_config_line__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: account_batch_payment_q
+#: model:ir.model.fields,field_description:account_batch_payment_q.field_account_bank_payment_file_config__create_date
+#: model:ir.model.fields,field_description:account_batch_payment_q.field_account_bank_payment_file_config_line__create_date
+msgid "Created on"
+msgstr "Creado el"
+
+#. module: account_batch_payment_q
+#: model:ir.model.fields.selection,name:account_batch_payment_q.selection__res_partner_bank__account_type__cpf
+msgid "Cuenta a Plazo fijo"
+msgstr ""
+
+#. module: account_batch_payment_q
+#: model:ir.model.fields.selection,name:account_batch_payment_q.selection__res_partner_bank__account_type__cc
+msgid "Cuenta corriente"
+msgstr ""
+
+#. module: account_batch_payment_q
+#: model:ir.model.fields.selection,name:account_batch_payment_q.selection__res_partner_bank__account_type__cr
+msgid "Cuenta recaudadora"
+msgstr ""
+
+#. module: account_batch_payment_q
+#: model:ir.model.fields,field_description:account_batch_payment_q.field_account_bank_payment_file_config__code
+msgid "Código"
+msgstr ""
+
+#. module: account_batch_payment_q
+#: model_terms:ir.ui.view,arch_db:account_batch_payment_q.view_account_payment_form
+msgid "Desmarcar como enviado"
+msgstr ""
+
+#. module: account_batch_payment_q
+#: model:ir.model.fields,field_description:account_batch_payment_q.field_account_bank_payment_file_config__display_name
+#: model:ir.model.fields,field_description:account_batch_payment_q.field_account_bank_payment_file_config_line__display_name
+msgid "Display Name"
+msgstr "Nombre"
+
+#. module: account_batch_payment_q
+#: model:ir.model.constraint,message:account_batch_payment_q.constraint_account_bank_payment_file_config_code_uniq
+msgid "El código de la configuración ya existe."
+msgstr ""
+
+#. module: account_batch_payment_q
+#: model:ir.model.constraint,message:account_batch_payment_q.constraint_account_bank_payment_file_config_name_uniq
+msgid "El nombre de la configuración ya existe."
+msgstr ""
+
+#. module: account_batch_payment_q
+#. odoo-python
+#: code:addons/account_batch_payment_q/models/account_batch_payment_file_config.py:0
+msgid "El valor de la Variable en las lineas debe ser mayor a 0."
+msgstr ""
+
+#. module: account_batch_payment_q
+#: model:ir.model.fields.selection,name:account_batch_payment_q.selection__account_bank_payment_file_config_line__type__fixed
+msgid "Fijo"
+msgstr ""
+
+#. module: account_batch_payment_q
+#: model:ir.model.fields,field_description:account_batch_payment_q.field_account_bank_payment_file_config__id
+#: model:ir.model.fields,field_description:account_batch_payment_q.field_account_bank_payment_file_config_line__id
+msgid "ID"
+msgstr ""
+
+#. module: account_batch_payment_q
+#: model:ir.model,name:account_batch_payment_q.model_account_journal
+msgid "Journal"
+msgstr "Diario"
+
+#. module: account_batch_payment_q
+#: model:ir.model.fields,field_description:account_batch_payment_q.field_account_bank_payment_file_config__write_uid
+#: model:ir.model.fields,field_description:account_batch_payment_q.field_account_bank_payment_file_config_line__write_uid
+msgid "Last Updated by"
+msgstr "Última modificación por"
+
+#. module: account_batch_payment_q
+#: model:ir.model.fields,field_description:account_batch_payment_q.field_account_bank_payment_file_config__write_date
+#: model:ir.model.fields,field_description:account_batch_payment_q.field_account_bank_payment_file_config_line__write_date
+msgid "Last Updated on"
+msgstr "Última modificación el"
+
+#. module: account_batch_payment_q
+#: model:ir.model.fields,field_description:account_batch_payment_q.field_account_bank_payment_file_config__line_ids
+msgid "Lineas"
+msgstr ""
+
+#. module: account_batch_payment_q
+#: model_terms:ir.ui.view,arch_db:account_batch_payment_q.view_account_bank_payment_file_config_form
+msgid "Líneas"
+msgstr ""
+
+#. module: account_batch_payment_q
+#: model:ir.model.fields.selection,name:account_batch_payment_q.selection__account_bank_payment_file_config_line__type__mapping
+msgid "Mapeo"
+msgstr ""
+
+#. module: account_batch_payment_q
+#: model:ir.model.fields,field_description:account_batch_payment_q.field_account_bank_payment_file_config_line__model_id
+msgid "Modelo"
+msgstr ""
+
+#. module: account_batch_payment_q
+#. odoo-python
+#: code:addons/account_batch_payment_q/models/account_batch_payment.py:0
+msgid "No se puede eliminar un Pago por lotes en estado diferente a Borrador."
+msgstr ""
+
+#. module: account_batch_payment_q
+#: model:ir.model.fields,field_description:account_batch_payment_q.field_account_bank_payment_file_config__name
+#: model:ir.model.fields,field_description:account_batch_payment_q.field_account_bank_payment_file_config_line__name
+msgid "Nombre"
+msgstr ""
+
+#. module: account_batch_payment_q
+#: model_terms:ir.ui.view,arch_db:account_batch_payment_q.view_account_bank_payment_file_config_form
+msgid "Nombre..."
+msgstr ""
+
+#. module: account_batch_payment_q
+#: model:account.payment.method,name:account_batch_payment_q.account_payment_method_batch_deposit
+msgid "Pago por archivo"
+msgstr ""
+
+#. module: account_batch_payment_q
+#: model:ir.ui.menu,name:account_batch_payment_q.account_batch_payment_q_bank_payments
+msgid "Pagos por banco"
+msgstr ""
+
+#. module: account_batch_payment_q
+#: model:ir.model,name:account_batch_payment_q.model_account_payment
+msgid "Payments"
+msgstr "Pagos"
+
+#. module: account_batch_payment_q
+#: model_terms:ir.ui.view,arch_db:account_batch_payment_q.view_account_payment_tree
+msgid "Rechazar"
+msgstr ""
+
+#. module: account_batch_payment_q
+#: model:ir.model.fields,field_description:account_batch_payment_q.field_account_bank_payment_file_config__column_separator
+msgid "Separador"
+msgstr ""
+
+#. module: account_batch_payment_q
+#. odoo-python
+#: code:addons/account_batch_payment_q/models/account_payment.py:0
+msgid ""
+"Solo puedes rechazar Pagos en Lote si están en estado 'En Proceso' y no han "
+"sido enviados."
+msgstr ""
+
+#. module: account_batch_payment_q
+#. odoo-python
+#: code:addons/account_batch_payment_q/models/account_payment.py:0
+msgid ""
+"Solo puedes validar Pagos en Lote si están en estado 'En Proceso' y no tienen"
+" un movimiento asociado."
+msgstr ""
+
+#. module: account_batch_payment_q
+#: model:ir.model.fields,field_description:account_batch_payment_q.field_account_bank_payment_file_config_line__type
+msgid "Tipo"
+msgstr ""
+
+#. module: account_batch_payment_q
+#: model:ir.model.fields,field_description:account_batch_payment_q.field_account_setup_bank_manual_config__account_type
+#: model:ir.model.fields,field_description:account_batch_payment_q.field_res_partner_bank__account_type
+msgid "Tipo de cuenta"
+msgstr ""
+
+#. module: account_batch_payment_q
+#: model_terms:ir.ui.view,arch_db:account_batch_payment_q.view_account_payment_tree
+msgid "Validar"
+msgstr ""
+
+#. module: account_batch_payment_q
+#: model:ir.model.fields,field_description:account_batch_payment_q.field_account_bank_payment_file_config_line__value
+msgid "Valor"
+msgstr ""
+
+#. module: account_batch_payment_q
+#: model:ir.model.fields,field_description:account_batch_payment_q.field_account_bank_payment_file_config_line__sequence
+msgid "Variable"
+msgstr ""
+
+#. module: account_batch_payment_q
+#: model_terms:ir.ui.view,arch_db:account_batch_payment_q.view_account_bank_payment_file_config_form
+msgid "sin espacios en blanco, tildes o caracteres especiales..."
+msgstr ""

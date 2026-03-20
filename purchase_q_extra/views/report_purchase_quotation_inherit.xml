@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template
+        id="report_purchase_quotation_inherit"
+        inherit_id="purchase.report_purchasequotation_document"
+    >
+        <th name="th_quantity" position="before">
+            <th name="specifications" class="text-start">
+                <strong>Especificaciones</strong>
+            </th>
+        </th>
+        <xpath expr="//span[@t-field='order_line.product_qty']/.." position="before">
+            <td name="specifications" class="text-start">
+                <span t-field="order_line.specifications"/>
+            </td>
+        </xpath>
+    </template>
+</odoo>

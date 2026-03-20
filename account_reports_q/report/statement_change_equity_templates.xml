@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="report_statement_changes_equity">
+            <t t-call="web.html_container">
+                    <div class="page">
+                        <div style="font-size: 26px; font-weight: bold; margin-bottom:30px">ESTADO DE EVOLUCION DEL
+                            PATRIMONIO
+                        </div>
+                        <div style="margin-bottom:30px">
+                            <table style="width:100%;text-align:left;font-size: 18px;" border="0" cellpadding="0" cellspacing="0">
+                                <tr>
+                                    <td style="width: 30%;">
+                                        DENOMINACION DE LA EMPRESA:
+                                    </td>
+                                    <td style="width: 30%;">
+                                        <t t-esc="company"/>
+                                    </td>
+                                    <td style="width: 20%;">
+                                        EJERCICIO:
+                                    </td>
+                                    <td style="width: 20%;">
+                                        <t t-esc="fiscalyear"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 60%;" colspan="2">
+                                        <t t-if="target_move == 'posted'">MOVIMIENTOS PUBLICADOS</t>
+                                        <t t-if="target_move == 'all'">TODOS LOS MOVIMIENTOS</t>
+                                    </td>
+                                    <td style="width: 20%;">
+                                        FECHA DE EMISION:
+                                    </td>
+                                    <td style="width: 20%;">
+                                        <t t-esc="time.strftime('%d/%m/%Y')"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 30%;">
+
+                                    </td>
+                                    <td style="width: 30%;">
+
+                                    </td>
+                                    <td style="width: 20%;">
+                                        HORA DE EMISION:
+                                    </td>
+                                    <td style="width: 20%;">
+                                        <t t-esc="context_timestamp(datetime.datetime.now()).strftime('%H:%M')"/>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div>
+                            <table style="width: 100%" border="0" cellpadding="0" cellspacing="0">
+                                <tr style="vertical-align: middle; text-align: center; font-weight: bold;">
+                                    <td style="width: 40%; font-size: 16px; border-top: 1px solid; border-right: 1px solid; border-left: 1px solid;">
+                                        CONCEPTO.
+                                    </td>
+                                    <td style="width: 10%; font-size: 14px; border-top: 1px solid; border-right: 1px solid;">
+                                        CAPITAL.
+                                    </td>
+                                    <td style="width: 10%; font-size: 14px; border-top: 1px solid; border-right: 1px solid;">
+                                        APORTES Y COMPROM. A CAPITALIZ.
+                                    </td>
+                                    <td style="width: 10%; font-size: 14px; border-top: 1px solid; border-right: 1px solid;">
+                                        AJUSTES AL PATRIMON.
+                                    </td>
+                                    <td style="width: 10%; font-size: 14px; border-top: 1px solid; border-right: 1px solid;">
+                                        RESERVAS.
+                                    </td>
+                                    <td style="width: 10%; font-size: 14px; border-top: 1px solid; border-right: 1px solid;">
+                                        RESULT. ACUMUL.
+                                    </td>
+                                    <td style="width: 10%; font-size: 14px; border-top: 1px solid; border-right: 1px solid;">
+                                        PATRIMONIO TOTAL.
+                                    </td>
+                                </tr>
+
+                                <t t-set="titles"
+                                   t-value="['SALDOS INICIALES', 'MODIF. AL SALDO INICIAL', 'MOVIMIENTOS DEL EJERCICIO', 'SALDOS FINALES']"/>
+                                <t t-set="sub_totals"
+                                   t-value="['TOTAL SALDOS INICIALES', 'SALDOS INIC. MODIFICADOS', 'SUB TOTAL', 'TOTAL SALDOS FINALES']"/>
+
+                                <t t-foreach="[1, 2, 3, 4]" t-as="i">
+                                    <t t-call="account_reports_q.report_section_template">
+                                        <t t-set="section_title" t-value="titles[i-1]"/>
+                                        <t t-set="capital_sub_total" t-value="0"/>
+                                        <t t-set="comp_sub_total" t-value="0"/>
+                                        <t t-set="adjust_sub_total" t-value="0"/>
+                                        <t t-set="reserve_sub_total" t-value="0"/>
+                                        <t t-set="result_sub_total" t-value="0"/>
+                                        <t t-set="row_sub_total" t-value="0"/>
+                                        <t t-set="section" t-value="sections[i]"/>
+                                        <t t-set="section_sub_total_title" t-value="sub_totals[i-1]"/>
+                                    </t>
+                                </t>
+
+                                <tr>
+                                    <td colspan="8" style="height:4px; font-size: 4px; border: 1px solid;"/>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+            </t>
+        </template>
+
+        <template id="report_section_template">
+            <tr style="vertical-align: middle;">
+                <td style="width: 40%; font-size: 16px; font-weight: bold; border-top: 1px solid; border-right: 1px solid; border-left: 1px solid;">
+                    <t t-esc="section_title"/>
+                </td>
+                <td style="width: 10%; font-size: 14px; text-align: center; border-top: 1px solid; border-right: 1px solid;"/>
+                <td style="width: 10%; font-size: 14px; text-align: center; border-top: 1px solid; border-right: 1px solid;"/>
+                <td style="width: 10%; font-size: 14px; text-align: center; border-top: 1px solid; border-right: 1px solid;"/>
+                <td style="width: 10%; font-size: 14px; text-align: center; border-top: 1px solid; border-right: 1px solid;"/>
+                <td style="width: 10%; font-size: 14px; text-align: center; border-top: 1px solid; border-right: 1px solid;"/>
+                <td style="width: 10%; font-size: 14px; text-align: center; border-top: 1px solid; border-right: 1px solid;"/>
+            </tr>
+
+            <t t-foreach="section" t-as="line">
+                <t t-set="row_sum" t-value="sum([v for k, v in line.items() if k != 'name'])"/>
+
+                <tr style="vertical-align: middle;">
+                    <td style="width: 40%; font-size: 16px; border-top: 1px solid; border-right: 1px solid; border-left: 1px solid;">
+                        <span t-attf-style="margin-left: 15px">
+                            <t t-esc="line['name']"/>
+                        </span>
+                    </td>
+                    <td style="width: 10%; font-size: 14px; text-align: right; border-top: 1px solid; border-right: 1px solid;">
+                        <t t-esc="'{:,.2f}'.format(line['capital']).replace(',', ' ').replace('.', ',').replace(' ', '.')"/>
+                        <t t-set="capital_sub_total" t-value="capital_sub_total + line['capital']"/>
+                    </td>
+                    <td style="width: 10%; font-size: 14px; text-align: right; border-top: 1px solid; border-right: 1px solid;">
+                        <t t-esc="'{:,.2f}'.format(line['comp']).replace(',', ' ').replace('.', ',').replace(' ', '.')"/>
+                        <t t-set="comp_sub_total" t-value="comp_sub_total + line['comp']"/>
+                    </td>
+                    <td style="width: 10%; font-size: 14px; text-align: right; border-top: 1px solid; border-right: 1px solid;">
+                        <t t-esc="'{:,.2f}'.format(line['adjust']).replace(',', ' ').replace('.', ',').replace(' ', '.')"/>
+                        <t t-set="adjust_sub_total" t-value="adjust_sub_total + line['adjust']"/>
+                    </td>
+                    <td style="width: 10%; font-size: 14px; text-align: right; border-top: 1px solid; border-right: 1px solid;">
+                        <t t-esc="'{:,.2f}'.format(line['reserve']).replace(',', ' ').replace('.', ',').replace(' ', '.')"/>
+                        <t t-set="reserve_sub_total" t-value="reserve_sub_total + line['reserve']"/>
+                    </td>
+                    <td style="width: 10%; font-size: 14px; text-align: right; border-top: 1px solid; border-right: 1px solid;">
+                        <t t-esc="'{:,.2f}'.format(line['result']).replace(',', ' ').replace('.', ',').replace(' ', '.')"/>
+                        <t t-set="result_sub_total" t-value="result_sub_total + line['result']"/>
+                    </td>
+                    <td style="width: 10%; font-size: 14px; text-align: right; border-top: 1px solid; border-right: 1px solid;">
+                        <t t-esc="'{:,.2f}'.format(row_sum).replace(',', ' ').replace('.', ',').replace(' ', '.')"/>
+                        <t t-set="row_sub_total" t-value="row_sub_total + row_sum"/>
+                    </td>
+                </tr>
+            </t>
+
+            <tr style="vertical-align: middle;">
+                <td style="width: 40%; font-size: 16px; border-top: 1px solid; border-right: 1px solid; border-left: 1px solid;">
+                    <t t-esc="section_sub_total_title"/>
+                </td>
+                <td style="width: 10%; font-weight: bold; font-size: 14px; text-align: right; border-top: 1px solid; border-right: 1px solid;">
+                    <t t-esc="'{:,.2f}'.format(capital_sub_total).replace(',', ' ').replace('.', ',').replace(' ', '.')"/>
+                </td>
+                <td style="width: 10%; font-weight: bold; font-size: 14px; text-align: right; border-top: 1px solid; border-right: 1px solid;">
+                    <t t-esc="'{:,.2f}'.format(comp_sub_total).replace(',', ' ').replace('.', ',').replace(' ', '.')"/>
+                </td>
+                <td style="width: 10%; font-weight: bold; font-size: 14px; text-align: right; border-top: 1px solid; border-right: 1px solid;">
+                    <t t-esc="'{:,.2f}'.format(adjust_sub_total).replace(',', ' ').replace('.', ',').replace(' ', '.')"/>
+                </td>
+                <td style="width: 10%; font-weight: bold; font-size: 14px; text-align: right; border-top: 1px solid; border-right: 1px solid;">
+                    <t t-esc="'{:,.2f}'.format(reserve_sub_total).replace(',', ' ').replace('.', ',').replace(' ', '.')"/>
+                </td>
+                <td style="width: 10%; font-weight: bold; font-size: 14px; text-align: right; border-top: 1px solid; border-right: 1px solid;">
+                    <t t-esc="'{:,.2f}'.format(result_sub_total).replace(',', ' ').replace('.', ',').replace(' ', '.')"/>
+                </td>
+                <td style="width: 10%; font-weight: bold; font-size: 14px; text-align: right; border-top: 1px solid; border-right: 1px solid;">
+                    <t t-esc="'{:,.2f}'.format(row_sub_total).replace(',', ' ').replace('.', ',').replace(' ', '.')"/>
+                </td>
+            </tr>
+        </template>
+    </data>
+</odoo>

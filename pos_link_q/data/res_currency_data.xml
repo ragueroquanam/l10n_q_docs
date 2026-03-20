@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <record id="base.UYU" model="res.currency">
+            <field name="transact_currency_code">858</field>
+        </record>
+
+        <record id="base.USD" model="res.currency">
+            <field name="transact_currency_code">840</field>
+        </record>
+    </data>
+</odoo>

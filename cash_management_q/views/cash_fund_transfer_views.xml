@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_cash_fund_transfer_tree_editable" model="ir.ui.view">
+        <field name="name">cash.fund.transfer.tree.editable</field>
+        <field name="model">cash.fund.transfer</field>
+        <field name="arch" type="xml">
+            <list editable="bottom" edit="False" create="False">
+                <field name="date"/>
+                <field name="type" readonly="True"/>
+                <field name="internal_transfer"/>
+                <field name="description"/>
+                <field name="destination_config_id" required="context.get('internal_transfer') == 'to_cash'"/>
+                <field name="bank_journal_id" required="context.get('internal_transfer') == 'to_bank'"/>
+                <field name="payment_method_id"/>
+                <field name="detail"/>
+                <field name="amount"/>
+                <field name="reason"/>
+                <button name="action_confirm_transfers"
+                        type="object"
+                        icon="fa-check"
+                        title="Aceptar Transferencia"
+                        class="btn-success"/>
+            </list>
+        </field>
+    </record>
+
+
+</odoo>

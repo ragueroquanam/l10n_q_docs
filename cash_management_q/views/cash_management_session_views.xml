@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_cash_management_summary_line_tree" model="ir.ui.view">
+        <field name="name">cash.management.session.summary.line.tree</field>
+        <field name="model">cash.management.session.summary.line</field>
+        <field name="arch" type="xml">
+            <list string="Totales" create="False" edit="False" delete="False">
+                <field name="concept"/>
+                <field name="currency_id" column_invisible="1"/>
+                <field name="initial_balance" sum="Total"/>
+                <field name="total_in" sum="Total"/>
+                <field name="total_out" sum="Total"/>
+                <field name="final_balance" sum="Total"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="action_cash_management_summary_line" model="ir.actions.act_window">
+        <field name="name">Totales</field>
+        <field name="res_model">cash.management.session.summary.line</field>
+        <field name="view_mode">list</field>
+        <field name="target">new</field>
+        <field name="domain">[('session_id', '=', active_id)]</field>
+        <field name="context">{'default_session_id': active_id}</field>
+    </record>
+
+    <record id="view_cash_management_session_list" model="ir.ui.view">
+        <field name="name">cash.management.session.list</field>
+        <field name="model">cash.management.session</field>
+        <field name="arch" type="xml">
+            <list default_order="date_open desc, id desc" create="false" delete="false">
+                <field name="name"/>
+                <field name="user_id"/>
+                <field name="config_id"/>
+                <field name="date_open"/>
+                <field name="date_close"/>
+                <field name="balance_start"/>
+                <field name="balance_end" optional="hide"/>
+                <field name="balance_end_real" string="Saldo de cierre real efectivo"/>
+                <field name="balance_end_doc_to_pay" optional="hide"/>
+                <field name="balance_end_r_doc_to_pay" string="Saldo de cierre real cheques"/>
+                <field name="difference" optional="hide"/>
+                <field name="state" optional="show" widget="badge"
+                       decoration-info="state == 'opened'"
+                       decoration-muted="state == 'closed'"
+                       decoration-success="state == 'approved'"/>
+                <field name="company_id" optional="show"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_cash_management_session_form" model="ir.ui.view">
+        <field name="name">cash.management.session.form</field>
+        <field name="model">cash.management.session</field>
+        <field name="arch" type="xml">
+            <form string="Sesión de Caja" create="false" delete="false">
+                <header>
+                    <field name="state" widget="statusbar" statusbar_visible="opened,closed,approved"/>
+
+                    <button name="action_close_session" string="Cerrar Caja" type="object"
+                            class="btn-primary" invisible="state != 'opened'"
+                            confirm="¿Está seguro de que desea cerrar la sesión de caja?"
+                            groups="cash_management_q.group_cash_management_user,cash_management_q.group_cash_management_responsible"/>
+
+                    <button name="action_cancel_session" string="Cancelar" type="object"
+                            class="btn-secondary" invisible="state not in 'closed'"
+                            groups="cash_management_q.group_cash_management_user,cash_management_q.group_cash_management_responsible"/>
+
+                    <button name="action_cancel_session" string="Cancelar" type="object"
+                            class="btn-secondary" invisible="state not in 'approved'"
+                            groups="cash_management_q.group_cash_management_responsible"/>
+
+                    <button name="action_approve_session" string="Aprobar" type="object"
+                            class="btn-success" invisible="state != 'closed'"
+                            groups="cash_management_q.group_cash_management_responsible"/>
+
+                    <button name="action_open_other_currency_session"
+                            string="Ir a Caja Distinta Moneda"
+                            type="object"
+                            class="btn-primary"
+                            invisible="not has_other_currency_session or state != 'opened'"/>
+
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button type="object"
+                                name="action_view_incoming_payments"
+                                class="oe_stat_button"
+                                invisible="state != 'opened'"
+                                icon="fa-bars">
+                            <field name="incoming_payment_count" widget="statinfo" string="Doc. a cobrar"/>
+                        </button>
+
+                        <button type="object"
+                                name="action_view_outgoing_payments"
+                                class="oe_stat_button"
+                                invisible="state != 'opened'"
+                                icon="fa-bars">
+                            <field name="outgoing_payment_count" widget="statinfo" string="Doc. a pagar"/>
+                        </button>
+
+                        <button type="action"
+                                name="%(action_cash_management_summary_line)d"
+                                class="oe_stat_button"
+                                icon="fa-calculator">
+                            <field name="summary_line_ids" widget="statinfo" string="Totales"/>
+                        </button>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="name" readonly="1"/>
+                            <field name="user_id" readonly="1" options="{'no_open': True}"/>
+                            <field name="config_id" readonly="1"/>
+                            <field name="currency_id" readonly="1" options="{'no_open': True}"/>
+                        </group>
+                        <group>
+                            <field name="date_open" readonly="1"/>
+                            <field name="date_close" readonly="1"/>
+                            <field name="company_id" readonly="1" options="{'no_open': True}"/>
+                            <field name="journal_entry_id" invisible="not journal_entry_id" readonly="1"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group string="Arqueo Efectivo">
+                            <field name="balance_start" readonly="1"/>
+                            <field name="balance_end" readonly="1"/>
+                            <field name="balance_end_real" readonly="state !='opened'" class="oe_highlight text-info fw-bold"/>
+                            <field name="difference" readonly="1"/>
+                            <field name="balance_real_confirmed" widget="boolean_toggle" invisible="state !='opened'"/>
+                        </group>
+                        <group string="Arqueo Cheques a pagar">
+                            <field name="balance_start_doc_to_pay" readonly="1"/>
+                            <field name="new_doc_to_pay" readonly="state !='opened'"/>
+                            <field name="balance_end_doc_to_pay" readonly="1"/>
+                            <field name="balance_end_r_doc_to_pay" readonly="state !='opened'"/>
+                            <field name="difference_doc_to_pay" readonly="1"/>
+                        </group>
+                    </group>
+
+
+                    <group string="Transacciones de caja" readonly="not is_editable">
+                        <notebook>
+                            <!-- Pestaña: totales -->
+                            <page string="Totales" name="totales">
+                                <group string="Totales por concepto">
+                                    <field name="summary_line_ids" readonly="1" nolabel="1">
+                                        <list>
+                                            <field name="concept"/>
+                                            <field name="currency_id" column_invisible="1"/>
+                                            <field name="initial_balance" sum="Total" currency_field="currency_id"/>
+                                            <field name="total_in" sum="Total" currency_field="currency_id"/>
+                                            <field name="total_out" sum="Total" currency_field="currency_id"/>
+                                            <field name="transfer_in" sum="Total" currency_field="currency_id"/>
+                                            <field name="transfer_out" sum="Total" currency_field="currency_id"/>
+                                            <field name="final_balance" sum="Total" currency_field="currency_id"/>
+                                        </list>
+                                    </field>
+                                </group>
+                                <!-- Transferencia de Fondos -->
+                                <group string="Transferencias de Fondos">
+                                    <field name="fund_transfer_ids" nolabel="1">
+                                        <list editable="bottom">
+                                            <field name="date"/>
+                                            <field name="type" readonly="True"/>
+                                            <field name="internal_transfer"/>
+                                            <field name="description"/>
+                                            <field name="destination_config_id"
+                                                   domain="destination_config_domain"
+                                                   context="{'bypass_cash_config_rule': True}"
+                                                   required="internal_transfer == 'to_cash'"
+                                                   readonly="internal_transfer != 'to_cash'"/>
+                                            <field name="origin_payment_method_id" required="1"
+                                                   domain="origin_payment_method_id_domain"/>
+                                            <field name="payment_method_id" required="internal_transfer == 'to_bank'"
+                                                   readonly="internal_transfer != 'to_bank'" domain="payment_method_id_domain"/>
+                                            <field name="detail"/>
+                                            <field name="currency_id" column_invisible="1"/>
+                                            <field name="amount" sum="Total" currency_field="currency_id"/>
+                                            <field name="reason"/>
+                                            <button name="action_open_move"
+                                                string="Asiento Contable"
+                                                type="object"
+                                                icon="fa-external-link"
+                                                class="btn-link"
+                                                invisible="not journal_entry_id"/>
+                                        </list>
+                                    </field>
+                                </group>
+                            </page>
+
+
+                            <!-- Pestaña: Documentos cobrados -->
+                            <page string="Documentos cobrados" name="doc_cobrados">
+                                <field name="incoming_payment_ids">
+                                    <list create="false" delete="false">
+                                        <button name="action_view_details" title="Detalles" type="object" icon="fa-pencil-square-o"/>
+                                        <field name="date"/>
+                                        <field name="name"/>
+                                        <field name="partner_id"/>
+                                        <field name="currency_id"/>
+                                        <field name="amount" sum="Total" currency_field="currency_id"/>
+                                        <field name="journal_id"/>
+                                        <field name="payment_method_line_id" optional="hide"/>
+                                        <field name="user_collector_id"/>
+                                        <button name="action_refund_payment"
+                                                type="object"
+                                                icon="fa-undo"
+                                                string=""
+                                                class="btn-secondary"
+                                                title="Devolver el documento cobrado"/>
+                                    </list>
+                                </field>
+                            </page>
+
+                            <!-- Pestaña: Documentos pagados -->
+                            <page string="Documentos pagados" name="doc_pagados">
+                                <field name="outgoing_payment_ids">
+                                    <list create="false" delete="false">
+                                        <button name="action_view_details" title="Detalles" type="object" icon="fa-pencil-square-o"/>
+                                        <field name="date"/>
+                                        <field name="name"/>
+                                        <field name="partner_id"/>
+                                        <field name="currency_id"/>
+                                        <field name="amount" sum="Total" currency_field="currency_id"/>
+                                        <field name="journal_id"/>
+                                        <field name="payment_method_line_id" optional="hide"/>
+                                        <button name="action_refund_payment"
+                                                type="object"
+                                                icon="fa-undo"
+                                                string=""
+                                                class="btn-secondary"
+                                                title="Devolver el documento pagado"/>
+                                    </list>
+                                </field>
+                            </page>
+
+                            <!-- Pestaña: Cheques entregados/recibidos -->
+                            <page string="Cheques entregados/recibidos" name="cheques">
+                                <field name="cheque_payment_ids">
+                                    <list create="false" delete="false" decoration-danger="payment_type == 'outbound'"
+                                          decoration-success="payment_type == 'inbound'">
+                                        <button name="action_view_details" title="Detalles" type="object" icon="fa-pencil-square-o"/>
+                                        <field name="date"/>
+                                        <field name="name"/>
+                                        <field name="partner_id"/>
+                                        <field name="currency_id"/>
+                                        <field name="amount" sum="Total" currency_field="currency_id"/>
+                                        <field name="check_number"/>
+                                        <field name="check_due_date"/>
+                                        <field name="journal_id"/>
+                                        <field name="payment_method_line_id" optional="show"/>
+                                        <field name="check_type" optional="hide"/>
+                                        <field name="payment_type"/>
+                                    </list>
+                                </field>
+                            </page>
+
+                            <!-- Pestaña: Cobros/Pagos efectivo -->
+                            <page string="Cobros/Pagos efectivo" name="efectivo">
+                                <field name="cash_payment_ids">
+                                    <list create="false" delete="false">
+                                        <button name="action_view_details" title="Detalles" type="object" icon="fa-pencil-square-o"/>
+                                        <field name="date"/>
+                                        <field name="name"/>
+                                        <field name="partner_id"/>
+                                        <field name="currency_id"/>
+                                        <field name="amount" sum="Total" currency_field="currency_id"/>
+                                    </list>
+                                </field>
+                            </page>
+
+                            <!-- Pestaña: Cobros/Pagos tarjeta -->
+                            <page string="Cobros tarjeta" name="tarjeta">
+                                <field name="card_payment_ids">
+                                    <list create="false" delete="false">
+                                        <button name="action_view_details" title="Detalles" type="object" icon="fa-pencil-square-o"/>
+                                        <field name="date"/>
+                                        <field name="name"/>
+                                        <field name="partner_id"/>
+                                        <field name="journal_id" optional="hide"/>
+                                        <field name="payment_method_line_id" optional="show"/>
+                                        <field name="currency_id"/>
+                                        <field name="amount" sum="Total" currency_field="currency_id"/>
+                                        <field name="card_name" optional="hide"/>
+                                    </list>
+                                </field>
+                            </page>
+
+                            <!-- Pestaña: Otras transacciones -->
+                            <page string="Otras transacciones" name="otras_transacciones">
+                                <field name="statement_line_ids" readonly="state != 'opened'" context="{'default_session_id': id}">
+                                    <list editable="bottom">
+                                        <field name="date"/>
+                                        <field name="name"/>
+                                        <field name="journal_id" optional="hide"/>
+                                        <field name="partner_id"/>
+                                        <field name="product_id"/>
+                                        <field name="account_id" force_save="1"/>
+                                        <field name="currency_id"/>
+                                        <field name="amount" sum="Total" currency_field="currency_id"/>
+                                        <button name="action_open_move"
+                                                string="Asiento Contable"
+                                                type="object"
+                                                icon="fa-external-link"
+                                                class="btn-link"
+                                                invisible="not move_id"/>
+                                    </list>
+                                </field>
+                            </page>
+                        </notebook>
+                    </group>
+
+                    <group>
+                        <group>
+                            <field name="opening_notes" readonly="1"/>
+                        </group>
+                        <group>
+                            <field name="closing_notes" readonly="state !='opened'"/>
+                        </group>
+                    </group>
+                </sheet>
+                <!-- Attachment preview -->
+                <div class="o_attachment_preview"/>
+                <!-- Chatter -->
+                <chatter reload_on_attachment="True"/>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_cash_management_session_search" model="ir.ui.view">
+        <field name="name">cash.management.session.search</field>
+        <field name="model">cash.management.session</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="config_id"/>
+                <field name="user_id"/>
+                <field name="state"/>
+                <field name="date_open"/>
+                <filter name="opened" string="Abiertas" domain="[('state','=','opened')]"/>
+                <filter name="closed" string="Cerradas" domain="[('state','=','closed')]"/>
+                <filter name="approved" string="Aprobadas" domain="[('state','=','approved')]"/>
+            </search>
+        </field>
+    </record>
+
+    <!-- Action cash.management.config -->
+    <record id="action_cash_management_session" model="ir.actions.act_window">
+        <field name="name">Sesiones</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">cash.management.session</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+</odoo>

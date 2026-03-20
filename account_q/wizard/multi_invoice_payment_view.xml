@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Vista del wizard principal -->
+    <record id="view_multi_invoice_payment_wizard_form" model="ir.ui.view">
+        <field name="name">multi.invoice.payment.wizard.form</field>
+        <field name="model">multi.invoice.payment.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Pagos Múltiples de Facturas">
+                <header>
+                    <button name="action_generate_payments_vat_refund_check"
+                            string="Generar Pagos" 
+                            type="object" 
+                            class="btn-primary"
+                            invisible="is_payments_generated"
+                            confirm="¿Está seguro de que desea generar los pagos para las facturas seleccionadas?"/>
+                </header>
+                <sheet>
+                    <div class="oe_text_left show_error" invisible="not log" style="border-bottom: 1px solid #DD0000;border-top: 1px solid #DD0000; background-color: #FAD7D7; padding: 4px; margin-bottom: 30px;">
+                        <field name="log" readonly="1" class="text-error" nolabel="1"/>
+                    </div>
+                    <field name="move_type" readonly="1" invisible="1" force_save="1"/>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="payment_date" class="oe_inline"/>
+                        </h1>
+                    </div>
+                     <group>
+                         <group name="payment_config">
+                             <field name="company_id" readonly="1" force_save="1"/>
+                             <field name="invoice_ids" widget="many2many_tags" required="1" readonly="1" force_save="1"/>
+                             <field name="invoice_currency_id" options="{'no_open': True}" readonly="1"/>      
+                             <field name="total_amount_to_pay" widget="monetary"/>
+                             <field name="total_amount_paid" widget="monetary"/>
+                             <field name="total_amount_residual" widget="monetary"/>
+                             <field name="show_payment_difference" invisible="1"/>
+                             <field name="is_payments_generated" invisible="1"/>
+                         </group>
+                         <group>
+                            <label for="total_amount_residual" invisible="not show_payment_difference"/>
+                            <div invisible="not show_payment_difference">
+                                <field name="payment_difference_handling" widget="radio" nolabel="1"/>
+                                <div class="o_inner_group grid col-lg-12 p-0"
+                                     invisible="payment_difference_handling == 'open'">
+                                    <div class="o_wrap_field d-flex d-sm-contents flex-column mb-3 mb-sm-0">
+                                        <div class="o_cell o_wrap_label text-break text-900">
+                                            <label for="writeoff_account_id"
+                                                   string="Publicar la diferencia en"
+                                                   class="oe_edit_only"/>
+                                        </div>
+                                        <div class="o_cell o_wrap_input text-break">
+                                            <field name="writeoff_account_id"
+                                                   string="Publicar la diferencia en"
+                                                   options="{'no_create': True}"
+                                                   required="payment_difference_handling == 'reconcile'"/>
+                                        </div>
+                                    </div>
+                                    <div class="o_wrap_field d-flex d-sm-contents flex-column mb-3 mb-sm-0">
+                                        <div class="o_cell o_wrap_label text-break text-900">
+                                            <label for="writeoff_label"
+                                                   class="oe_edit_only"
+                                                   string="Etiqueta"/>
+                                        </div>
+                                        <div class="o_cell o_wrap_input text-break">
+                                            <field name="writeoff_label" string="Etiqueta"
+                                                   required="payment_difference_handling == 'reconcile'"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <field name="memo"/>
+                            <field name="additional_info"/>
+                         </group>
+                     </group>
+                    
+                     <notebook>
+                         <page string="Líneas de Pago" name="payment_lines">
+                             <field name="payment_line_ids" nolabel="1" colspan="4"
+                                readonly="is_payments_generated" 
+                                context="{'default_invoice_currency_id': invoice_currency_id, 'default_move_type': move_type, 'total_amount_residual': total_amount_residual}">
+                                 <list editable="bottom" string="Líneas de Pago">
+                                    <field name="invoice_currency_id" column_invisible="1"/>
+                                    <field name="currency_id"/>
+                                    <field name="journal_id" options="{'no_create': True}" 
+                                        domain="journal_id_domain"/>
+                                    <field name="payment_method_line_id" domain="[('id', 'in', available_payment_method_line_ids)]" options="{'no_create': True}"/>
+                                    <field name="available_payment_method_line_ids" column_invisible="1"/>
+                                    <field name="is_check" column_invisible="1"/>
+                                    <field name="check_number" invisible="not is_check" required="is_check"/>
+                                    <field name="check_due_date" invisible="not is_check" required="is_check"/>
+                                    <field name="amount" widget="monetary"/>
+                                    <button name="button_residual_inline_currency" icon="fa-refresh" type="object"/>
+                                    <field name="amount_currency" widget="monetary" readonly="1" sum="Monto a Pagar en Moneda"/>
+                                    <field name="journal_id_domain" column_invisible="1"/>
+                                    <field name="company_id" column_invisible="1"/>
+                                    <field name="payment_type" column_invisible="1"/>
+                                    <field name="move_type" column_invisible="1"/>
+                                 </list>
+                             </field>
+                         </page>
+                     </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Acción del wizard -->
+    <record id="action_multi_invoice_payment_wizard" model="ir.actions.act_window">
+        <field name="name">Pagos Múltiples de Facturas</field>
+        <field name="res_model">multi.invoice.payment.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="context">{}</field>
+    </record>
+</odoo>

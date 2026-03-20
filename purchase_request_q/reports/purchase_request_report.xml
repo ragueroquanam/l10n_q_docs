@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="report_purchase_request_inherit_supplier"
+              inherit_id="purchase_request.report_purchase_request">
+        <xpath expr="//span[@t-field='o.description']" position="after">
+            <t t-if="o.partner_id">
+                <div class="row mt32 mb8">
+                    <div class="col-12">
+                        <strong>Proveedor:</strong>
+                        <br/>
+                        <span t-esc="o.partner_id.display_name"/>
+                    </div>
+                </div>
+            </t>
+        </xpath>
+    </template>
+</odoo>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_account_payment_q_receipt_document_inherit"
+              inherit_id="account.report_payment_receipt_document">
+        <xpath expr="//div[@class='col-6' and @t-if='o.amount']" position="inside">
+            <div class="row" t-if="o.additional_info">
+                <div class="col-12">
+                    Información adicional:
+                    <span t-esc="o.additional_info"/>
+                </div>
+            </div>
+        </xpath>
+
+        <xpath expr="//th[@t-if='otherCurrency']" position="replace">
+            <th/>
+        </xpath>
+        <xpath expr="//td[@t-if='otherCurrency']" position="replace">
+            <td/>
+        </xpath>
+        <xpath expr="//td[@t-if='otherCurrency']" position="replace">
+            <td/>
+        </xpath>
+        <xpath expr="//td[@t-if='otherCurrency']" position="replace">
+            <td/>
+        </xpath>
+
+    </template>
+</odoo>

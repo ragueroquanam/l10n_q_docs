@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+        <!-- Create dedicated channel for reconciliation jobs -->
+        <!-- This channel controls the concurrency of reconciliation processing -->
+        <record id="channel_reconciliation" model="queue.job.channel">
+            <field name="name">reconciliation</field>
+            <field name="parent_id" ref="queue_job.channel_root"/>
+        </record>
+    </data>
+</odoo>

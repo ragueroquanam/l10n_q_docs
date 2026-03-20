@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <record id="pos_payment_provider_poslink" model="pos.payment.provider">
+            <field name="code">poslink</field>
+            <field name="name">POSLINK</field>
+            <field name="base_url">https://poslink.hm.opos.com.uy</field>
+            <field name="endpoint">/itdServer</field>
+            <field name="active">1</field>
+        </record>
+
+    </data>
+</odoo>

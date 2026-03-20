@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="statement_changes_equity_conf_form" model="ir.ui.view">
+            <field name="name">statement.changes.equity.form</field>
+            <field name="model">statement.changes.equity.conf</field>
+            <field name="arch" type="xml">
+                <form string="Anexo 2 - EEP">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="type"/>
+                                <field name="sign" invisible="type == 'sum'" required="type == 'accounts'"/>
+                            </group>
+                            <group>
+                                <field name="sequence"/>
+                                <field name="parent_id"/>
+                                <field name="section"/>
+                            </group>
+                            <separator string="Cuentas" invisible="type == 'sum'"/>
+                            <field name="line_ids" colspan="4" nolabel="1" invisible="type == 'sum'">
+                                <list editable="bottom">
+                                    <field name="account_id" options="{'no_create':True, 'no_open':True}"/>
+                                    <field name="headers"/>
+                                    <field name="amount_option"/>
+                                </list>
+                            </field>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="statement_changes_equity_conf_tree" model="ir.ui.view">
+            <field name="name">statement.changes.equity.tree</field>
+            <field name="model">statement.changes.equity.conf</field>
+            <field name="arch" type="xml">
+                <list string="Anexo 2 - EEP">
+                    <field name="sequence"/>
+                    <field name="name"/>
+                    <field name="section"/>
+                </list>
+            </field>
+        </record>
+
+        <record id="action_statement_changes_equity_conf" model="ir.actions.act_window">
+            <field name="name">Anexo 2 - EEP</field>
+            <field name="res_model">statement.changes.equity.conf</field>
+            <field name="view_mode">list,form</field>
+            <field name="domain">[]</field>
+            <field name="context">{}</field>
+        </record>
+
+    </data>
+</odoo>

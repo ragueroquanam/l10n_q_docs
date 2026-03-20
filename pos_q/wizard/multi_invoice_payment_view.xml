@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Vista del wizard principal -->
+    <record id="view_multi_invoice_payment_wizard_form" model="ir.ui.view">
+        <field name="name">multi.invoice.payment.wizard.pos.form</field>
+        <field name="model">multi.invoice.payment.wizard</field>
+        <field name="inherit_id" ref="account_q.view_multi_invoice_payment_wizard_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='total_amount_residual']" position="after">
+                <field name="pos_payment_terminal_id" options="{'no_create': True}" invisible="1"/>
+            </xpath>
+            <xpath expr="//field[@name='payment_line_ids']" position="replace">
+            <field name="payment_line_ids" nolabel="1" colspan="4"
+                readonly="is_payments_generated"
+                context="{'default_invoice_currency_id': invoice_currency_id, 'default_move_type': move_type, 'default_pos_payment_terminal_id': pos_payment_terminal_id}">
+                <list string="Líneas de Pago">
+                    <field name="invoice_currency_id" column_invisible="1"/>
+                    <field name="currency_id"/>
+                    <field name="journal_id" options="{'no_create': True}" 
+                        domain="journal_id_domain"/>
+                    <field name="payment_method_line_id" domain="[('id', 'in', available_payment_method_line_ids)]" options="{'no_create': True}"/>
+                    <field name="available_payment_method_line_ids" column_invisible="1"/>
+                    <field name="is_check" column_invisible="1"/>
+                    <field name="check_number" invisible="not is_check" required="is_check"/>
+                    <field name="check_due_date" invisible="not is_check" required="is_check"/>
+                    <field name="amount" widget="monetary"/>
+                    <!-- <button name="button_residual_inline_currency" icon="fa-refresh" type="object"/> -->
+                    <field name="amount_currency" widget="monetary" readonly="1" sum="Monto a Pagar en Moneda"/>
+                    <field name="journal_id_domain" column_invisible="1"/>
+                    <field name="company_id" column_invisible="1"/>
+                    <field name="payment_type" column_invisible="1"/>
+                    <field name="move_type" column_invisible="1"/>
+                </list>
+                <form>
+                    <group>
+                        <group>
+                            <field name="invoice_currency_id" invisible="1"/>
+                            <field name="available_payment_method_line_ids" invisible="1"/>
+                            <field name="is_check" invisible="1"/>
+                            <field name="journal_id_domain" invisible="1"/>
+                            <field name="company_id" invisible="1"/>
+                            <field name="payment_type" invisible="1"/>
+                            <field name="move_type" invisible="1"/>
+
+                            <field name="currency_id" options="{'no_create': True}"/>
+                            <field name="journal_id" options="{'no_create': True}" 
+                                domain="journal_id_domain"/>
+                            <field name="payment_method_line_id" domain="[('id', 'in', available_payment_method_line_ids)]" options="{'no_create': True}"/>
+                            <field name="check_number" invisible="not is_check" required="is_check"/>
+                            <field name="check_due_date" invisible="not is_check" required="is_check"/>
+                            <field name="amount" widget="monetary"/>
+                            <field name="amount_currency" widget="monetary" readonly="1" sum="Monto a Pagar en Moneda"/>
+                        </group>
+                        <group>
+                            <field name="is_pos_method" invisible="1"/>
+                            <field name="is_pos_manual" invisible="1"/>
+                            <field name="pos_payment_terminal_id" invisible="not is_pos_method or is_pos_manual" required="is_pos_method and not is_pos_manual"/>
+                            <field name="is_credit" invisible="not is_pos_method"/>
+                            <field name="installment_qty" invisible="not is_pos_method or is_credit!=True"
+                                required="is_credit==True"/>
+                            <field name="pos_invoice_number" invisible="not is_pos_method"/>
+                            <field name="ticket" invisible="not is_pos_manual" readonly="not is_pos_manual" required="is_pos_manual"/>
+                            <field name="batch_number" invisible="not is_pos_manual" readonly="not is_pos_manual" required="is_pos_manual"/>
+                            <field name="authorization_code" invisible="not is_pos_manual" readonly="not is_pos_manual" required="is_pos_manual"/>
+                        </group>
+                    </group>
+                </form>
+            </field>
+            </xpath>
+        </field>
+    </record>
+</odoo>

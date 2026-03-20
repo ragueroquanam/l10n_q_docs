@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Batch Reconciliation Queue</title>
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; padding: 20px; max-width: 900px; margin: 0 auto; }
+        h1 { color: #875A7B; }
+        h2 { color: #017E84; border-bottom: 2px solid #017E84; padding-bottom: 5px; }
+        h3 { color: #555; }
+        .highlight { background: #f5f5f5; padding: 15px; border-radius: 5px; margin: 10px 0; }
+        .warning { background: #fff3cd; border-left: 4px solid #ffc107; padding: 10px 15px; margin: 10px 0; }
+        .success { background: #d4edda; border-left: 4px solid #28a745; padding: 10px 15px; margin: 10px 0; }
+        table { border-collapse: collapse; width: 100%; margin: 15px 0; }
+        th, td { border: 1px solid #ddd; padding: 10px; text-align: left; }
+        th { background: #f8f9fa; }
+        code { background: #e9ecef; padding: 2px 6px; border-radius: 3px; }
+        pre { background: #2d2d2d; color: #f8f8f2; padding: 15px; border-radius: 5px; overflow-x: auto; }
+    </style>
+</head>
+<body>
+    <h1>Batch Reconciliation Queue</h1>
+    <p><strong>Version:</strong> 18.0.2.0.0</p>
+    <p><strong>Author:</strong> Quanam</p>
+
+    <h2>Overview</h2>
+    <p>High-performance solution for bank reconciliation of batch payments with more than 5,000 records.
+    Designed to work within Odoo.sh's 15-minute timeout limit by dividing work into independent chunks
+    processed via <code>queue_job</code>.</p>
+
+    <div class="success">
+        <strong>Key Benefits:</strong>
+        <ul>
+            <li>Process 5,000+ payments without timeouts</li>
+            <li>Each chunk completes in &lt;10 minutes (Odoo.sh compatible)</li>
+            <li>Individual retry on chunk failure</li>
+            <li>Real-time progress tracking</li>
+            <li>Full accounting integrity maintained</li>
+        </ul>
+    </div>
+
+    <h2>Architecture</h2>
+    <table>
+        <tr>
+            <th>Component</th>
+            <th>Description</th>
+        </tr>
+        <tr>
+            <td><strong>Master Job</strong></td>
+            <td>Coordinates the entire reconciliation process, divides work into chunks, tracks overall progress</td>
+        </tr>
+        <tr>
+            <td><strong>Chunk Job</strong></td>
+            <td>Processes ~500 payments independently, can be retried individually on failure</td>
+        </tr>
+        <tr>
+            <td><strong>Queue Channel</strong></td>
+            <td>Dedicated <code>root.reconciliation</code> channel controls concurrency</td>
+        </tr>
+    </table>
+
+    <h2>Processing Flow</h2>
+    <div class="highlight">
+        <ol>
+            <li><strong>Detection:</strong> User validates reconciliation with &gt;500 payments</li>
+            <li><strong>Master Creation:</strong> System creates a master job and divides work into chunks</li>
+            <li><strong>Chunk Processing:</strong> Each chunk is queued and processes ~500 payments</li>
+            <li><strong>Finalization:</strong> After all chunks complete, final reconciliation runs</li>
+            <li><strong>Notification:</strong> User is notified of completion or any failures</li>
+        </ol>
+    </div>
+
+    <h2>Performance</h2>
+    <table>
+        <tr>
+            <th>Payment Count</th>
+            <th>Chunks</th>
+            <th>Expected Time</th>
+            <th>Status</th>
+        </tr>
+        <tr>
+            <td>&lt;500</td>
+            <td>Standard flow</td>
+            <td>&lt;30 seconds</td>
+            <td>Synchronous</td>
+        </tr>
+        <tr>
+            <td>500-2,000</td>
+            <td>1-4</td>
+            <td>2-8 minutes</td>
+            <td>Background</td>
+        </tr>
+        <tr>
+            <td>5,000</td>
+            <td>10</td>
+            <td>10-15 minutes</td>
+            <td>Background</td>
+        </tr>
+        <tr>
+            <td>9,000</td>
+            <td>18</td>
+            <td>18-25 minutes</td>
+            <td>Background</td>
+        </tr>
+    </table>
+
+    <h2>Configuration</h2>
+    <p>Configuration parameters (Settings &rarr; Technical &rarr; Parameters):</p>
+    <table>
+        <tr>
+            <th>Parameter</th>
+            <th>Default</th>
+            <th>Description</th>
+        </tr>
+        <tr>
+            <td><code>batch_reconciliation_queue.queue_threshold</code></td>
+            <td>500</td>
+            <td>Minimum payments to trigger background processing</td>
+        </tr>
+        <tr>
+            <td><code>batch_reconciliation_queue.chunk_size</code></td>
+            <td>500</td>
+            <td>Payments per chunk (keep &lt;700 for Odoo.sh)</td>
+        </tr>
+        <tr>
+            <td><code>batch_reconciliation_queue.max_parallel_chunks</code></td>
+            <td>3</td>
+            <td>Maximum concurrent chunks (higher = faster but more resources)</td>
+        </tr>
+    </table>
+
+    <h2>SQL Optimizations</h2>
+    <p>The module creates the following indexes during installation:</p>
+    <ul>
+        <li><code>account_move_line_move_display_type_idx</code> - Payment term line lookups</li>
+        <li><code>account_payment_batch_state_idx</code> - Batch payment filtering</li>
+        <li><code>account_move_line_account_reconciled_idx</code> - Reconciliation searches</li>
+        <li><code>account_bank_statement_line_move_idx</code> - Statement line lookups</li>
+    </ul>
+
+    <h2>Monitoring</h2>
+    <p>Access the job monitor via: <strong>Accounting &rarr; Customers &rarr; Reconciliation Jobs</strong></p>
+    <p>Each job shows:</p>
+    <ul>
+        <li>Overall progress percentage</li>
+        <li>Chunk-by-chunk status</li>
+        <li>Processing duration</li>
+        <li>Error details (if any)</li>
+        <li>Related queue jobs</li>
+    </ul>
+
+    <div class="warning">
+        <strong>Important:</strong> This module requires <code>queue_job</code> with a running job runner.
+        On Odoo.sh, the job runner is managed automatically. For on-premise installations,
+        ensure the connector channel worker is running.
+    </div>
+
+    <h2>Dependencies</h2>
+    <ul>
+        <li><code>account_accountant</code></li>
+        <li><code>account_accountant_batch_payment</code></li>
+        <li><code>account_batch_payment</code></li>
+        <li><code>queue_job</code></li>
+    </ul>
+</body>
+</html>

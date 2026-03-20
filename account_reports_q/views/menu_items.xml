@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <menuitem action="action_statement_changes_equity_conf" groups="account.group_account_user"
+                  id="menu_statement_changes_equity_conf" name="Anexo 2 - EEP"
+                  parent="account.account_management_menu" sequence="8"/>
+
+        <menuitem id="menu_statement_changes_equity_wizard" name="Evolución Patrimonial"
+                  parent="account.account_reports_legal_statements_menu"
+                  action="action_statement_changes_equity_wizard_form"
+                  groups="account.group_account_readonly,account.group_account_user"
+                  sequence="143"/>
+
+    </data>
+</odoo>

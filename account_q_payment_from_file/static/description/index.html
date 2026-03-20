@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Account Q Payment from File</title>
+</head>
+
+<body>
+    <section class="oe_container">
+        <div class="oe_row oe_spaced">
+            <div class="oe_span12">
+                <h2 class="oe_slogan">Payment from File Processing</h2>
+                <h3 class="oe_slogan">Process customer payments from Excel or TXT files</h3>
+            </div>
+        </div>
+    </section>
+
+    <section class="oe_container">
+        <div class="oe_row oe_spaced">
+            <div class="oe_span12">
+                <h3>Features</h3>
+                <ul>
+                    <li>Upload payment files from Red Pagos (Excel) or Abitab (TXT)</li>
+                    <li>Automatically match payments to invoices using barcodes</li>
+                    <li>Process payments with configurable journal and payment method</li>
+                    <li>Track processing status and errors for each line</li>
+                    <li>Support for multiple currencies (UYU, USD)</li>
+                    <li>Add barcode fields to customer invoices for automatic matching</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="oe_container">
+        <div class="oe_row oe_spaced">
+            <div class="oe_span12">
+                <h3>Supported File Formats</h3>
+                <h4>Excel (Red Pagos)</h4>
+                <p>Columns: FECHA, TRACK, MONEDA, IMPORTE, MOVIMIENTO, SUB AGENCIA, CAJA</p>
+
+                <h4>TXT (Abitab)</h4>
+                <p>Fixed-width format with specific positions for each field.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="oe_container">
+        <div class="oe_row oe_spaced">
+            <div class="oe_span12">
+                <h3>How to Use</h3>
+                <ol>
+                    <li>Go to Accounting > Customers > Payments from File</li>
+                    <li>Create a new payment file record</li>
+                    <li>Select the payment journal and payment method</li>
+                    <li>Set the payment date</li>
+                    <li>Upload the file (Excel or TXT)</li>
+                    <li>Click "Process File" to parse the file and create lines</li>
+                    <li>Review the lines and fix any errors</li>
+                    <li>Click "Process Payments" to create the payments</li>
+                </ol>
+            </div>
+        </div>
+    </section>
+
+    <section class="oe_container">
+        <div class="oe_row oe_spaced">
+            <div class="oe_span12">
+                <h3>Configuration</h3>
+                <p>Add barcode information to customer invoices for automatic matching with payment files.</p>
+                <p>The module adds two barcode fields to customer invoices:</p>
+                <ul>
+                    <li><strong>File Barcode:</strong> Short barcode used for matching (17 characters for Abitab)</li>
+                    <li><strong>Full Barcode:</strong> Complete barcode with all 49 characters (for Red Pagos)</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>

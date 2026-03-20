@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_account_move_line_withholding_list" model="ir.ui.view">
+            <field name="name">account.move.line.withholding.list</field>
+            <field name="model">account.move.line</field>
+            <field name="arch" type="xml">
+                <list name="move_line_withholding_list" string="Líneas de Retención" create="False">
+                    <header>
+                        <button name="action_create_resguardo" type="object" string="Generar Resguardo"/>
+                    </header>
+                    <field name="date"/>
+                    <field name="partner_id" string="Proveedor"/>
+                    <field name="tax_line_id" string="Retención"/>
+                    <field name="account_id"/>
+                    <field name="balance" string="Importe"/>
+                    <field name="currency_id"/>
+                    <field name="amount_currency" string="Importe en Moneda" invisible="is_same_currency"/>
+                    <field name="resguardo_id" invisible="not resguardo_id"/>
+                    <button name="button_open_resguardo" type="object" icon="fa-eye" invisible="not resguardo_id"
+                            help="Ver resguardo"/>
+                    <field name="company_id"/>
+                    <field name="move_name" string="Numero"/>
+                    <button name="button_open_move" type="object" icon="fa-eye" help="Ver comprobante"/>
+                    <field name="is_same_currency" column_invisible="True"/>
+                </list>
+            </field>
+        </record>
+
+        <record id="view_account_move_line_withholding_search" model="ir.ui.view">
+            <field name="name">account.move.line.withholding.search</field>
+            <field name="model">account.move.line</field>
+            <field name="arch" type="xml">
+                <search string="Buscar Retenciones">
+                    <field name="partner_id" string="Proveedor"/>
+                    <field name="tax_line_id" string="Retención"/>
+                    <field name="account_id" string="Cuenta"/>
+                    <filter name="not_has_resguardo" string="Sin Resguardo" domain="[('resguardo_line_id','=',False)]"/>
+                    <filter name="has_resguardo" string="Tiene Resguardo" domain="[('resguardo_line_id','!=',False)]"/>
+                    <separator/>
+                    <filter name="date" string="Fecha" date="date"/>
+                    <group expand="0" string="Group By">
+                        <filter name="filter_partner" string="Proveedor" domain="[]"
+                                context="{'group_by': 'partner_id'}"/>
+                        <filter name="filter_tax" string="Retención" domain="[]" context="{'group_by': 'tax_line_id'}"/>
+                        <filter name="filter_date" string="Fecha" domain="[]" context="{'group_by': 'date'}"/>
+                        <filter name="filter_account" string="Cuenta Retención" domain="[]"
+                                context="{'group_by': 'account_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="action_account_move_line_withholding" model="ir.actions.act_window">
+            <field name="name">Líneas de Retención</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">account.move.line</field>
+            <field name="view_mode">list</field>
+            <field name="view_id" ref="view_account_move_line_withholding_list"/>
+            <field name="search_view_id" ref="view_account_move_line_withholding_search"/>
+            <field name="domain">[('tax_line_id.tax_withholding', '=', True),
+                ("parent_state", "=", "posted")]
+            </field>
+            <field name="context">{
+                "search_default_not_has_resguardo": 1,
+                "is_line_withholding": 1,
+                }
+            </field>
+        </record>
+
+        <record id="view_account_resguardo_tree" model="ir.ui.view">
+            <field name="name">account.resguardo.tree</field>
+            <field name="model">account.resguardo</field>
+            <field name="arch" type="xml">
+                <list>
+                    <field name="name"/>
+                    <field name="date"/>
+                    <field name="partner_id"/>
+                    <field name="company_id"/>
+                    <field name="currency_id"/>
+                    <field name="amount"/>
+                    <field name="state" widget="badge"
+                           decoration-warning="state == 'draft'"
+                           decoration-info="state == 'done'"
+                           decoration-success="state == 'send'"/>
+                </list>
+            </field>
+        </record>
+
+        <record id="view_account_resguardo_form" model="ir.ui.view">
+            <field name="name">account.resguardo.form</field>
+            <field name="model">account.resguardo</field>
+            <field name="arch" type="xml">
+                <form string="Resguardo" editable="bottom" create="false">
+                    <header>
+                        <button name="action_validate" type="object" string="Validar"
+                                invisible="state != 'draft'"
+                                class="btn-primary"/>
+                        <button name="action_send" type="object" string="Enviar"
+                                invisible="state != 'done'"/>
+                        <button name="action_cancel" type="object" string="Cancelar"
+                                invisible="state not in ('done','send')"/>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,done,send"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <group id="header_left_group">
+                                <field name="name" readonly='True'/>
+                                <field name="date" readonly="state != 'draft'"/>
+                                <field name="partner_id" readonly='True'/>
+                                <field name="rut" readonly='True'/>
+                            </group>
+                            <group id="header_right_group">
+                                <field name="currency_id" readonly='True'/>
+                                <field name="company_id" readonly='True'/>
+                                <field name="amount" readonly="True"/>
+                                <field name="resguardo_data" readonly="state not in ('draft','done')"/>
+                            </group>
+                        </group>
+                        <field name="resguardo_line_ids" readonly="state != 'draft'">
+                            <list create="False" edit="False" editable="top">
+                                <field name="move_line_id"/>
+                                <field name="tax_name" string="Retención"/>
+                                <field name="tax_percent"/>
+                                <field name="base_amount"/>
+                                <field name="tax_amount"/>
+                            </list>
+                        </field>
+                    </sheet>
+                    <chatter reload_on_attachment="True"/>
+                </form>
+            </field>
+        </record>
+
+        <record id="seq_account_resguardo" model="ir.sequence">
+            <field name="name">Resguardo</field>
+            <field name="code">account.resguardo</field>
+            <field name="prefix">RESG</field>
+            <field name="padding">5</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+        <record id="action_resguardos" model="ir.actions.act_window">
+            <field name="name">Resguardos</field>
+            <field name="res_model">account.resguardo</field>
+            <field name="view_mode">list,form</field>
+            <field name="context">{'create': False}</field>
+        </record>
+    </data>
+</odoo>

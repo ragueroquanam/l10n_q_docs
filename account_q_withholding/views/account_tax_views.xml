@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_account_tax_form_inherit" model="ir.ui.view">
+            <field name="name">view.account.tax.form.inherit.tax_withholding</field>
+            <field name="model">account.tax</field>
+            <field name="inherit_id" ref="account.view_tax_form"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <xpath expr="//page[@name='advanced_options']" position="inside">
+                    <group name="withholding" string="Retenciones">
+                        <field name="tax_withholding"/>
+                        <field name="tax_withholding_applies_to" invisible="not tax_withholding"
+                               required="tax_withholding"/>
+                        <!-- <field name="account_tax_id"
+                               invisible="not tax_withholding or tax_withholding_applies_to != 'tax'"/> -->
+                        <field name="account_tax_ids"
+                               widget="many2many_tags"
+                               invisible="not tax_withholding or tax_withholding_applies_to != 'tax'"/>
+                        <div name="imponible_div" class="o_row">
+                            <label for="applies_to"/>
+                            <field name="applies_to" invisible="not tax_withholding"/>
+                            <label for="imponible_condition" invisible="not applies_to"/>
+                            <field name="imponible_condition" invisible="not applies_to" required="applies_to"/>
+                            <field name="imponible_amount" invisible="not applies_to" required="applies_to"/>
+                            <field name="imponible_currency_id" invisible="not applies_to" required="applies_to"/>
+                        </div>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

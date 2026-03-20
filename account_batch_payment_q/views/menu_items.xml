@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="account_batch_payment_q_bank_payments" name="Pagos por banco" parent="account.menu_finance_configuration" sequence="100"/>
+        <menuitem id="account_bank_payment_file_config_menu_act"
+            name="Archivo de Pagos"
+            parent="account_batch_payment_q_bank_payments"
+            action="action_account_bank_payment_file_config"
+            sequence="1"/>
+</odoo>

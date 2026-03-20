@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="account_bank_payment_file_config_itau" model="account.bank.payment.file.config">
+            <field name="name">ITAU</field>
+            <field name="code">itau</field>
+        </record>
+
+        <!-- Líneas de detalle -->
+        <record id="account_bank_payment_file_config_line_itau_1" model="account.bank.payment.file.config.line">
+            <field name="config_id" ref="account_bank_payment_file_config_itau"/>
+            <field name="sequence">1</field>
+            <field name="name">Versión del registro</field>
+            <field name="description">Versión del archivo según especificaciones de ITAU. Valor fijo: PPV4</field>
+            <field name="type">fixed</field>
+            <field name="value">PPV4</field>
+        </record>
+
+        <record id="account_bank_payment_file_config_line_itau_2" model="account.bank.payment.file.config.line">
+            <field name="config_id" ref="account_bank_payment_file_config_itau"/>
+            <field name="sequence">2</field>
+            <field name="name">Forma de pago</field>
+            <field name="description">Forma de pago utilizada. Valor fijo: 1</field>
+            <field name="type">fixed</field>
+            <field name="value">1</field>
+        </record>
+
+        <record id="account_bank_payment_file_config_line_itau_3" model="account.bank.payment.file.config.line">
+            <field name="config_id" ref="account_bank_payment_file_config_itau"/>
+            <field name="sequence">3</field>
+            <field name="name">Código de moneda</field>
+            <field name="description">Mapeo de moneda: UYU=URGP (pesos uruguayos), USD=US.D (dólares estadounidenses)
+            </field>
+            <field name="type">mapping</field>
+            <field name="value">UYU=URGP,USD=US.D</field>
+        </record>
+
+        <record id="account_bank_payment_file_config_line_itau_6" model="account.bank.payment.file.config.line">
+            <field name="config_id" ref="account_bank_payment_file_config_itau"/>
+            <field name="sequence">6</field>
+            <field name="name">Tipo cuenta</field>
+            <field name="description">Mapeo: Cuenta corriente=0, Caja de ahorro=1. Esta variable no es requerida.</field>
+            <field name="type">mapping</field>
+            <field name="value">Cuenta corriente=0,Caja de ahorro=1</field>
+        </record>
+
+        <record id="account_bank_payment_file_config_line_itau_10" model="account.bank.payment.file.config.line">
+            <field name="config_id" ref="account_bank_payment_file_config_itau"/>
+            <field name="sequence">10</field>
+            <field name="name">Tipo de documento</field>
+            <field name="description">Mapeo según los tipos de documentos que se utilizan.</field>
+            <field name="type">mapping</field>
+            <field name="value">RUT / RUC=9,CI=1,OTR=3,PAS=2,DNI=3,NIFE=3,NIE=3</field>
+        </record>
+
+        <record id="account_bank_payment_file_config_line_itau_18" model="account.bank.payment.file.config.line">
+            <field name="config_id" ref="account_bank_payment_file_config_itau"/>
+            <field name="sequence">18</field>
+            <field name="name">Disponible descontar</field>
+            <field name="description">Indica si el monto debe ser descontado inmediatamente. Valor fijo: 0</field>
+            <field name="type">fixed</field>
+            <field name="value">0</field>
+        </record>
+
+        <record id="account_bank_payment_file_config_line_itau_22" model="account.bank.payment.file.config.line">
+            <field name="config_id" ref="account_bank_payment_file_config_itau"/>
+            <field name="sequence">22</field>
+            <field name="name">Destino de fondos</field>
+            <field name="description">Destino del dinero a transferir. Valor fijo: PAP</field>
+            <field name="type">fixed</field>
+            <field name="value">PAP</field>
+        </record>
+
+
+        <record id="account_bank_payment_file_config_itau_deb_auto" model="account.bank.payment.file.config">
+            <field name="name">ITAU DEBITO AUTOMATICO</field>
+            <field name="code">itau_deb_auto</field>
+        </record>
+
+        <!-- Líneas de detalle-->
+        <record id="account_bank_payment_file_config_line_itau_deb_2" model="account.bank.payment.file.config.line">
+            <field name="config_id" ref="account_bank_payment_file_config_itau_deb_auto"/>
+            <field name="sequence">2</field>
+            <field name="name">Correlativo del cliente</field>
+            <field name="description">Alfanumérico de 4 caracteres.</field>
+            <field name="type">fixed</field>
+            <field name="value">XXXX</field>
+        </record>
+
+        <record id="account_bank_payment_file_config_line_itau_deb_3" model="account.bank.payment.file.config.line">
+            <field name="config_id" ref="account_bank_payment_file_config_itau_deb_auto"/>
+            <field name="sequence">3</field>
+            <field name="name">Tipo de Pago</field>
+            <field name="description">Tipo de pago fijo: 3</field>
+            <field name="type">fixed</field>
+            <field name="value">3</field>
+        </record>
+
+        <record id="account_bank_payment_file_config_line_itau_deb_7" model="account.bank.payment.file.config.line">
+            <field name="config_id" ref="account_bank_payment_file_config_itau_deb_auto"/>
+            <field name="sequence">7</field>
+            <field name="name">Referencia Débito</field>
+            <field name="description">Referencia estática para el débito (valor fijo). Alfanumérico de 8 caracteres.</field>
+            <field name="type">fixed</field>
+            <field name="value">XXXXXXXX</field>
+        </record>
+
+        <record id="account_bank_payment_file_config_line_itau_deb_9" model="account.bank.payment.file.config.line">
+            <field name="config_id" ref="account_bank_payment_file_config_itau_deb_auto"/>
+            <field name="sequence">9</field>
+            <field name="name">Número de Cuenta Crédito</field>
+            <field name="description">Número de cuenta que recibirá el crédito (valor fijo)</field>
+            <field name="type">fixed</field>
+            <field name="value">0000000</field>
+        </record>
+
+        <record id="account_bank_payment_file_config_line_itau_deb_10" model="account.bank.payment.file.config.line">
+            <field name="config_id" ref="account_bank_payment_file_config_itau_deb_auto"/>
+            <field name="sequence">10</field>
+            <field name="name">Moneda</field>
+            <field name="description">Mapeo de moneda: UYU=URGP, USD=US.D</field>
+            <field name="type">mapping</field>
+            <field name="value">UYU=URGP,USD=US.D</field>
+        </record>
+
+        <record id="account_bank_payment_file_config_line_itau_deb_14" model="account.bank.payment.file.config.line">
+            <field name="config_id" ref="account_bank_payment_file_config_itau_deb_auto"/>
+            <field name="sequence">14</field>
+            <field name="name">APLICA LEY 19.210</field>
+            <field name="description">Mapeo booleano: true=S (aplica devolución por ley 19.210) o false=N (no aplica)</field>
+            <field name="type">mapping</field>
+            <field name="value">true=S,false=N</field>
+        </record>
+
+        <record id="account_bank_payment_file_config_line_itau_deb_18" model="account.bank.payment.file.config.line">
+            <field name="config_id" ref="account_bank_payment_file_config_itau_deb_auto"/>
+            <field name="sequence">18</field>
+            <field name="name">CLIENTE INCLUIDO LEY 18.083 o 18.874</field>
+            <field name="description">Indica si el cliente está incluido bajo ley 18.083/18.874: N (no), S (IVA básica),M (IVA mínimo)</field>
+            <field name="type">fixed</field>
+            <field name="value">N</field>
+        </record>
+    </data>
+</odoo>
