@@ -1,4 +1,4 @@
-name: Build Wiki
+name: Build Wiki MD
 
 on:
   push:
