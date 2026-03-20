@@ -3,6 +3,7 @@ name: Build Wiki MD
 on:
   push:
     branches:
+      - master
       - main
 
 jobs:
@@ -15,7 +16,7 @@ jobs:
 
       - name: Clone Wiki
         run: |
-          git clone https://github.com/${{ github.repository }}.wiki.git wiki || true
+          git clone https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.wiki.git wiki || true
 
       - name: Create wiki structure
         run: |
@@ -41,6 +42,7 @@ jobs:
           git config user.name "github-actions"
           git config user.email "actions@github.com"
 
+          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.wiki.git
           git add .
           git commit -m "Auto update wiki" || echo "No changes"
           git push
