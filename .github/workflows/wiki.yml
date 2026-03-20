@@ -1,0 +1,46 @@
+name: Build Wiki
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-wiki:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Clone Wiki
+        run: |
+          git clone https://github.com/${{ github.repository }}.wiki.git wiki || true
+
+      - name: Create wiki structure
+        run: |
+          mkdir -p wiki
+
+          # Página principal
+          cp README.md wiki/Home.md
+
+          # Limpiar páginas viejas (opcional)
+          find wiki -type f -name "*.md" ! -name "Home.md" -delete
+
+          # Procesar addons
+          for dir in */ ; do
+            if [ -f "$dir/README.md" ]; then
+              name=$(basename $dir)
+              cp "$dir/README.md" "wiki/${name}.md"
+            fi
+          done
+
+      - name: Commit & Push Wiki
+        run: |
+          cd wiki
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+
+          git add .
+          git commit -m "Auto update wiki" || echo "No changes"
+          git push
