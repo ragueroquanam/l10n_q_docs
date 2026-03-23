@@ -32,6 +32,10 @@ plugins:
   - search:
       lang: es
 
+extra:
+  version:
+    provider: mike
+
 nav:
   - Inicio: index.md
   - Contabilidad:

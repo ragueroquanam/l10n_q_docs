@@ -23,8 +23,8 @@ jobs:
         with:
           python-version: '3.x'
 
-      - name: Install MkDocs Material
-        run: pip install mkdocs-material
+      - name: Install MkDocs Material and mike
+        run: pip install mkdocs-material mike
 
       - name: Build docs structure from READMEs
         run: |
@@ -37,5 +37,14 @@ jobs:
             fi
           done
 
-      - name: Deploy to GitHub Pages
-        run: mkdocs gh-deploy --force
+      - name: Configure git for mike
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git fetch origin gh-pages --depth=1 || true
+
+      - name: Deploy version with mike
+        run: |
+          VERSION="${GITHUB_REF_NAME}"
+          mike deploy --push --update-aliases "$VERSION" latest
+          mike set-default --push latest
