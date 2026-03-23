@@ -1,0 +1,73 @@
+site_name: l10n_q - Documentación
+site_description: Módulos de localización para Odoo 18 desarrollados por Quanam
+site_author: Quanam
+repo_name: Quanam/l10n_q
+repo_url: https://github.com/Quanam/l10n_q
+
+theme:
+  name: material
+  language: es
+  palette:
+    - scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Cambiar a modo oscuro
+    - scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Cambiar a modo claro
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+
+plugins:
+  - search:
+      lang: es
+
+nav:
+  - Inicio: index.md
+  - Contabilidad:
+    - account_q: account_q.md
+    - account_q_withholding: account_q_withholding.md
+    - account_reports_q: account_reports_q.md
+    - account_check_q: account_check_q.md
+    - account_move_forced_account: account_move_forced_account.md
+    - account_payment_q_extra: account_payment_q_extra.md
+    - account_q_payment_from_file: account_q_payment_from_file.md
+  - Pagos Masivos:
+    - account_batch_payment_q: account_batch_payment_q.md
+    - account_batch_payment_q_amex: account_batch_payment_q_amex.md
+    - account_batch_payment_q_brou: account_batch_payment_q_brou.md
+    - account_batch_payment_q_cabal: account_batch_payment_q_cabal.md
+    - account_batch_payment_q_direct_credits: account_batch_payment_q_direct_credits.md
+    - account_batch_payment_q_fiserv: account_batch_payment_q_fiserv.md
+    - account_batch_payment_q_itau: account_batch_payment_q_itau.md
+    - account_batch_payment_q_oca: account_batch_payment_q_oca.md
+    - account_batch_payment_q_santander: account_batch_payment_q_santander.md
+    - account_batch_payment_q_visanet: account_batch_payment_q_visanet.md
+  - Caja:
+    - cash_management_q: cash_management_q.md
+    - cash_pos_link_q: cash_pos_link_q.md
+    - pos_cash_bridge_q: pos_cash_bridge_q.md
+  - Punto de Venta:
+    - pos_q: pos_q.md
+    - pos_link_q: pos_link_q.md
+  - Compras:
+    - purchase_q: purchase_q.md
+    - purchase_q_approval_levels: purchase_q_approval_levels.md
+    - purchase_q_extra: purchase_q_extra.md
+    - purchase_request_q: purchase_request_q.md
+  - Stock:
+    - stock_q: stock_q.md
+  - Aprobaciones y Workflows:
+    - approvals_fleet_q: approvals_fleet_q.md
+    - xf_approval_route_quanam: xf_approval_route_quanam.md
+    - batch_reconciliation_queue: batch_reconciliation_queue.md
