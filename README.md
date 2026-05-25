@@ -2,6 +2,7 @@
 
 <!-- /!\ do not modify above this line -->
 
+
 # l10n_q
 
 Conjunto completo de módulos de localización desarrollados por Quanam para extender las funcionalidades estándar de Odoo con características específicas para el mercado regional, incluyendo gestión contable avanzada, pagos masivos, integración bancaria, y procesos de negocio optimizados.

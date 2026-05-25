@@ -3,8 +3,7 @@ name: Deploy MkDocs to GitHub Pages
 on:
   push:
     branches:
-      - master
-      - main
+      - 18.0
   workflow_dispatch:
 
 permissions:
@@ -29,7 +28,11 @@ jobs:
       - name: Build docs structure from READMEs
         run: |
           mkdir -p docs
-          cp README.md docs/index.md
+          if [ -f index.md ]; then
+            cp index.md docs/index.md
+          else
+            cp README.md docs/index.md
+          fi
           for dir in */ ; do
             if [ -f "${dir}README.md" ]; then
               name=$(basename "$dir")

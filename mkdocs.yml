@@ -55,6 +55,7 @@ nav:
     - account_batch_payment_q_fiserv: account_batch_payment_q_fiserv.md
     - account_batch_payment_q_itau: account_batch_payment_q_itau.md
     - account_batch_payment_q_oca: account_batch_payment_q_oca.md
+    - account_batch_payment_q_passcard: account_batch_payment_q_passcard.md
     - account_batch_payment_q_santander: account_batch_payment_q_santander.md
     - account_batch_payment_q_visanet: account_batch_payment_q_visanet.md
   - Caja:
